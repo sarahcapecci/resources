@@ -1,17 +1,148 @@
 // Grid settings
 // -------------------------
-
-@main-sm-columns:       @grid-columns;
 @sidebar-sm-columns:    4;
+@mobile: 400px;
+@tablet: 750px;
+
+// FONTS
+// * * * * * * * * * * * * * * * * * * * * * * * * * //
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:500,100,300,700,400);
+@import url(http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
 
 
-// Brand colors
-// -------------------------
 
-@brand-primary:         #27ae60;
+// BRAND COLORS
+// * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+@white: #fff;
+@black: #333333;
+@main-blue: #22b2e1;
+@orange: #fda63e;
+@light-orange: #f4b569;
+@lighter-gray: #f6f6f6;
+@blog-gray-text: #575757;
+@member-dark-gray: #515151;
+@title-gray: #8e8e8e;
+@about-gray: #909194;
+@light-gray: #909194;
+@login-light-gray: #eeeef0;
+@login-blue: #38b7e2;
+@icon-gray: #c4cdcf;
 
 
 // Glyphicons path
 // -------------------------
 
 @icon-font-path:        "../vendor/bootstrap/fonts/";
+
+// MIXINS
+// * * * * * * * * * * * * * * * * * * * * * * * * * //
+.total-lateral-padding() {
+  padding-left: 40px;
+  padding-right: 40px;
+
+  @media all and (max-width: @mobile) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  @media all and (max-width: @tablet) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+.total-top-bottom-padding() {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  @media all and (max-width: @mobile) {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+.padding-all() {
+  padding: 20px 40px;
+  @media all and (max-width: @mobile) {
+    padding: 10px;  
+  }
+}
+// LARGE
+.padding-all-lg() {
+  padding: 60px;
+  @media all and (max-width: @mobile) {
+    padding: 40px;
+  }
+}
+.padding-side-lg() {
+	padding: 0 60px;
+  @media all and (max-width: @mobile) {
+    padding: 0 40px;
+  }
+}
+// SMALL
+.padding-all-sm() {
+	padding: 20px;
+  @media all and (max-width: @mobile) {
+    padding: 10px;
+  }
+}
+.padding-side-sm() {
+  padding: 0 20px;
+  @media all and (max-width: @mobile) {
+    padding: 0 10px;
+  }
+}
+
+// VISUAL EFFECTS
+// * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+.fast-transition() {
+  transition: all 0.2s ease;
+}
+
+.slow-transition() {
+    transition: all 0.4s ease;
+}
+
+// HOVER EFFECTS
+// * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// BACKGROUND
+.hover-blue-bg() {
+  &:hover {
+    background-color: @main-blue;
+    color: @white;
+  }
+}
+.hover-gray-bg() {
+  &:hover {
+    background-color: @light-gray;
+    color: @black;
+  }
+}
+.hover-orange-bg() {
+  &:hover {
+    background-color: @orange;
+    color: @white;
+  }
+}
+// TEXT
+.hover-gray-txt() {
+  &:hover {
+    color: @light-gray;
+  }
+}
+.hover-blue-txt() {
+  &:hover {
+    color: @main-blue;
+  }
+}
+.hover-orange-txt() {
+  &:hover {
+    color: @orange;
+  }
+}
+.hover-white-txt() {
+  &:hover {
+    color: @white;
+  }
+}
+

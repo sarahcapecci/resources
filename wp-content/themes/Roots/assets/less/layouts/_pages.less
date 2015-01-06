@@ -1,0 +1,134 @@
+// CUSTOM LOGIN PAGE
+//* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *//
+
+body.login {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	min-height: 700px;
+	@media all and (max-width: @mobile) {
+		min-height: 300px;
+	}
+}
+
+#login {
+	width: 400px;
+	padding: 8% 0 0;
+	margin: 0 39% 0 auto;
+}
+
+span.diamond {
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-right-color: @login-light-gray;
+	position: absolute;
+	top: 120px;
+	left: 125px;
+	display:block;
+}
+
+.login {
+	position: relative;
+
+	img {
+		width: 70px;
+	}
+
+	.left {
+		width: 35%;
+		color: @white;
+	}
+
+	form {
+		width: 55%;
+		background-color: @login-light-gray;
+		padding: 10px 2px;
+		border-radius: 2px;
+
+		i {
+			font-size: 16px;
+			right: 24px;
+			top: 8px;
+			color: @icon-gray;
+		}
+
+		p {
+			margin: 2px auto 8px auto;
+			width: 90%;
+			text-align: center;
+		}
+
+		p.instruction {
+			margin-top: 10px;
+			margin-bottom: 15px;
+		}
+
+		.submit input {
+			width: 80%;
+			background-color: @orange;
+			color: @white;
+			border: none;
+			border-radius: 2px;
+			padding: 5px 0;
+		}
+	}
+
+	.left, form {
+		display: inline-block;
+		vertical-align: top;
+	}
+}
+
+.login form .input,
+.login input[type="text"], .login input[type="email"] {
+	font-size: 12px;
+	padding: 5px;
+	border-radius: 2px;
+	border: none;
+}
+
+.login form .input,
+.login input[type="text"],
+.login form input[type="checkbox"],
+.login form input[type="email"] {
+	background: #fbfbfb;
+}
+
+.ie7 .login form .input,
+.ie8 .login form .input {
+	font-family: sans-serif;
+}
+
+.login #pass-strength-result {
+	width: 250px;
+	font-weight: 600;
+	margin: 12px 0 6px;
+	padding: 6px 5px;
+	text-align: center;
+}
+
+.mobile #login {
+	padding: 20px 0;
+}
+
+.mobile #login form,
+.mobile #login .message,
+.mobile #login_error {
+	margin-left: 0;
+}
+
+.mobile #login #nav,
+.mobile #login #backtoblog {
+	margin-left: 8px;
+}
+
+.mobile #login h1 a {
+	width: auto;
+}
+
+#login-footer {
+	width: 100%;
+	bottom: 10px;
+}
+

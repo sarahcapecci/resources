@@ -1,10 +1,215 @@
-// Content wrapper
-.wrap { }
+// GENERAL CLASSES USED ACROSS THE WEBSITE
+// * * * * * * * * * * * * * * * * * * * * * * * * * //
 
-// Main content area
-.main {
-  .make-sm-column(@main-sm-columns);
-  .sidebar-primary & {
-    .make-sm-column(@main-sm-columns - @sidebar-sm-columns);
-  }
+// DISPLAY & POSITION
+// * * * * * * * * * * * * * * * * * * * * * * * * * //
+.block {
+	display: block;
+}
+.inline-block {
+	display: inline-block;
+}
+
+.display-none {
+	display: none!important;
+}
+.inline-block-mob {
+	display: inline-block;
+	@media all and (max-width: @mobile) {
+		display: block;
+	}
+}
+.absolute {
+	position: absolute;
+}
+.relative {
+	position: relative;
+}
+.clear-both {
+	clear: both;
+}
+
+// LINK Interaction
+.pointer {
+	cursor: pointer;
+}
+.orange-link {
+	color: @orange;
+	.hover-gray-txt();
+}
+.white-link {
+	color: @white;
+	.hover-blue-txt();
+}
+
+.white-link-black {
+	text-decoration: underline;
+	color: @light-gray;
+	.hover-gray-txt();
+}
+//pagination link
+.white-link a {
+	color: @white;
+	.hover-orange-txt();
+}
+.blue-link {
+	color: @main-blue;
+	.hover-gray-txt();
+}
+
+.black-link {
+	color: @black;
+	.hover-gray-txt();
+}
+
+// SPACE & LOOK
+// * * * * * * * * * * * * * * * * * * * * * * * * * //
+.vertical-al-top {
+	vertical-align: top;
+}
+
+.card-look {
+	box-shadow: 0 0 8px rgba(0,0,0,0.17);
+	padding: 10px 20px;
+	overflow: hidden;
+	&.min-height {
+		height: 470px;
+	}
+}
+
+.mobile-show {
+	display: none;
+}
+.tablet-show {
+	display: none;
+}
+//PADDING
+.padding-none {
+	padding: 0;
+}
+.lateral-padding {
+	.total-lateral-padding();
+}
+.top-bottom-padding {
+	.total-top-bottom-padding();
+}
+.total-padding {
+	.padding-all();
+}
+// MARGIN
+.margin-right-5 {
+	margin-right: 5px;
+}
+.margin-left-5 {
+	margin-left: 5px;
+}
+.margin-top-10 {
+	margin-top: 10px;
+}
+.margin-bottom-10 {
+	margin-bottom: 10px;
+}
+.margin-top-20 {
+	margin-top: 20px;
+}
+.margin-bottom-20 {
+	margin-bottom: 20px;
+}
+.margin-top-none {
+	margin-top: 0px;
+}
+.margin-top-40 {
+	margin-top: 40px;
+}
+.margin-bottom-40 {
+	margin-bottom: 40px;
+}
+.margin-bottom-none {
+	margin-bottom: 0;
+}
+// BACKGROUND
+.bg-set {
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+.white-bg {
+	background-color: @white;
+}
+.orange-bg {
+	background-color: @orange;
+}
+.blue-bg {
+	background-color: @main-blue;
+}
+.transparent-bg {
+	background-color: transparent;
+}
+
+// TYPE RELATED
+// * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+// COLOR
+.gray-txt {
+	color: @light-gray;
+}
+.orange-txt {
+	color: @orange;
+}
+.white-txt {
+	color: @white;
+}
+.blue-txt {
+	color: @main-blue;
+}
+
+.dark-text {
+	color: @member-dark-gray;
+}
+// ALIGNMENT
+.text-al-center {
+	text-align: center;
+}
+.text-al-right {
+	text-align: right;
+}
+// SIZE
+.font-xsm {
+	font-size: 10px;
+	line-height: 14px;
+}
+.font-sm {
+	font-size: 12px;
+	line-height: 16px;
+}
+.font-md {
+	font-size: 14px;
+	line-height: 18px;
+}
+.font-lg {
+	font-size: 20px;
+	line-height: 24px;
+}
+// WEIGHT
+.font-thin {
+	font-weight: 100;
+}
+.font-light {
+	font-weight: 300;
+}
+.font-normal {
+	font-weight: 400;
+}
+.font-semi-bold {
+	font-weight: 500;
+}
+.font-bold {
+	font-weight: 700;
+}
+
+// others
+
+span.divider {
+	border-bottom: 1px solid white;
+	position: absolute;
 }

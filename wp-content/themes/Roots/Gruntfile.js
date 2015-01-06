@@ -45,7 +45,7 @@ module.exports = function(grunt) {
           compress: false,
           // LESS source map
           // To enable, set sourceMap to true and update sourceMapRootpath based on your install
-          sourceMap: true,
+          sourceMap: false,
           sourceMapFilename: 'assets/css/main.css.map',
           sourceMapRootpath: '/app/themes/roots/'
         }

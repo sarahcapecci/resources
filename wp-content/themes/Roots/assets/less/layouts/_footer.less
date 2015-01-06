@@ -1,1 +1,48 @@
-.content-info { }
+footer {
+	height: 110px;
+	position: relative;
+	margin-top: 40px;
+	ul, p {
+		position: absolute;
+		left: 25%;
+		width: 50%;
+		margin-bottom: 5px;
+		@media all and (max-width: @mobile) {
+			width: 100%;
+			left: 0;
+		}
+	}
+
+	ul {
+		top: 0px;
+		li {
+			display: inline-block;
+			width: 30%;
+			img {
+				max-width: 100%;
+			}
+		}
+	}
+
+	div {
+		position: absolute;
+		bottom:0;
+		right: 0;
+		left: 0;
+		height: 40px;
+		img {
+			position: absolute;
+			left: 40px;
+			width: 50px;
+			top: 5px;
+			@media all and (max-width: @mobile) {
+				left: 20px;
+				width: 40px;
+				top: 10px;
+			}
+		}
+		p {
+			top: 10px;
+		}
+	}
+}

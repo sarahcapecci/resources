@@ -1,0 +1,42 @@
+ul.audero-context-menu
+{
+   position: absolute;
+   z-index: 1000;
+   display: none;
+   background-color: menu;
+   list-style-type: none !important;
+   margin: 0px !important;
+   padding: 0px !important;
+   background-color:#FFF;
+   box-shadow:0px 0px 10px #CCC;
+   width:200px; border: 1px solid #CCC;margin-left:0px !important;
+
+
+   
+}
+
+ul.audero-context-menu *
+{
+   color: menutext; 
+}
+
+ul.audero-context-menu > li
+{
+  border-bottom:1px dotted #CCC;
+	margin: 0px !important;
+   padding: 2px 5px !important;
+}
+
+ul.audero-context-menu > li:hover
+{
+   background-color: #EFEFEF;
+}
+
+ul.audero-context-menu > li a
+{
+   display: block;
+    text-decoration:none;
+	font-size:12px;
+}
+
+.cdm_change_icon_mode{margin-left:8px;position:absolute;margin-top:7px;}

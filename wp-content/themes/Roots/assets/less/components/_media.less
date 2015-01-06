@@ -1,13 +1,49 @@
-// Captions
-.wp-caption {
-  &:extend(.thumbnail all);
+@media all and (max-width: @tablet) {
+	.tablet-show {
+		display: inline-block;
+	}
+	.tablet-hide {
+		display: none!important;
+	}
+
+	// navbar
+	.mobile-dropdown {
+		display: none;
+		position: absolute;
+		top: 120%;
+		border-radius: 2px;
+		right: 15px;
+		background-color: @white;
+		box-shadow: 0 0 5px @member-dark-gray;
+		padding: 0 15px;
+		li {
+			width: 100%!important;
+			display: block!important;
+			text-align: right!important;
+			padding: 10px 0;
+
+			a {
+				padding: 8px;
+			}
+		}
+	}
 }
 
-.wp-caption-text {
-    &:extend(.thumbnail .caption);
+
+//  MEDIA QUERIES FOR MOBILE VERSION (breakpoint: 400px)
+// * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+@media all and (max-width: @mobile) {
+	// General
+	// * * * * * * * * * * * * * * * * * * * * * * * * * //
+	.mobile-show {
+		display: inline-block;
+	}
+
+	.mobile-hide {
+		display: none!important;
+	}
+	
 }
 
-// Gallery shortcode
-.gallery-row {
-  padding: (@line-height-computed / 2) 0;
-}
+

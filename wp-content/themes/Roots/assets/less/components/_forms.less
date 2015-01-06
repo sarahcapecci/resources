@@ -1,0 +1,137 @@
+#myModal {
+	// width: 580px;
+
+	
+}
+.modal-dialog {
+	position: absolute;
+	top: 80px;
+	right: 40px;
+	box-shadow: 0 0 15px @title-gray;
+	@media all and (max-width: @mobile) {
+		max-width: 90%;
+		right: 5%;
+	}
+}
+.modal-content {
+	width: 580px;
+	padding: 20px;
+
+	width: 100%;
+	.left {
+		width: 35%;
+		@media all and (max-width: @mobile) {
+			width: 100%;
+		}
+	}
+
+	.right {
+		width: 62%;
+		@media all and (max-width: @mobile) {
+			width: 100%;
+		}
+	}
+
+	.left li {
+		width: 19%;
+		display: inline-block;
+		img {
+			max-width: 35px;
+		}
+	}
+
+	form {
+		padding-left: 30px;
+		@media all and (max-width: @mobile) {
+			padding-left: 0;
+		}
+
+	}
+
+	label {
+		color: @white;
+		position: relative;
+		font-weight: normal;
+
+		span {
+			display: inline-block;
+			max-width: 80%;
+
+			@media all and (max-width: @mobile) {
+				display: block;
+			}
+		}
+
+		input {
+			margin-left: 15px;
+			color: @black;
+			font-weight: normal;
+			padding: 4px 8px;
+			@media all and (max-width: @mobile) {
+				margin-left: 0;
+			}
+		}
+	}
+
+	input, textarea, select {
+		border: none;
+		border-radius: 2px;
+		max-width: 250px;
+		&:focus {
+			outline: none;
+		}
+		@media all and (max-width: @mobile) {
+			max-width: 230px;
+		}
+	}
+
+	textarea {
+		margin-left: 52px;
+		padding: 4px 6px;
+
+		@media all and (max-width: @mobile) {
+			margin-left: 0px;
+		}
+	}
+
+	input[type=submit] {
+		background-color: @orange;
+		color: @white;
+		padding: 4px 8px;
+		right: 12px;
+		position: absolute;
+
+		@media all and (max-width: @mobile) {
+			right: 5px;
+			margin-top: 5px;
+			margin-left: 5px;
+			position: relative;
+		}
+	}
+
+	select {
+		padding: 4px 8px;
+		width: 268px;
+		max-width: 100%;
+		background-color: white;
+		color: @black;
+		option {
+			color: @black;
+			z-index: 100;
+			font-weight: normal;
+		}
+	}
+
+	button.close {
+		position: absolute;
+		float: none;
+		left: 8px;
+		top: 8px;
+		font-size: 14px;
+		color: @white;
+	}
+
+	div.wpcf7-response-output {
+		background-color: white;
+	}
+}

@@ -1,21 +1,26 @@
-<header class="banner navbar navbar-default navbar-static-top" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
-    </div>
-
-    <nav class="collapse navbar-collapse" role="navigation">
+<header class="header" role="banner">
+    <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/torch_logo_gray.png" alt=""></a>
+    <a id="YRT_logo" href="http://youthroundtable.ca/"><img src="<?php echo get_template_directory_uri(); ?>/assets/img/youth_small_logo.png" alt="Youth Roundtable Logo"></a>
+    <nav class="tablet-hide" role="navigation">
       <?php
         if (has_nav_menu('primary_navigation')) :
-          wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'nav navbar-nav'));
+          wp_nav_menu(array('theme_location' => 'primary_navigation', 'menu_class' => 'main-navbar'));
         endif;
       ?>
     </nav>
-  </div>
+    <nav class="tablet-show" role="navigation">
+      <ul class="mobile-nav">
+        <li id="current-page" class="active"></li>
+        <li class="dropdown"><a id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="fa fa-bars font-lg gray-txt pointer"></a></i>
+          <ul id="mobile-dropdown" class="mobile-dropdown dropdown-menu">
+            <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>">updates</a></li>
+            <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>">bulletin</a></li>
+            <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>resources">resources</a></li>
+            <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>about/">about</a></li>
+            <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>events">events</a></li>
+            <li class="menu-members"><a href="<?php echo esc_url(home_url('/')); ?>members/">members</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
 </header>

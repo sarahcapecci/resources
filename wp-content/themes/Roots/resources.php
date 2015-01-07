@@ -4,16 +4,13 @@ Template Name: Resources Template
 */
 ?>
 
-
-
 <?php
-if ( is_user_logged_in() ) {
-	while (have_posts()) : the_post();
-	 get_template_part('templates/page', 'header'); 
-	 get_template_part('templates/content', 'page');
-	endwhile;
-
+// Check if user is logged in 
+if ( !is_user_logged_in() ){
+    get_template_part('templates/content', 'not-logged');
+    wp_login_form( array( 'echo' => true ) );
 } else {
-	echo "hello!";
+    // Show content
+    get_template_part('templates/content', 'resources');
 }
 ?>

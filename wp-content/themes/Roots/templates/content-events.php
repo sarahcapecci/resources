@@ -2,7 +2,7 @@
 <div>
 	<!-- LEFT side -->
 	<div>
-		<h2>Collective Calendar MONTH 1ST - LASTday</h2>
+		<h2>Collective Calendar MONTH 1ST - LAStday</h2>
 		<!-- filter -->
 		<ul>
 		    <li>All /</li>
@@ -19,7 +19,44 @@
 
 		<!-- Calendar -->
 		<div>
-			
+			<!-- <div id="calendar"></div> -->
+			<table>
+			   <tr>
+			   		<th><h5>Sun</h5></th>
+			      	<td>Data 1</td>
+			      	<td>Data 2</td>
+			   </tr>
+			   <tr>
+			   		<th><h5>Mon</h5></th>
+			      	<td>Data 3</td>
+			      	<td>Data 4</td>
+			   </tr>
+			   <tr>
+			   		<th><h5>Tue</h5></th>
+			      	<td>Data 5</td>
+			      	<td>Data 6</td>
+			   </tr>
+			   <tr>
+			   		<th><h5>Wed</h5></th>
+			      	<td>Data 5</td>
+			      	<td>Data 6</td>
+			   </tr>
+			   <tr>
+			   		<th><h5>Thu</h5></th>
+			      	<td>Data 5</td>
+			      	<td>Data 6</td>
+			   </tr>
+			   <tr>
+			   		<th><h5>Fri</h5></th>
+			      	<td>Data 5</td>
+			      	<td>Data 6</td>
+			   </tr>
+			   <tr>
+			   		<th><h5>Sat</h5></th>
+			      	<td>Data 5</td>
+			      	<td>Data 6</td>
+			   </tr>
+			</table>
 		</div>
 		<h2>Upcomming</h2>
 		<ul>
@@ -38,7 +75,17 @@
 	</div>
 	<!-- RIGHT side -->
 	<div>
-		<!-- latest event? -->
+		<!-- Organizations List -->
+		<div>
+			<h2>Explore events by <strong>Organization</strong></h2>
+			<ul>
+			    <li>Organization 1</li>
+			    <li>Organization 1</li>
+			    <li>Organization 1</li>
+			    <li>Organization 1</li>
+			</ul>
+		</div>
+		<!-- SELECTED Event -->
 		<div>
 			<h2>Event Name</h2>
 			<img src="" alt="" />

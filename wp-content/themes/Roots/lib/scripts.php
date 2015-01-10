@@ -31,9 +31,10 @@ function roots_scripts() {
     $assets     = json_decode($get_assets, true);
     $assets     = array(
       'css'       => '/assets/css/main.css',
+      'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
       'js'        => '/assets/js/scripts.js',
-      'modernizr' => '/assets/js/vendor/modernizr.min.js',
-      'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'
+      'modernizr' => '/assets/js/vendor/modernizr.min.js'
+      
     );
   }
 

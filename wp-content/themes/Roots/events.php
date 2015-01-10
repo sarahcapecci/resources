@@ -11,6 +11,6 @@ if ( !is_user_logged_in() ){
     wp_login_form( array( 'echo' => true ) );
 } else {
     // Show content
-    get_template_part('templates/content', 'calendar');
+    get_template_part('templates/content', 'events');
 }
 ?>

@@ -17,7 +17,7 @@
 	<div class="contact-card">
 		<a href="#">
 		<h4>Contact Name</h4>
-			<span class="font-md">Organization Name</span>
+			<span class="font-lg font-light">Organization Name</span>
 			<span class="info-divider"></span>
 			<p>Job title of the contact</p>
 			<p>E-mail of the contact</p>
@@ -29,7 +29,7 @@
 	<div class="contact-card">
 		<a href="#">
 		<h4>Contact Name</h4>
-			<span class="font-md">Organization Name</span>
+			<span class="font-lg font-light">Organization Name</span>
 			<span class="info-divider"></span>
 			<p>Job title of the contact</p>
 			<p>E-mail of the contact</p>
@@ -41,7 +41,7 @@
 	<div class="contact-card">
 		<a href="#">
 		<h4>Contact Name</h4>
-			<span class="font-md">Organization Name</span>
+			<span class="font-lg font-light">Organization Name</span>
 			<span class="info-divider"></span>
 			<p>Job title of the contact</p>
 			<p>E-mail of the contact</p>
@@ -53,7 +53,7 @@
 	<div class="contact-card">
 		<a href="#">
 		<h4>Contact Name</h4>
-			<span class="font-md">Organization Name</span>
+			<span class="font-lg font-light">Organization Name</span>
 			<span class="info-divider"></span>
 			<p>Job title of the contact</p>
 			<p>E-mail of the contact</p>
@@ -65,7 +65,7 @@
 	<div class="contact-card">
 		<a href="#">
 		<h4>Contact Name</h4>
-			<span class="font-md">Organization Name</span>
+			<span class="font-lg font-light">Organization Name</span>
 			<span class="info-divider"></span>
 			<p>Job title of the contact</p>
 			<p>E-mail of the contact</p>

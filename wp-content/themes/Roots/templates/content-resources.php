@@ -19,5 +19,5 @@
 		</div>
 	</div>
 
-	<?php get_template_part('templates/content', 'documents'); ?>
+	<?php get_template_part('templates/content', 'links'); ?>
 	

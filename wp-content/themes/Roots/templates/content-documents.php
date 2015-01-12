@@ -23,32 +23,9 @@
 <div class="left-side-bottom documents">
 	<h3>Recently Uploaded</h3>	
 	<!-- Color varies with type of document -->
-<!-- 	<div class="document-card doc-type">
-		<h4>Document Name</h4>
-		<span class="type">Document type</span>
-		<span class="doc-date">Date uploaded</span>
-		<div class="overlay">
-			<p class="font-light">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa voluptates repellendus, accusantium sed quisquam dolorem necessitatibus blanditiis enim iure omnis fugit laborum, atque esse velit. Assumenda asperiores voluptates doloribus pariatur?</p>
-			<a class="orange-link" href="#">Upload File</a>
-		</div>
-	</div>
-	<div class="document-card doc-type">
-		<a href=""><h4>Document Name</h4></a>
-		<span class="type">Document type</span>
-		<span class="doc-date">Date uploaded</span>
-	</div>
-	<div class="document-card doc-type">
-		<a href=""><h4>Document Name</h4></a>
-		<span class="type">Document type</span>
-		<span class="doc-date">Date uploaded</span>
-	</div>
-	<div class="document-card doc-type">
-		<a href=""><h4>Document Name</h4></a>
-		<span class="type">Document type</span>
-		<span class="doc-date">Date uploaded</span>
-	</div> -->
-
-	<?php echo do_shortcode('[cfdb-html form="Upload Document" show="title,document-select,doc-description,doc-tags,file-upload,Submitted Login,Submitted" filelinks="url" stripbr="true"]<div class="document-card doc-type ${document-select}">
+	<?php echo do_shortcode(
+	'[cfdb-html form="Upload Document" show="title,document-select,doc-description,doc-tags,file-upload,Submitted Login,Submitted" filelinks="url" stripbr="true"]
+	<div class="document-card doc-type ${document-select}">
 		<h4>${title}</h4>
 		<span class="type">${document-select}</span>
 		<span class="doc-date">${Submitted}</span>
@@ -56,7 +33,8 @@
 			<p class="font-light">${doc-description}</p>
 			<a class="orange-link" href="${file-upload}">Download File</a>
 		</div>
-	</div>[/cfdb-html]'); ?>
+	</div>
+	[/cfdb-html]'); ?>
 </div>
 <div class="right-side documents">
 	<h2>Popular Tags</h2>

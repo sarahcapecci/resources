@@ -23,7 +23,7 @@
 <div class="left-side-bottom documents">
 	<h3>Recently Uploaded</h3>	
 	<!-- Color varies with type of document -->
-	<div class="document-card doc-type">
+<!-- 	<div class="document-card doc-type">
 		<h4>Document Name</h4>
 		<span class="type">Document type</span>
 		<span class="doc-date">Date uploaded</span>
@@ -46,9 +46,9 @@
 		<a href=""><h4>Document Name</h4></a>
 		<span class="type">Document type</span>
 		<span class="doc-date">Date uploaded</span>
-	</div>
+	</div> -->
 
-	<?php echo do_shortcode('[cfdb-html form="Upload Document" show="title,document-select,doc-description,,file-upload,Submitted Login,Submitted" filelinks="url" stripbr="true"]<div class="document-card doc-type ${document-select}">
+	<?php echo do_shortcode('[cfdb-html form="Upload Document" show="title,document-select,doc-description,doc-tags,file-upload,Submitted Login,Submitted" filelinks="url" stripbr="true"]<div class="document-card doc-type ${document-select}">
 		<h4>${title}</h4>
 		<span class="type">${document-select}</span>
 		<span class="doc-date">${Submitted}</span>

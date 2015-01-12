@@ -18,6 +18,6 @@
 			<button>Upload a Resource <i class="fa fa-upload margin-left-5"></i></button>
 		</div>
 	</div>
-	
-	<?php get_template_part('templates/content', 'contacts'); ?>
+
+	<?php get_template_part('templates/content', 'links'); ?>
 	

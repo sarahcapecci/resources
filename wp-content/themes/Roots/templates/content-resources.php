@@ -5,7 +5,7 @@
 		<h2>Resources</h2>
 		<ul class="select-filter">
 		    <li>All Resources /</li>
-		    <li class="gray-txt">Show Only</li>
+		    <li class="middle-gray-txt">Show Only</li>
 		    <li class="blue-txt">Documents |</li>
 		    <li class="blue-txt">Links |</li>
 		    <li class="blue-txt active">Contacts</li>
@@ -19,5 +19,5 @@
 		</div>
 	</div>
 
-	<?php get_template_part('templates/content', 'links'); ?>
+	<?php get_template_part('templates/content', 'documents'); ?>
 	

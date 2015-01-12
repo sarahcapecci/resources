@@ -278,10 +278,74 @@ p.message, #login_error {
 
 //********************** END OF CONTACT
 
+
 // DOCUMENTS
 
+.left-side-bottom.documents {
+	width: 70%;
+	display: inline-block;
+}
+
+.document-card {
+	width: 48%;
+	margin-top: 1.5%;
+	margin-right: 1.5%;
+	background-color: gray;
+	display: inline-block;
+	height: 160px;
+	color: @white;
+	padding: 15px;
+	position: relative;
+
+	a {
+		color: @white;
+	}
+
+	.type {
+		position: absolute;
+		left: 15px;
+		bottom: 15px;
+	}
+
+	.doc-date {
+		position: absolute;
+		right: 15px;
+		bottom: 15px;
+		font-weight: 300;
+	}
+}
+
+.right-side {
+	span {
+		display: block;
+	}
+
+	a.filter {
+		margin-right: 2px;
+		color: @text-light-gray;
+		&.active {
+			font-weight: bold;
+		}
+	}
+
+	&.documents {
+		ul {
+			margin-top: 15px;
+		}
+		li {
+			width: 100%;
+			margin-bottom: 5px;
+			span {
+				display: inline-block;
+				color: @middle-gray;
+			}
+		}
+	}
+}
 
 //********************** END OF DOCUMENTS
+
+
 
 // LINKS
 .left-side-bottom.links {
@@ -425,6 +489,29 @@ p.message, #login_error {
 		width: 193px;
 		height: 30px;
 	}
+
+	// documents
+	input, textarea, select {
+		background-color: @light-gray;
+		padding: 5px 8px;
+		margin-left: 10px;
+		border: none;
+		position: absolute;
+		right: 5px;
+		width: 320px;
+		.font-md();
+		font-weight: 400;
+	}
+
+	input[type=file] {
+		top: 0;
+	}
+
+	&.document {
+		form {
+			height: 310px;
+		}
+	}
 }
 
 
@@ -433,6 +520,21 @@ p.message, #login_error {
 .left-side-bottom.contact {
 	width: 100%;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // CALENDAR
 #calendar {

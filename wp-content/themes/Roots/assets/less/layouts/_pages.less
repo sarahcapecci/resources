@@ -295,11 +295,8 @@ p.message, #login_error {
 	height: 160px;
 	color: @white;
 	padding: 15px;
+	vertical-align: top;
 	position: relative;
-
-	a {
-		color: @white;
-	}
 
 	.type {
 		position: absolute;
@@ -312,6 +309,28 @@ p.message, #login_error {
 		right: 15px;
 		bottom: 15px;
 		font-weight: 300;
+	}
+
+	div.overlay {
+		display: none;
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		background-color: @black;
+		padding: 15px;
+
+		a {
+			position: absolute;
+			bottom: 15px;
+		}
+	}
+
+	&:hover {
+		.overlay {
+			display: block;
+		}	
 	}
 }
 
@@ -427,6 +446,10 @@ p.message, #login_error {
 	position: absolute;
 	margin-top: 15px;
 	display: none;
+
+	span.wpcf7-form-control-wrap {
+		position: initial;
+	}
 
 	h4 {
 		.font-md();

@@ -1,7 +1,7 @@
 <!-- Modal for upload LINK -->
 <div class="resource-modal links">
 	<h4>Add a link</h4>
-	<form>
+	<!-- 	<form>
 		<label>Category 
 			<select name="carlist" form="carform">
 			  <option value="volvo">Volvo</option>
@@ -15,7 +15,8 @@
 		<label class="textarea">Tags <textarea placeholder="Comma-separated words or terms. This will help people find and search your link."></textarea></label>
 		<label class="textarea">Notes <textarea></textarea></label>
 		<button><i class="fa fa-plus margin-right-5"></i>Add Link</button>
-	</form>
+	</form> -->
+	<?php echo do_shortcode('[contact-form-7 id="41" title="Upload link"]'); ?>
 </div>
 <div class="left-side-bottom links">
 	<!-- Always blue -->

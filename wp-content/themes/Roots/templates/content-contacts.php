@@ -1,7 +1,7 @@
 <!-- Modal for upload CONTACT -->
 <div class="resource-modal">
 	<h4>Add a Contact</h4>
-	<form>
+	<!-- <form>
 		<label>Contact Name <input type="text"></label>
 		<label>Organization/Company <input type="text"></label>
 		<label>Job Title/Position <input type="text"></label>
@@ -9,7 +9,8 @@
 		<label>Phone <input type="number"></label>
 		<label>Support <textarea placeholder="Tag how this person can help you or other organizations. E.g mentor, finance, event venues, etc."></textarea></label>
 	</form>
-	<button><i class="fa fa-plus margin-right-5"></i>Add Link</button>
+	<button><i class="fa fa-plus margin-right-5"></i>Add Link</button> -->
+	<?php echo do_shortcode('[contact-form-7 id="17" title="Upload Contact"]'); ?>
 </div>
 
 <div class="left-side-bottom contact">

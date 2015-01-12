@@ -1,3 +1,18 @@
+<?php
+/*
+Template Name: Resources-links Template
+*/
+?>
+<!-- Left side -->
+	<?php get_template_part('templates/resources', 'header') ?>
+	<!-- Search and Upload -->
+	<div class="search-file">
+		<label>Search <input class="text-input" type="text"><input type="submit" value=" "><i class="fa fa-search"></i></label>
+		<span><strong>or</strong></span>
+		<button>Upload a Resource <i class="fa fa-upload margin-left-5"></i></button>
+	</div>
+</div>
+
 <!-- Modal for upload LINK -->
 <div class="resource-modal links">
 	<h4>Add a link</h4>

@@ -164,13 +164,18 @@ p.message, #login_error {
 	li {
 		display: inline-block;
 		font-weight: 400;
+		a {
+			color: @main-blue;
+		}
 	}
 
 	li.active {
 		padding: 5px 8px;
-		color: @white!important;
 		background-color: @main-blue;
 		border-radius: 2px;
+		a {
+			color: @white;
+		}
 	}
 }
 
@@ -233,6 +238,7 @@ p.message, #login_error {
 	display: inline-block;
 	padding: 15px;
 	vertical-align: top;
+	color: @white;
 
 	a {
 		color: @white;
@@ -292,7 +298,7 @@ p.message, #login_error {
 	margin-right: 1.5%;
 	background-color: gray;
 	display: inline-block;
-	height: 160px;
+	height: 180px;
 	color: @white;
 	padding: 15px;
 	vertical-align: top;
@@ -303,12 +309,32 @@ p.message, #login_error {
 		left: 15px;
 		bottom: 15px;
 	}
-
+	img {
+		bottom: 5px;
+		left: 5px;
+		position: absolute;
+	}
 	.doc-date {
 		position: absolute;
 		right: 15px;
 		bottom: 15px;
 		font-weight: 300;
+	}
+
+	&.PDF {
+		background-color: #9c4242;
+	}
+
+	&.slides {
+		background-color: #f89e34;
+	}
+	
+	&.spreadsheet {
+		background-color: #53b46e;
+	}
+
+	&.text {
+		background-color: #20b9e6;
 	}
 
 	div.overlay {
@@ -318,7 +344,7 @@ p.message, #login_error {
 		bottom: 0;
 		right: 0;
 		left: 0;
-		background-color: @black;
+		background-color: rgba(0,0,0,0.8);
 		padding: 15px;
 
 		a {

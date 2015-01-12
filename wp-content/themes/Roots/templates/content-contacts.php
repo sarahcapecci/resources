@@ -12,21 +12,67 @@
 	<button><i class="fa fa-plus margin-right-5"></i>Add Link</button>
 </div>
 
-<div class="left-side-bottom">
-	<div class="full-width">
-		<h3>Recently Uploaded</h3>
-		<div class="contact-card">
-			<a href="#">
-			<h4>Contact Name</h4>
-				<span>Organization Name</span>
-				<span class="divider"></span>
-				<span>Job title of the contact</span>
-				<span>E-mail of the contact</span>
-				<span>Phone Number of contact</span>
-				<h4>SUPPORT</h4>
-				<span>Tags, Tags, Tags</span>
-			</a>
-		</div>
+<div class="left-side-bottom contact">
+	<h3>Recently Uploaded</h3>
+	<div class="contact-card">
+		<a href="#">
+		<h4>Contact Name</h4>
+			<span class="font-md">Organization Name</span>
+			<span class="info-divider"></span>
+			<p>Job title of the contact</p>
+			<p>E-mail of the contact</p>
+			<p>Phone Number of contact</p>
+			<h5 class="margin-top-20">SUPPORT</h5>
+			<span>Tags, Tags, Tags</span>
+		</a>
+	</div>
+	<div class="contact-card">
+		<a href="#">
+		<h4>Contact Name</h4>
+			<span class="font-md">Organization Name</span>
+			<span class="info-divider"></span>
+			<p>Job title of the contact</p>
+			<p>E-mail of the contact</p>
+			<p>Phone Number of contact</p>
+			<h5 class="margin-top-20">SUPPORT</h5>
+			<span>Tags, Tags, Tags</span>
+		</a>
+	</div>
+	<div class="contact-card">
+		<a href="#">
+		<h4>Contact Name</h4>
+			<span class="font-md">Organization Name</span>
+			<span class="info-divider"></span>
+			<p>Job title of the contact</p>
+			<p>E-mail of the contact</p>
+			<p>Phone Number of contact</p>
+			<h5 class="margin-top-20">SUPPORT</h5>
+			<span>Tags, Tags, Tags</span>
+		</a>
+	</div>
+	<div class="contact-card">
+		<a href="#">
+		<h4>Contact Name</h4>
+			<span class="font-md">Organization Name</span>
+			<span class="info-divider"></span>
+			<p>Job title of the contact</p>
+			<p>E-mail of the contact</p>
+			<p>Phone Number of contact</p>
+			<h5 class="margin-top-20">SUPPORT</h5>
+			<span>Tags, Tags, Tags</span>
+		</a>
+	</div>
+	<div class="contact-card">
+		<a href="#">
+		<h4>Contact Name</h4>
+			<span class="font-md">Organization Name</span>
+			<span class="info-divider"></span>
+			<p>Job title of the contact</p>
+			<p>E-mail of the contact</p>
+			<p>Phone Number of contact</p>
+			<h5 class="margin-top-20">SUPPORT</h5>
+			<span>Tags, Tags, Tags</span>
+		</a>
 	</div>
 </div>
 

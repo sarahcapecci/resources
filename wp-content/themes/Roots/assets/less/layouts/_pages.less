@@ -145,7 +145,7 @@ p.message, #login_error {
 
 // General
 
-.left-side {
+.left-side-top {
 	width: 60%;
 
 	h2 {
@@ -186,6 +186,9 @@ p.message, #login_error {
 		border: none;
 		background-color: @light-gray;
 		padding: 5px;
+		&:focus {
+			outline: none;
+		}
 	}
 
 	input[type=submit] {
@@ -215,6 +218,66 @@ p.message, #login_error {
 	}
 }
 
+// MODALS 
+
+.resource-modal {
+	width: 500px;
+	box-shadow: 0px 0px 10px #dedede;
+	z-index: 100;
+	padding: 20px 30px;
+	border-radius: 5px;
+	color: @text-light-gray;
+	margin-top: 15px;
+	display: none;
+
+	h4 {
+		.font-md();
+		font-weight: 600;
+		margin-bottom: 20px;
+	}
+	
+	form {
+		height: 260px;
+	}
+
+	input, textarea {
+		background-color: @light-gray;
+		padding: 5px 8px;
+		margin-left: 10px;
+		border: none;
+		position: absolute;
+		right: 5px;
+		.font-md();
+		font-weight: 400;
+	}
+	::-webkit-input-placeholder {
+	   font-weight: 300;
+	}
+	:-moz-placeholder { /* Firefox 18- */
+	   font-weight: 300;  
+	}
+	::-moz-placeholder {  /* Firefox 19+ */
+	   font-weight: 300;  
+	}
+
+	textarea {
+		height: 80px;
+	}
+
+	label {
+		position: relative;
+		display: block;
+		margin: 15px 0;
+		font-weight: 400;
+	}
+
+	button {
+		color: @orange;
+		background-color: transparent;
+		display: block;
+		margin: 5px 0 5px auto;
+	}
+}
 // Contacts
 
 

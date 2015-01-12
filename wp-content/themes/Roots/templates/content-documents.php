@@ -62,12 +62,30 @@
 	<h2>Popular Tags</h2>
 	<a class="filter active" href="">Most Downloaded</a> / <a class="filter" href="">Sort A-Z</a>
 	<ul>
-		<!-- Ng-repeat for tags -->
-	    <li>TAG 1 <span>(2)</span></li>
-	    <li>TAG 1 <span>(2)</span></li>
-	    <li>TAG 1 <span>(2)</span></li>
-	    <li>TAG 1 <span>(2)</span></li>
-	    <li>TAG 1 <span>(2)</span></li>
-	    <li>TAG 1 <span>(2)</span></li>
+		<?php 
+			$tags = do_shortcode('[cfdb-value form="Upload Document" show="doc-tags"]');
+			$tagsArray = explode(",", $tags);
+
+			foreach ($tagsArray as $key => $value) {	    
+			    $freqs = array_count_values($tagsArray);
+			    $freq_value = $freqs[$value];
+			    
+			    if(isset($new_array[$value])) {
+			    	$new_array[$value] += 1;
+			    } else {
+			    	$new_array[$value] = 1;
+			    }
+			    
+			}
+
+			foreach ($new_array as $tag => $n) {
+			    if($n > 1) {
+			    	echo "<li>" . $tag . " <span>(" . $n . ")</span></li>"; 
+			    } else {
+			    	echo "<li>" . $tag . " <span>(1)</span></li>";
+			    }
+
+			}		
+		?>
 	</ul>
 </div>

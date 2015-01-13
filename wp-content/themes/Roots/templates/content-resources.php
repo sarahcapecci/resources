@@ -11,6 +11,15 @@
 		<span><strong>or</strong></span>
 		<button>Upload a Resource <i class="fa fa-upload margin-left-5"></i></button>
 	</div>
+	<!-- Select type of file -->
+<!-- 	<div class="select-modal">
+		<ul class="upload-select">
+			<li><h3>Select type of content:</h3></li>
+			<li><a href="">Document (PDF, Spreadsheet, Text, Slides, etc.)</a></li>
+			<li><a href="">Link</a></li>
+			<li><a href="">Contact</a></li>
+		</ul>
+	</div> -->
 </div>
 <div class="left-side-bottom">
 	<h3>All Resources</h3>

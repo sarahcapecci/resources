@@ -51,10 +51,14 @@ var UTIL = {
   },
   loadEvents: function() {
     UTIL.fire('common');
+    $('.open-document').on('click', function(){
+      console.log("FUCK");
+    });
 
     $.each(document.body.className.replace(/-/g, '_').split(/\s+/),function(i,classnm) {
       UTIL.fire(classnm);
     });
+
   }
 };
 

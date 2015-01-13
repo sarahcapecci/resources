@@ -11,13 +11,8 @@ Template Name: Resources-contact Template
 		<label>Search <input class="text-input" type="text" name="contactsearch"><input type="submit" value=" "><i class="fa fa-search"></i></label>
 	</form>
 		<span><strong>or</strong></span>
-		<button>Upload a Resource <i class="fa fa-upload margin-left-5"></i></button>
+		<button id="open-contacts">Upload a Resource <i class="fa fa-upload margin-left-5"></i></button>
 	</div>
-</div>
-<!-- Modal for upload CONTACT -->
-<div class="resource-modal">
-	<h4>Add a Contact</h4>
-	<?php echo do_shortcode('[contact-form-7 id="17" title="Upload Contact"]'); ?>
 </div>
 
 <div class="left-side-bottom contact">

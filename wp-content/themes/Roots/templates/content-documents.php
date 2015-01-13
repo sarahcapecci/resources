@@ -12,15 +12,9 @@ Template Name: Resources-documents Template
 		<input type="submit" value=" "><i class="fa fa-search"></i></label>
 	</form>
 		<span><strong>or</strong></span>
-		<button>Upload a Resource <i class="fa fa-upload margin-left-5"></i></button>
+		<button id="open-document">Upload a Resource <i class="fa fa-upload margin-left-5"></i></button>
 	
 	</div>
-</div>
-<!-- Modal for upload DOCUMENT -->
-<div class="resource-modal document">
-	<h4>Add a Document</h4>
-	<p>Ensure your title is very clear for others to understand and find.</p>
-	<?php echo do_shortcode('[contact-form-7 id="40" title="Upload Document"]'); ?>
 </div>
 
 <div class="left-side-bottom documents">

@@ -33,7 +33,7 @@ function roots_scripts() {
       'css'       => '/assets/css/main.css',
       'jquery'    => '//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js',
       'js'        => '/assets/js/scripts.js',
-      'modernizr' => '/assets/js/vendor/modernizr.min.js'
+      'modernizr' => '/assets/js/script.js'
       
     );
   }

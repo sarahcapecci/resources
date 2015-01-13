@@ -257,6 +257,8 @@ p.message, #login_error {
 	padding: 15px;
 	vertical-align: top;
 	color: @white;
+	height: 250px;
+	overflow: hidden;
 
 	a {
 		color: @white;
@@ -428,6 +430,8 @@ p.message, #login_error {
 	padding: 15px;
 	display: inline-block;
 	vertical-align: top;
+	height: 200px;
+	overflow: scroll;
 
 	a {
 		color: @white;
@@ -437,10 +441,15 @@ p.message, #login_error {
 		font-weight: 600;
 		margin-bottom: 30px;
 	}
-
+	
 	span {
 		display: block;
 		font-weight: 300;
+	}
+
+	span:first-child {
+		max-height: 40px;
+		overflow: hidden;
 	}
 }
 .right-side {
@@ -492,6 +501,8 @@ p.message, #login_error {
 	color: @text-light-gray;
 	background-color: @white;
 	position: absolute;
+	top: 38%;
+	left: 20%;
 	margin-top: 15px;
 	display: none;
 
@@ -506,12 +517,12 @@ p.message, #login_error {
 	}
 	
 	form {
-		height: 260px;
+		height: 285px;
 	}
 
 	input, textarea, select {
 		background-color: @light-gray;
-		padding: 5px 8px;
+		padding: 4px 8px;
 		margin-left: 10px;
 		border: none;
 		position: absolute;
@@ -540,13 +551,30 @@ p.message, #login_error {
 		font-weight: 400;
 	}
 
-	button {
+	input[type=submit] {
 		color: @orange;
 		background-color: transparent;
 		display: block;
 		margin: 5px 0 5px auto;
+		position: absolute;
+		right: 20px;
+		bottom: 10px;
+		width: 80px;
 	}
 
+	i {
+		position: absolute;
+		right: 100px;
+	}
+	
+	// WPCF7
+	div.wpcf7-response-output {
+		text-align: center;
+	}
+
+	.wpcf7-response-output.wpcf7-display-none.wpcf7-mail-sent-ok {
+		border-color: @main-blue;
+	}
 	// links
 	.textarea {
 		height: 80px;
@@ -569,7 +597,7 @@ p.message, #login_error {
 		border: none;
 		position: absolute;
 		right: 5px;
-		width: 320px;
+		width: 275px;
 		.font-md();
 		font-weight: 400;
 	}
@@ -585,6 +613,17 @@ p.message, #login_error {
 	}
 }
 
+#close-doc, #close-link, #close-contact {
+	position: absolute;
+	right: 20px;
+	top: 20px;
+	background-color: transparent;
+	padding: 5px;
+
+	i {
+		right: 20px;
+	}
+}
 
 // Contacts
 

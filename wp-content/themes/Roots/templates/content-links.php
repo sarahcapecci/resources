@@ -7,9 +7,11 @@ Template Name: Resources-links Template
 	<?php get_template_part('templates/resources', 'header') ?>
 	<!-- Search and Upload -->
 	<div class="search-file">
-		<label>Search <input class="text-input" type="text"><input type="submit" value=" "><i class="fa fa-search"></i></label>
+	<form action=" " method="POST">
+		<label>Search <input class="text-input" type="text" name="linksearch"><input type="submit" value=" "><i class="fa fa-search"></i></label>
 		<span><strong>or</strong></span>
 		<button>Upload a Resource <i class="fa fa-upload margin-left-5"></i></button>
+	</form>
 	</div>
 </div>
 
@@ -21,19 +23,19 @@ Template Name: Resources-links Template
 <div class="left-side-bottom links">
 	<!-- Always blue -->
 	<h3>Funding</h3>
-	<?php echo do_shortcode('[cfdb-html form="Upload link" show="link-title,link-notes,link-tags,select-category,link-url" filelinks="url" filter="select-category=Funding" stripbr="true"]<div class="link-card">
+	<?php echo do_shortcode('[cfdb-html form="Upload link" show="link-title,link-notes,link-tags,select-category,link-url" filelinks="url" stripbr="true" filter="link-title~~/.*$_POST(linksearch).*/i&&link-tags~~/.*$_POST(linksearch).*/i&&select-category=Funding"]<div class="link-card">
 		<a href="${link-url}" target="_blank"><h4>${link-title}</h4></a>
 		<span><strong>Tags |</strong> ${link-tags}</span>
 		<span><strong>Notes |</strong> ${link-notes}</span>
 </div>[/cfdb-html]'); ?>
 	<h3>Venues</h3>
-		<?php echo do_shortcode('[cfdb-html form="Upload link" show="link-title,link-notes,link-tags,link-url,select-category" filelinks="link" filter="select-category=Venue" stripbr="true"]<div class="link-card">
+		<?php echo do_shortcode('[cfdb-html form="Upload link" show="link-title,link-notes,link-tags,link-url,select-category" filelinks="link" stripbr="true" filter="link-title~~/.*$_POST(linksearch).*/i||link-tags~~/.*$_POST(linksearch).*/i&&select-category=Venue"]<div class="link-card">
 			<a href="${link-url}" target="_blank"><h4>${link-title}</h4></a>
 			<span><strong>Tags |</strong> ${link-tags}</span>
 			<span><strong>Notes |</strong> ${link-notes}</span>
 	</div>[/cfdb-html]'); ?>
 	<h3>Services</h3>
-	<?php echo do_shortcode('[cfdb-html form="Upload link" show="link-title,link-notes,link-tags,select-category,link-url" filelinks="url" filter="select-category=Services" stripbr="true"]<div class="link-card">
+	<?php echo do_shortcode('[cfdb-html form="Upload link" show="link-title,link-notes,link-tags,select-category,link-url" filelinks="url" filter="link-title~~/.*$_POST(linksearch).*/i||link-tags~~/.*$_POST(linksearch).*/i&&select-category=Services" stripbr="true"]<div class="link-card">
 			<a href="${link-url}" target="_blank"><h4>${link-title}</h4></a>
 			<span><strong>Tags |</strong> ${link-tags}</span>
 			<span><strong>Notes |</strong> ${link-notes}</span>

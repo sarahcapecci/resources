@@ -7,9 +7,11 @@ Template Name: Resources-contact Template
 	<?php get_template_part('templates/resources', 'header') ?>
 	<!-- Search and Upload -->
 	<div class="search-file">
-		<label>Search <input class="text-input" type="text"><input type="submit" value=" "><i class="fa fa-search"></i></label>
+	<form action=" " method="POST">
+		<label>Search <input class="text-input" type="text" name="contactsearch"><input type="submit" value=" "><i class="fa fa-search"></i></label>
 		<span><strong>or</strong></span>
 		<button>Upload a Resource <i class="fa fa-upload margin-left-5"></i></button>
+	</form>
 	</div>
 </div>
 <!-- Modal for upload CONTACT -->
@@ -20,7 +22,8 @@ Template Name: Resources-contact Template
 
 <div class="left-side-bottom contact">
 	<h3>Recently Uploaded</h3>
-	<?php echo do_shortcode('[cfdb-html form="Upload Contact" show="contact-name,contact-organization,job-title,email,phone-number,support-info" stripbr="true"]<div class="contact-card">
+	<?php echo do_shortcode('[cfdb-html form="Upload Contact" show="contact-name,contact-organization,job-title,email,phone-number,support-info" stripbr="true" filter="contact-name~~/.*$_POST(contactsearch).*/i||support-info~~/.*$_POST(contactsearch).*/i"]
+		<div class="contact-card">
 		<h4>${contact-name}</h4>
 			<span class="font-lg font-light">${contact-organization}</span>
 			<span class="info-divider"></span>

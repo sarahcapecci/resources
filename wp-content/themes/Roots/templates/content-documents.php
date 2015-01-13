@@ -7,9 +7,12 @@ Template Name: Resources-documents Template
 	<?php get_template_part('templates/resources', 'header') ?>
 	<!-- Search and Upload -->
 	<div class="search-file">
-		<label>Search <input class="text-input" type="text"><input type="submit" value=" "><i class="fa fa-search"></i></label>
+	<form action=" " method="POST">
+		<label>Search <input class="text-input" type="text" name="docsearch">
+		<input type="submit" value=" "><i class="fa fa-search"></i></label>
 		<span><strong>or</strong></span>
 		<button>Upload a Resource <i class="fa fa-upload margin-left-5"></i></button>
+	</form>
 	</div>
 </div>
 <!-- Modal for upload DOCUMENT -->
@@ -23,7 +26,7 @@ Template Name: Resources-documents Template
 	<h3>Recently Uploaded</h3>	
 	<!-- Color varies with type of document -->
 	<?php echo do_shortcode(
-	'[cfdb-html form="Upload Document" show="title,document-select,doc-description,doc-tags,file-upload,Submitted Login,Submitted" filelinks="url" stripbr="true"]
+	'[cfdb-html form="Upload Document" show="title,document-select,doc-description,doc-tags,file-upload,Submitted Login,Submitted" filelinks="url" stripbr="true" filter="doc-tags~~/.*$_POST(docsearch).*/i||title~~/.*$_POST(docsearch).*/i"]
 	<div class="document-card doc-type ${document-select}">
 		<h4>${title}</h4>
 		<span class="type">${document-select}</span>
@@ -65,7 +68,6 @@ Template Name: Resources-documents Template
 			    } else {
 			    	echo "<li>" . $tag . " <span>(1)</span></li>";
 			    }
-
 			}		
 		?>
 	</ul>

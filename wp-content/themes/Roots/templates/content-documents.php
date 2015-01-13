@@ -7,12 +7,13 @@ Template Name: Resources-documents Template
 	<?php get_template_part('templates/resources', 'header') ?>
 	<!-- Search and Upload -->
 	<div class="search-file">
-	<form action=" " method="POST">
+	<form class="inline-block" action=" " method="POST">
 		<label>Search <input class="text-input" type="text" name="docsearch">
 		<input type="submit" value=" "><i class="fa fa-search"></i></label>
+	</form>
 		<span><strong>or</strong></span>
 		<button>Upload a Resource <i class="fa fa-upload margin-left-5"></i></button>
-	</form>
+	
 	</div>
 </div>
 <!-- Modal for upload DOCUMENT -->

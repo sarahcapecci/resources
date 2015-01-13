@@ -2,7 +2,7 @@
 	<?php get_template_part('templates/resources', 'header') ?>
 	<!-- Search and Upload -->
 	<div class="search-file">
-		<form action=" " method="POST">
+		<form class="inline-block"action=" " method="POST">
 			<label>Search
 				<input class="text-input" type="text" name="userinput" />
 				<input type="submit" value=" "><i class="fa fa-search"></i>

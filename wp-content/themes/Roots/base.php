@@ -27,7 +27,7 @@
 
 </body>
 <!-- Modal for upload DOCUMENT -->
-<div class="resource-modal document">
+<div class="all-modal resource-modal document">
   <h4>Add a Document</h4>
   <button id="close-doc"><i class="fa fa-close"></i></button>
   <p>Ensure your title is very clear for others to understand and find.</p>
@@ -35,14 +35,14 @@
 </div>
 
 <!-- Modal for upload LINK -->
-<div class="resource-modal links">
+<div class="all-modal resource-modal links">
   <h4>Add a link</h4>
   <button id="close-link"><i class="fa fa-close"></i></button>
   <?php echo do_shortcode('[contact-form-7 id="41" title="Upload link"]'); ?>
 </div>
 
 <!-- Modal for upload CONTACT -->
-<div class="resource-modal contact">
+<div class="all-modal resource-modal contact">
   <h4>Add a Contact</h4>
   <button id="close-contact"><i class="fa fa-close"></i></button>
   <?php echo do_shortcode('[contact-form-7 id="17" title="Upload Contact"]'); ?>

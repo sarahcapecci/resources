@@ -6,17 +6,21 @@
 <!-- Wrapper -->
 <div>
 	<!-- Left side -->
-	<div>
+	<div class="left-side-top relative">
 		<h2>Browse the bulletin, <?php echo $current_user->display_name; ?>!</h2>
-		<ul>
-		    <li class="active">All Bulletins /</li>
-		    <span>Show Only</span>
-		    <li>Events |</li>
-		    <li>Requests |</li>
-		    <li>Resources</li>
+		<ul class="select-filter">
+		    <li><a class="black-link-b" href="<?php echo esc_url(home_url('/')); ?>">All Bulletins</a> /</li>
+		    <li class="middle-gray-txt">Show Only</li>
+		    <li><a class="blue-link-b" href="<?php echo esc_url(home_url('/')); ?>events">Events |</a></li>
+		    <li><a class="blue-link-b" href="<?php echo esc_url(home_url('/')); ?>resources/">Requests |</a></li>
+		    <li><a class="blue-link-b" href="<?php echo esc_url(home_url('/')); ?>resources/">Resources</a></li>
 		</ul>
-		<button><i class="fa fa-plus"></i>Post Request</button>
+		<button id="new-request"><i class="fa fa-plus margin-right-5"></i>Post Request</button>
 		<!-- Assets showing according to filter -->
+		<div class="request-modal all-modal">
+			<h4>Post a request to the bulletin for all RYR members to see and reply to.</h4>
+			<?php echo do_shortcode('[contact-form-7 id="53" title="Create Request"]'); ?>
+		</div>
 		<section>
 			<ul>
 			    <li>
@@ -41,18 +45,12 @@
 			<!-- Modal for E-mail response -->
 			<div>
 				<h4>Your Email response</h4>
-				<form>
-					<label>Send to <input type="select"></label>
-					<label>Subject<input type="select"></label>
-					<textarea></textarea>
-					<label>From <input type="email" value="Sender Email"></label>
-					<input type="submit" value="Send Message">
-				</form>
+				<?php echo do_shortcode('[fep-contact-form]'); ?>
 			</div>
 		</section>
 	</div>
 	<!-- Right side -->
-	<div>
+	<div class="right-side">
 		<h2>Upcoming</h2>
 		<a href="#">View calendar</a>
 		<section>

@@ -140,13 +140,25 @@ p.message, #login_error {
 	top: 20px;
 }
 
-// Resources Page
+// BULLETIN
+//* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *//
+
+#new-request {
+	background-color: transparent;
+	color: @orange;
+	position: absolute;
+	right: 0;
+	top: 20px;
+}
+
+
+// RESOURCES
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *//
 
 // General
 
 .left-side-top {
-	width: 60%;
+	width: 70%;
 	display: inline-block;
 
 	h2 {
@@ -157,6 +169,7 @@ p.message, #login_error {
 	.description {
 		color: @text-light-gray;
 		margin: 10px 0;
+		width: 80%;
 	}
 }
 
@@ -242,6 +255,7 @@ p.message, #login_error {
 		padding: 3px 0;
 	}
 }
+
 .left-side-bottom h3 {
 	font-weight: 600;
 	font-size: 16px;
@@ -491,16 +505,18 @@ p.message, #login_error {
 //*********************** END OF LINKS
 
 // MODALS 
-
-.resource-modal {
-	width: 500px;
+.all-modal {
 	box-shadow: 0px 0px 10px #dedede;
 	z-index: 100;
-	padding: 20px 30px;
 	border-radius: 5px;
+	position: absolute;
+
+}
+.resource-modal {
+	width: 500px;
+	padding: 20px 30px;
 	color: @text-light-gray;
 	background-color: @white;
-	position: absolute;
 	top: 38%;
 	left: 20%;
 	margin-top: 15px;
@@ -624,6 +640,71 @@ p.message, #login_error {
 		right: 20px;
 	}
 }
+
+// POST REQUEST MODAL
+
+.request-modal {
+	background-color: @modal-gray;
+	width: 250px;
+	padding: 15px;
+	top: 50px;
+	right: 10px;
+	color: @white;
+
+	input[type=submit] {
+		background-color: @orange;
+		padding: 5px;
+		position: absolute;
+		right: 15px;
+		bottom: 15px;
+		border-radius: 2px;
+		border: none;
+	}
+	h4 {
+		font-size: 14px;
+		margin-top: 0;
+		margin-bottom: 20px;
+	}
+	label {
+		font-weight: 500;
+		font-size: 14px;
+		
+		textarea, input {
+			font-weight: 300;
+			background-color: @modal-gray;
+			border: none;
+			padding: 5px;
+			transition: all 1s ease;
+
+			&:focus {
+				border: 1px solid @white;
+			}
+		}
+		textarea {
+			max-width: 100%;
+			max-height: 70px;
+			margin-bottom: 20px;
+		}
+
+		input {
+			max-width: 100%;
+			margin-bottom: 20px;
+		}
+		::-webkit-input-placeholder {
+		   font-weight: 300;
+		   color: @white
+		}
+		:-moz-placeholder { /* Firefox 18- */
+		   font-weight: 300; 
+		   color: @white;
+		}
+		::-moz-placeholder {  /* Firefox 19+ */
+		   font-weight: 300;
+		   color: @white;
+		}
+	}
+}
+// RESPOND TO REQUEST MODAL
 
 // Contacts
 

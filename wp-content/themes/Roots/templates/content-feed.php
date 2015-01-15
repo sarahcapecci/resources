@@ -45,12 +45,13 @@
 		<h3>Requests</h3>
 		<ul>
 		<?php echo do_shortcode(
-		'[cfdb-html form="Create Request" show="request-title,request-desc,Submitted Login,Submitted" filelinks="url" stripbr="true" limit="3"]
+		'[cfdb-html form="Create Request" show="request-title,request-twitter,request-desc,Submitted Login,Submitted" filelinks="url" stripbr="true" limit="3"]
 		<li class="entry">
 			<span>Avatar</span>
 			<p><strong>${Submitted Login}</strong> requests <strong>${request-title}</strong></p>
 			<p>${request-desc}</p>
-			<a href="">Respond via E-mail</a> <a href="">Respond on Twitter</a>
+			<a href="">Respond via E-mail</a>
+			<a href="https://twitter.com/intent/tweet?screen_name=${request-twitter}" class="twitter-mention-button" data-related="sarahcapecci" data-dnt="true"></a>
 		</li>
 		[/cfdb-html]'); ?>
 			<!-- Modal for E-mail response -->
@@ -85,7 +86,7 @@
 			echo "<ul>";
 			foreach ($rows as $obj) :
 				$new_date = date("M jS, Y", strtotime($obj->post_date));
-				echo "<li><a href=".$obj->guid.">".$obj->post_title."</a></li>";
+				echo "<li><a href=".$obj->guid." target='_blank'>".$obj->post_title."</a></li>";
 				echo "<p>".$new_date."</p>";
 			endforeach;
 			echo "</ul>";
@@ -94,4 +95,6 @@
 	</div>
 </div>
 <!-- end of wrapper -->
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 

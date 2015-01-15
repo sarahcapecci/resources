@@ -38,8 +38,7 @@
 			<img src="wp-content/themes/Roots/assets/img/document.png" alt="">
 			<span class="doc-date">${Submitted}</span>
 			</div>
-		</li>
-		[/cfdb-html]'); ?>
+		</li>[/cfdb-html]'); ?>
 		</ul>
 		<h3>Events</h3>
 		<h3>Requests</h3>
@@ -50,13 +49,16 @@
 			<span>Avatar</span>
 			<p><strong>${Submitted Login}</strong> requests <strong>${request-title}</strong></p>
 			<p>${request-desc}</p>
-			<a href="">Respond via E-mail</a>
+			<a id="open-response" href="#">Respond via E-mail</a>
 			<a href="https://twitter.com/intent/tweet?screen_name=${request-twitter}" class="twitter-mention-button" data-related="sarahcapecci" data-dnt="true"></a>
 		</li>
 		[/cfdb-html]'); ?>
 			<!-- Modal for E-mail response -->
-			<div>
-				<h4>Your Email response</h4>
+			<div class="response-modal all-modal">
+				<h4>Your e-mail response</h4>
+				<button id="close-response"><i class="fa fa-close"></i></button>
+				<img src="<?php echo get_template_directory_uri(); ?>/assets/img/email.png" alt="">
+				<?php echo do_shortcode('[contact-form-7 id="51" title="Request Response"]'); ?>
 			</div>
 		</section>
 	</div>

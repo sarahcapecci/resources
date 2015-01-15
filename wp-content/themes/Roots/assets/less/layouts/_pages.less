@@ -716,6 +716,90 @@ p.message, #login_error {
 		margin: 5px auto;
 	}
 }
+
+.response-modal {
+	background-color: @main-blue;
+	padding: 15px 20px;
+	width: 500px;
+
+	label, h4 {
+		color: @white;
+		font-weight: 500;
+		vertical-align: top;
+	}
+
+	h4 {
+		margin-bottom: 20px;
+		margin-top: 0;
+		font-size: 18px;
+	}
+
+	form {
+		min-height: 300px;
+	}
+
+	label {
+		position: relative;
+		display: block;
+		margin-bottom: 15px;
+
+		input, textarea {
+			position: absolute;
+			left: 110px;
+			border: none;
+			color: @middle-gray;
+			border-radius: 2px;
+			padding: 5px;
+		}
+
+		input {
+			max-width: 50%
+		}
+
+		textarea {
+			max-width: 70%;
+			max-height: 180px;
+		}
+
+		input[type=submit] {
+			background-color: @orange;
+			color: @white;
+			border: none;
+			padding: 5px 8px;
+			left: 300px;
+		}
+
+		&:nth-child(5) {
+			margin-top: 165px;
+		}
+	}
+
+	img, button {
+		position: absolute;
+		right: 20px;
+	}
+	img {
+		top: 40px;
+		max-width: 70px;
+	}
+
+	button {
+		top: 10px;
+		background-color: transparent;
+		i {
+			color: white;
+		}
+	}
+
+	.wpcf7-response-output {
+		color: @white;
+		padding: 10px;
+	}
+}
+
+.screen-reader-response {
+	color: transparent;
+}
 // RESPOND TO REQUEST MODAL
 
 // Contacts

@@ -614,7 +614,7 @@ class CF7DBPlugin extends CF7DBPluginLifeCycle {
             $user = null;
             if (function_exists('is_user_logged_in') && is_user_logged_in()) {
                 $current_user = wp_get_current_user(); // WP_User
-                $user = $current_user->user_login;
+                $user = $current_user->display_name; //sarah's edit
             }
             $cf7->user = $user;
             try {

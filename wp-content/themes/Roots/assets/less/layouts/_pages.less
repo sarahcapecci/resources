@@ -650,6 +650,7 @@ p.message, #login_error {
 	top: 50px;
 	right: 10px;
 	color: @white;
+	display: none;
 
 	input[type=submit] {
 		background-color: @orange;
@@ -688,7 +689,7 @@ p.message, #login_error {
 
 		input {
 			max-width: 100%;
-			margin-bottom: 20px;
+			margin-bottom: 0px;
 		}
 		::-webkit-input-placeholder {
 		   font-weight: 300;
@@ -702,6 +703,18 @@ p.message, #login_error {
 		   font-weight: 300;
 		   color: @white;
 		}
+	}
+
+	button {
+		padding: 5px 8px;
+		border-radius: 2px;
+	}
+
+	.wpcf7-response-output {
+		padding: 5px;
+		color: @main-blue;
+		text-shadow: 0 0 2px @white;
+		margin: 5px auto;
 	}
 }
 // RESPOND TO REQUEST MODAL

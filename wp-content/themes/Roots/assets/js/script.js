@@ -14,6 +14,11 @@ $(document).ready(function(){
 	  	// $('body.page').css('opacity', '0.3');
 	});
 
+	$('#new-request').on('click', function(){
+	  	$('.request-modal').toggle();
+	  	// $('body.page').css('opacity', '0.3');
+	});
+
 	$('#close-doc').on('click', function(){
 	  	$('.resource-modal.document').toggle();
 	  	// $('body.page').css('opacity', '0.3');
@@ -26,6 +31,11 @@ $(document).ready(function(){
 
 	$('#close-contact').on('click', function(){
 	  	$('.resource-modal.contact').toggle();
+	  	// $('body.page').css('opacity', '0.3');
+	});
+
+	$('#close-request').on('click', function(){
+	  	$('.request-modal').toggle();
 	  	// $('body.page').css('opacity', '0.3');
 	});
 });

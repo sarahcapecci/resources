@@ -352,7 +352,7 @@ if ( is_multisite() && is_network_admin() && ! IS_PROFILE_PAGE && current_user_c
 <?php } ?>
 
 <tr class="user-first-name-wrap">
-	<th><label for="first_name"><?php _e('First Name') ?></label></th>
+	<th><label for="first_name"><?php _e('Twitter Handle') ?></label></th>
 	<td><input type="text" name="first_name" id="first_name" value="<?php echo esc_attr($profileuser->first_name) ?>" class="regular-text" /></td>
 </tr>
 
@@ -420,8 +420,9 @@ if ( is_multisite() && is_network_admin() && ! IS_PROFILE_PAGE && current_user_c
 </tr>
 
 <tr class="user-url-wrap">
-	<th><label for="url"><?php _e('Website') ?></label></th>
-	<td><input type="url" name="url" id="url" value="<?php echo esc_attr( $profileuser->user_url ) ?>" class="regular-text code" /></td>
+<!-- Sarah: changed website for twitter handle -->
+	<th><label for="url"><?php _e('Website') ?></label></th> 
+	<td><input type="text" name="url" id="url" value="" class="regular-text code" /></td>
 </tr>
 
 <?php

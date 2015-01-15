@@ -52,6 +52,8 @@ define('LOGGED_IN_SALT',   'put your unique phrase here');
 define('NONCE_SALT',       'put your unique phrase here');
 define('WPCF7_LOAD_CSS', false);
 define ('WPCF7_AUTOP', false );
+define( 'WPCF7_ADMIN_READ_WRITE_CAPABILITY', 'manage_options' );
+
 
 /**#@-*/
 

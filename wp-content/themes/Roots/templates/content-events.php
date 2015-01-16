@@ -235,35 +235,31 @@
 		</ul>
 	</div> -->
 	<!-- SELECTED Event -->
-	<div class="selected-event">
-		<h2>Event Name</h2>
-		<img src="" alt="" />
-		<p><img src="" alt="" /> Hosted by Organization Name</p>
-		<h4>Type of Event</h4>
-		<span>Weekday, Month day, YEAR</span>
-		<span>startTime - EndTime</span>
-		<span>Event Location</span>
+	<div class="selected">
+		<h2>RYR Executive Meeting</h2>
+		<img class="event" src="<?php echo get_template_directory_uri(); ?>/assets/img/default-calendar.jpg" alt="" />
+		<?php echo get_avatar(get_the_author_meta( 'ID' ), 32); ?> <span class="margin-left-5">Hosted by Regional Youth Roundtable</span>
+		<h5 class="font-light">Type of Event</h5>
+		<p>Thursday, February 1, 2015</p>
+		<p>3:30 PM - 7 PM</p>
+		<p>Mississauga City Hall</p>
 		<!-- social -->
 		<section>
-			<span>Eventbrite Registration Page</span>
-			<span>Facebook Event</span>
-			<button><i class="fa fa-share"></i>Share</button>
+			<p><img class="margin-right-5 small" src="<?php echo get_template_directory_uri(); ?>/assets/img/eventbrite.png" alt="">Eventbrite Registration Page</p>
+			<p><img class="margin-right-5 small" src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook.png" alt="">Facebook Event</p>
 		</section>
-
-		<section>
-			<h4>Notes</h4>
-			<p>Additional Details Previously Typed</p>
-		</section>
+		<h4 class="text-al-center">Notes</h4>
+		<p>Cupcake fruitcake bonbon unerdwear.com apple pie candy canes danish lollipop. Pastry muffin liquorice dessert.</p>
 	</div>
 	<!-- add an event form -->
-	<div>
+	<!-- <div>
 		<form>
 			<h2>Add Title: <input type="text" /></h2>
 			<label>Upload Image <input type="file"></label>
 			<p><img src="" alt="" /> Hosted by YOUR Organization Name</p>
 			<h4>Select type <input type="select"></h4>
 			<label>Date <input type="date"></label>
-			<!-- social -->
+			
 			<section>
 				Eventbrite<input placeholder="Registration URL" type="url">
 				Facebook<input placeholder="Event Page" type="url">
@@ -275,5 +271,5 @@
 			</section>
 			<input type="submit" />
 		</form>
-	</div>
+	</div> -->
 </div>

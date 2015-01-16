@@ -21,8 +21,6 @@
   </div><!-- /.wrap -->
 
   <?php get_template_part('templates/footer'); ?>
-  <script src="<?php echo get_template_directory_uri(); ?>/assets/js/plugins/fullCalendar.js"></script>
-  <script src="<?php echo get_template_directory_uri(); ?>/assets/js/calendar.js"></script>
   <?php wp_footer(); ?>
 
 </body>

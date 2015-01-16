@@ -949,8 +949,7 @@ td .event-list {
 }
 
 // RIGHT SIDE - SELECTED EVENT
-.selected {
-	background-color: @main-blue;
+.right-sidebar {
 	color: @white;
 	width: 80%;
 	padding: 15px;
@@ -969,6 +968,10 @@ td .event-list {
 		font-size: 16px;
 		line-height: 20px;
 	}
+}
+.selected {
+	background-color: @main-blue;
+	display: none!important;
 
 	img.event {
 		max-width: 100%;
@@ -999,4 +1002,39 @@ td .event-list {
 			text-align: left;
 		}
 	}
+}
+
+.new-event {
+	background-color: @event-gray;
+
+	input, textarea, select {
+		background-color: transparent;
+		border-radius: 2px;
+		border: none;
+		padding: 5px;
+		max-width: 100%;
+		-webkit-transition: all 1s ease;
+
+		&:focus {
+			border-color: @white;
+			outline: none;
+		}
+	}
+
+	textarea {
+		width: 100%;
+		min-height: 120px;
+	}
+
+	.input-opac {
+		background-color: #929292;
+	}
+
+	input[type=submit] {
+		background-color: @orange;
+		padding: 5px 8px;
+		display: block;
+		margin: 10px auto 20px auto;
+	}
+
 }

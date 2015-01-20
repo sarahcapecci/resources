@@ -4,7 +4,7 @@ global $current_user;
 get_currentuserinfo();
 
 /* draws a calendar */
-function draw_calendar($month,$year){
+function draw_calendar($month,$year, $events = array()){
 
 	/* draw table */
 	$calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
@@ -35,8 +35,17 @@ function draw_calendar($month,$year){
 			/* add in the day number */
 			$calendar.= '<div class="day-number">'.$list_day.'</div>';
 
-			/** QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY !!  IF MATCHES FOUND, PRINT THEM !! **/
-			$calendar.= str_repeat('<p> </p>',2);
+			/** QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY  **/
+			$event_day = $year.'-'.$month.'-'.$list_day;
+			// $right_date = date('Y-m-d',$event_day);
+			if(isset($events[$event_day])) {
+				foreach($events[$event_day] as $event) {
+					$calendar.= '<div class="event">'.$event['event_title'].'</div>';
+				}
+			}
+			else {
+				$calendar.= str_repeat('<p> </p>',2);
+			}
 			
 		$calendar.= '</td>';
 		if($running_day == 6):
@@ -60,6 +69,10 @@ function draw_calendar($month,$year){
 	/* final row */
 	$calendar.= '</tr>';
 
+	/** DEBUG **/
+		$calendar = str_replace('</td>','</td>'."\n",$calendar);
+		$calendar = str_replace('</tr>','</tr>'."\n",$calendar);
+
 	/* end the table */
 	$calendar.= '</table>';
 	
@@ -67,8 +80,33 @@ function draw_calendar($month,$year){
 	return $calendar;
 }
 
-// /* sample usages */
-// echo draw_calendar(1,2015);
+//events query
+
+/* get all events for the given month */
+$events = array();
+
+$db_link = mysql_connect("localhost", "root", "root");
+mysql_select_db("resources", $db_link);
+
+$query = "SELECT event_title, DATE_FORMAT(event_date, '%Y-%m-%D') AS event_date FROM wp_events WHERE event_date LIKE '$year-$month-$day'";
+
+$result = mysql_query($query) or die(mysql_error());
+
+while($row = mysql_fetch_assoc($result)) {
+	$events[$row['event_date']][] = $row;
+}
+
+var_dump($row);
+var_dump($events);
+
+
+// echo '<h2 style="float:left; padding-right:30px;">'.date('F',mktime(0,0,0,$month,1,$year)).' '.$year.'</h2>';
+// echo '<div style="float:left;">'.$controls.'</div>';
+// echo '<div style="clear:both;"></div>';
+// echo draw_calendar($month,$year,$events);
+// echo '<br /><br />';
+
+// CONTROLS
 
 /* date settings */
 $month = (int) ($_GET['month'] ? $_GET['month'] : date('m'));
@@ -97,6 +135,10 @@ $previous_month_link = '<a href="?month='.($month != 1 ? $month - 1 : 12).'&year
 
 /* bringing the controls together */
 $controls = '<form method="get">' .$previous_month_link.'  Month   '.$next_month_link.' </form>';
+
+
+    
+
 
 ?>
 
@@ -127,7 +169,7 @@ $controls = '<form method="get">' .$previous_month_link.'  Month   '.$next_month
 	<!-- Calendar -->
 	<!-- event list is a repeater that displays events in that certain date -->
 	<div id="calendar">
-		<?php echo draw_calendar($month,$year); ?>
+		<?php echo draw_calendar($month,$year,$events); ?>
 	</div>
 
 	<div class="upcoming">
@@ -210,25 +252,26 @@ $controls = '<form method="get">' .$previous_month_link.'  Month   '.$next_month
 	</div>
 	<!-- add an event form -->
 	<div class="new-event right-sidebar">
-		<form>
-			<h2>Add Title: <input type="text" /></h2>
-			<label>Upload Image <input type="file"></label>
-			<label><?php echo get_avatar(get_the_author_meta( 'ID' ), 32); ?> Hosted by <input type="text" value="<?php echo $current_user->user_login; ?>"></label>
-			<select class="input-opac" name="carlist" form="carform">
-				<option value="meeting">Select Type</option>
+		<form name="myform" method="post" action="<?php echo get_template_directory_uri(); ?>/event_save.php">
+			<input type="text" name="event_title" placeholder="Add Title"/>
+			<label>Upload Image <input type="file" name="event_img"></label>
+			<label><?php echo get_avatar(get_the_author_meta( 'ID' ), 32); ?> Hosted by <input type="text" name="submitted_by" value="<?php echo $current_user->user_login; ?>"></label>
+			<select class="input-opac" name="event_type" form="myform">
 			  	<option value="meeting">Meeting</option>
 			  	<option value="socials">Socials</option>
 			  	<option value="fundraising">Fundraising</option>
 			</select>
-			<label>Date <input type="date"></label>
-			<label for="">Eventbrite<input class="input-opac" placeholder="Registration URL" type="url"></label>
-			<label for="">Facebook<input class="input-opac" placeholder="Event Page" type="url"></label>
-			<input type="submit" />
+			<label>Date <input type="date" name="event_date"></label>
+			<input placeholder="Start Time" type="time" name="event_start_time">
+			<input placeholder="End Time" type="time" name="event_end_time">
+			<input placeholder="Location" type="text" name="event_location">
+			<label for="">Eventbrite<input class="input-opac" placeholder="Registration URL" type="url" name="eventbrite_url"></label>
+			<label for="">Facebook<input class="input-opac" placeholder="Event Page" type="url" name="facebook_url"></label>
+			<input type="submit" name="submit" value="Add Event" />
 			<section>
 				<h4 class="text-al-center">Notes</h4>
-				<textarea input-opac placeholder="Add additional details here. They will be shown only for Members. Example: Special share instructions, discount codes, reminders to other organizations"></textarea>
+				<textarea class="input-opac" placeholder="Add additional details here. They will be shown only for Members. Example: Special share instructions, discount codes, reminders to other organizations" name="event_notes"></textarea>
 			</section>
-			
 		</form>
 	</div>
 </div>

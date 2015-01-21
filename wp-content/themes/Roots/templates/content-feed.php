@@ -1,6 +1,6 @@
 <!-- Feed template -->
 <?php global $current_user;
-      get_currentuserinfo();
+    get_currentuserinfo();
 ?>
 
 <!-- Wrapper -->
@@ -68,15 +68,22 @@
 		<a href="#">View calendar</a>
 		<section>
 			<ul>
-				<!-- Repeater for events -->
-			    <li>
-			    	<a href="#">
-			    		<img src="" alt="">
-			    		<h3>Event name</h3>
-			    		<p>Event date | event time</p>
-			    		<p>Event place, event city</p>
-			    	</a>
-			    </li>
+				<?php 
+				$connect = mysql_connect("localhost", "root", "root");
+				mysql_select_db("resources", $connect);
+				// Query the DB to a limit of 5 results
+				$query = "SELECT * FROM wp_events LIMIT 5";
+				$result = mysql_query($query);
+
+				// Displays the results as list items
+				while($row = mysql_fetch_assoc($result)) {
+						echo "<li><h3>" . $row['event_title'] . "</h3>".
+						     "<p>" .$row['event_date']. " | " .date('h:i A', $row['event_start_time']). " - " .date('h:i A', $row['event_end_time']). "</p>" .
+						     "<p>" .$row['event_location'] . "</p></li>";
+				    
+				}
+				mysql_close();
+				?>
 			</ul>
 		</section>
 		<h2>Updates</h2>

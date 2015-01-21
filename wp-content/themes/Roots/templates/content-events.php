@@ -44,7 +44,7 @@ function draw_calendar($month,$year, $events = array()){
 				}
 			}
 			else {
-				$calendar.= str_repeat('<p> </p>',2);
+				$calendar.= str_repeat('<p></p>',2);
 			}
 			
 		$calendar.= '</td>';
@@ -256,11 +256,12 @@ $controls = '<form method="get">' .$previous_month_link.'  Month   '.$next_month
 			<input type="text" name="event_title" placeholder="Add Title"/>
 			<label>Upload Image <input type="file" name="event_img"></label>
 			<label><?php echo get_avatar(get_the_author_meta( 'ID' ), 32); ?> Hosted by <input type="text" name="submitted_by" value="<?php echo $current_user->user_login; ?>"></label>
-			<select class="input-opac" name="event_type" form="myform">
-			  	<option value="meeting">Meeting</option>
-			  	<option value="socials">Socials</option>
-			  	<option value="fundraising">Fundraising</option>
-			</select>
+			<input type="radio" name="event_type" value="0">
+			Meeting
+			<input type="radio" name="event_type" value="1">
+			Socials
+			<input type="radio" name="event_type" value="2">
+			Fundraising
 			<label>Date <input type="date" name="event_date"></label>
 			<input placeholder="Start Time" type="time" name="event_start_time">
 			<input placeholder="End Time" type="time" name="event_end_time">

@@ -37,14 +37,15 @@ function draw_calendar($month,$year, $events = array()){
 
 			/** QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY  **/
 			$event_day = $year.'-'.$month.'-'.$list_day;
-			// $right_date = date('Y-m-d',$event_day);
-			if(isset($events[$event_day])) {
-				foreach($events[$event_day] as $event) {
+			$right_date = date('Y-m-d',strtotime($event_day));
+			if(isset($events[$right_date])) {
+				foreach($events[$right_date] as $event) {
 					$calendar.= '<div class="event">'.$event['event_title'].'</div>';
 				}
 			}
 			else {
-				$calendar.= str_repeat('<p></p>',2);
+				$calendar.= str_repeat("<p></p>",2);
+
 			}
 			
 		$calendar.= '</td>';
@@ -88,15 +89,15 @@ $events = array();
 $db_link = mysql_connect("localhost", "root", "root");
 mysql_select_db("resources", $db_link);
 
-$query = "SELECT event_title, DATE_FORMAT(event_date, '%Y-%m-%D') AS event_date FROM wp_events WHERE event_date LIKE '$year-$month-$day'";
+$query = "SELECT event_title, event_date FROM wp_events";
 
 $result = mysql_query($query) or die(mysql_error());
 
 while($row = mysql_fetch_assoc($result)) {
 	$events[$row['event_date']][] = $row;
+	
 }
 
-var_dump($row);
 var_dump($events);
 
 
@@ -171,52 +172,23 @@ $controls = '<form method="get">' .$previous_month_link.'  Month   '.$next_month
 	<div id="calendar">
 		<?php echo draw_calendar($month,$year,$events); ?>
 	</div>
+	
+	<?php 
+	$connect = mysql_connect("localhost", "root", "root");
+	mysql_select_db("resources", $connect);
+	// Query the DB to a limit of 5 results
+	$query = "SELECT * FROM wp_events LIMIT 7";
+	$result = mysql_query($query);
 
-	<div class="upcoming">
-	    <ul>
-	    	<li class="image"></li>
-	    	<li><h4>High School Health Conference</h4></li>
-	    	<li>
-	    		<p>November 1, 2014</p>
-	    		<p>3:30 - 5:30 PM</p>
-	    	</li>
-	    	<li>
-	    		<p>Mississauga Central Library</p>
-	    		<p>Meeting Room B</p>
-	    	</li>
-	    </ul>
-	</div>
-
-
-	<div class="upcoming">
-	    <ul>
-	    	<li class="image"></li>
-	    	<li><h4>High School Health Conference</h4></li>
-	    	<li>
-	    		<p>November 1, 2014</p>
-	    		<p>3:30 - 5:30 PM</p>
-	    	</li>
-	    	<li>
-	    		<p>Mississauga Central Library</p>
-	    		<p>Meeting Room B</p>
-	    	</li>
-	    </ul>
-	</div>
-
-	<div class="upcoming">
-	    <ul>
-	    	<li class="image"></li>
-	    	<li><h4>High School Health Conference</h4></li>
-	    	<li>
-	    		<p>November 1, 2014</p>
-	    		<p>3:30 - 5:30 PM</p>
-	    	</li>
-	    	<li>
-	    		<p>Mississauga Central Library</p>
-	    		<p>Meeting Room B</p>
-	    	</li>
-	    </ul>
-	</div>
+	// Displays the results as list items
+	while($row = mysql_fetch_assoc($result)) {
+			echo "<div class='upcoming'><ul><li class='image'></li><li><h4>" . $row['event_title'] . "</h4>".
+			     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i A', $row['event_start_time']). " - " .date('h:i A', $row['event_end_time']). "</p></li>" .
+			     "<li><p>" .$row['event_location'] . "<p></li></ul></div>";
+	    
+	}
+	mysql_close();
+	?>
 	
 	<button class="add-event margin-bottom-20"><i class="margin-right-5 fa fa-plus"></i>Add to Calendar</button>	
 </div>

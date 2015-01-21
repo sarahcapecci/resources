@@ -40,7 +40,7 @@ function draw_calendar($month,$year, $events = array()){
 			$right_date = date('Y-m-d',strtotime($event_day));
 			if(isset($events[$right_date])) {
 				foreach($events[$right_date] as $event) {
-					$calendar.= '<div class="event">'.$event['event_title'].'</div>';
+					$calendar.= '<div class="event">'.$event['event_title']. $event['event_img'].'</div>';
 				}
 			}
 			else {
@@ -94,18 +94,9 @@ $query = "SELECT event_title, event_date FROM wp_events";
 $result = mysql_query($query) or die(mysql_error());
 
 while($row = mysql_fetch_assoc($result)) {
-	$events[$row['event_date']][] = $row;
-	
+	$events[$row['event_date']][] = $row;	
 }
 
-var_dump($events);
-
-
-// echo '<h2 style="float:left; padding-right:30px;">'.date('F',mktime(0,0,0,$month,1,$year)).' '.$year.'</h2>';
-// echo '<div style="float:left;">'.$controls.'</div>';
-// echo '<div style="clear:both;"></div>';
-// echo draw_calendar($month,$year,$events);
-// echo '<br /><br />';
 
 // CONTROLS
 
@@ -182,7 +173,7 @@ $controls = '<form method="get">' .$previous_month_link.'  Month   '.$next_month
 
 	// Displays the results as list items
 	while($row = mysql_fetch_assoc($result)) {
-			echo "<div class='upcoming'><ul><li class='image'></li><li><h4>" . $row['event_title'] . "</h4>".
+			echo "<div class='upcoming'><ul><li>" .$row['submitted_by']. "</li><li><h4>" . $row['event_title'] . "</h4></li>".
 			     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i A', $row['event_start_time']). " - " .date('h:i A', $row['event_end_time']). "</p></li>" .
 			     "<li><p>" .$row['event_location'] . "<p></li></ul></div>";
 	    
@@ -224,10 +215,10 @@ $controls = '<form method="get">' .$previous_month_link.'  Month   '.$next_month
 	</div>
 	<!-- add an event form -->
 	<div class="new-event right-sidebar">
-		<form name="myform" method="post" action="<?php echo get_template_directory_uri(); ?>/event_save.php">
+		<form name="myform" method="post" action="<?php echo get_template_directory_uri(); ?>/event_save.php" enctype="multipart/form-data">
 			<input type="text" name="event_title" placeholder="Add Title"/>
 			<label>Upload Image <input type="file" name="event_img"></label>
-			<label><?php echo get_avatar(get_the_author_meta( 'ID' ), 32); ?> Hosted by <input type="text" name="submitted_by" value="<?php echo $current_user->user_login; ?>"></label>
+			<label><?php $avatar = get_avatar($current_user->ID, 32); echo $avatar; ?> Hosted by <?php echo $current_user->display_name; ?><input type="text" class="not-visible" name="submitted_by" value="<?php echo htmlspecialchars($avatar) ?>"></label>
 			<input type="radio" name="event_type" value="0">
 			Meeting
 			<input type="radio" name="event_type" value="1">

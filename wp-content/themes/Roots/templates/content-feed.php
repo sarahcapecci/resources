@@ -8,8 +8,6 @@
 	<!-- Left side -->
 	<div class="left-side-top relative">
 		<h2>Browse the bulletin, <?php echo $current_user->display_name; ?>!</h2>
-		<?php echo get_avatar( get_the_author_meta( 'ID' ), 32 ); ?>
-
 		<ul class="select-filter">
 		    <li><a class="black-link-b" href="<?php echo esc_url(home_url('/')); ?>">All Bulletins</a> /</li>
 		    <li class="middle-gray-txt">Show Only</li>
@@ -77,9 +75,9 @@
 
 				// Displays the results as list items
 				while($row = mysql_fetch_assoc($result)) {
-						echo "<li><h3>" . $row['event_title'] . "</h3>".
+						echo "<li><div class='inline-block'>" .$row['submitted_by']. "</div><div class='inline-block'><h3>" . $row['event_title'] . "</h3>".
 						     "<p>" .$row['event_date']. " | " .date('h:i A', $row['event_start_time']). " - " .date('h:i A', $row['event_end_time']). "</p>" .
-						     "<p>" .$row['event_location'] . "</p></li>";
+						     "<p>" .$row['event_location'] . "</p></div></li>";
 				    
 				}
 				mysql_close();

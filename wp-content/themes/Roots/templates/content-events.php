@@ -218,7 +218,7 @@ $controls = '<form method="get">' .$previous_month_link.'  Month   '.$next_month
 		<form name="myform" method="post" action="<?php echo get_template_directory_uri(); ?>/event_save.php" enctype="multipart/form-data">
 			<input type="text" name="event_title" placeholder="Add Title"/>
 			<label>Upload Image <input type="file" name="event_img"></label>
-			<label><?php $avatar = get_avatar($current_user->ID, 32); echo $avatar; ?> Hosted by <?php echo $current_user->display_name; ?><input type="text" class="not-visible" name="submitted_by" value="<?php echo htmlspecialchars($avatar) ?>"></label>
+			<label><?php $avatar = get_avatar($current_user->ID, 32); echo $avatar; ?> Hosted by <?php echo $current_user->display_name; ?><input type="hidden" name="submitted_by" value="<?php echo htmlspecialchars($avatar) ?>"></label>
 			<input type="radio" name="event_type" value="0">
 			Meeting
 			<input type="radio" name="event_type" value="1">

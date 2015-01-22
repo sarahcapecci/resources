@@ -38,4 +38,16 @@ $(document).ready(function(){
 	  	$('.request-modal').toggle();
 	  	// $('body.page').css('opacity', '0.3');
 	});
+
+	$('.respond-request').on('click', function(e){
+		e.preventDefault();
+		var clicked = $(this);
+		var request_id = clicked.data("id");
+	  	$('#request-' + request_id).toggle();
+	});
+
+	$('.close-response').on('click', function(e){
+		e.preventDefault();
+		$('.response-modal').hide();
+	});
 });

@@ -489,7 +489,7 @@ p.message, #login_error {
 		margin-right: 3px;
 	}
 	div {
-		display: inline-block;
+		// display: inline-block;CHANGE THIS
 		vertical-align: top;
 	}
 
@@ -842,6 +842,12 @@ table {
 	width: 100%;
 }
 
+.event {
+	cursor: pointer;
+	color: @main-blue;
+	font-weight: 500;
+
+}
 .calendar-row, .calendar-row-day {
 	width: 100%;
 
@@ -865,77 +871,12 @@ table {
 .day-number {
 	text-align: right;
 }
-// tbody {
-// 	border: 1px solid @light-gray;
-// 	border-radius: 2px;
-// }
 
-// th {
-// 	display: block;
-// 	text-align: right;
-// 	h5 {
-// 		margin: 5px auto;
-// 	}
-// }
-// tr {
-// 	width: 13.85%;
-// 	margin-right: 0.5%;
-// 	display: inline-block;
-// 	vertical-align: top;
-
-// }
-
-// td {
-// 	display: block;
-
-// 	&.day {
-// 		height: 250px;
-// 		position: relative;
-// 		border-top: 1px solid @middle-gray;
-// 		overflow: scroll;
-// 	}
-
-// 	&.current {
-// 		border-top: 2px solid @orange;
-// 	}
-
-// 	.date {
-// 		position: absolute;
-// 		right: 5px;
-// 		top: 5px;
-// 		font-size: 12px;
-// 	}
-// }
-
-// .inactive {
-// 	td {
-// 		background-color: @light-gray;
-// 	}
-
-// 	&.sat {
-// 		margin-right: 0;
-// 	}
-// }
-
-// span.image {
-// 	display: block;
-// 	width: 100%;
-// 	height: 40px;
-// 	background-color: @orange;
-// }
-
-// td .event-list {
-// 	margin-top: 25px;
-// }
-
-// .calendar-pagination {
-// 	margin: 5px 5px 5px auto;
-// 	text-align: right;
-
-// 	i {
-// 		padding: 5px 8px;
-// 	}
-// }
+.event-img {
+	width: 100%;
+	max-height: 40px;
+	overflow-y: hidden;
+}
 
 //  UPCOMING
 
@@ -997,7 +938,7 @@ table {
 }
 .selected {
 	background-color: @main-blue;
-	display: none!important;
+	display: inline-block;
 
 	img.event {
 		max-width: 100%;
@@ -1032,6 +973,7 @@ table {
 
 .new-event {
 	background-color: @event-gray;
+	display: none;
 
 	input, textarea, select {
 		background-color: transparent;
@@ -1062,5 +1004,11 @@ table {
 		display: block;
 		margin: 10px auto 20px auto;
 	}
-
 }
+
+.organizations {
+	background-color: @main-blue;
+	color: @white;
+	display: none;
+}
+

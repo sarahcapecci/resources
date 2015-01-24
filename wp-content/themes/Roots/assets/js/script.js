@@ -50,4 +50,48 @@ $(document).ready(function(){
 		e.preventDefault();
 		$('.response-modal').hide();
 	});
+
+	// DISPLAY EVENT DETAIL ON SIDEBAR
+	$('.event').on('click', function(){
+		var event_id = $(this).data("id");
+		console.log(event_id);
+
+		var eventDisplay = function(event_id) {
+			var event_id = event_id;
+			$.ajax({
+				url: "../wp-content/themes/roots/event_info.php",
+				type: "POST",
+				data: {
+					eventParam : event_id
+				},	
+				// processData: false,
+				contentType: "application/x-www-form-urlencoded",
+				dataType: "json",
+				success: function(data){
+					console.log(event_id);
+					console.log(data);
+					$('#event-title').html(data.event_title);
+					$('#event-img').attr('src', data.event_img);
+					$('#event-type').html(data.event_type);
+					$('#event-date').html(data.event_date);
+					$('#event-start-time').html(data.event_start_time);
+					$('#event-end-time').html(data.event_end_time);
+					$('#event-location').html(data.event_location);
+				},
+				error: function() {
+					console.log('nope' + event_id);
+					console.log(typeof(event_id));
+				}
+			});
+		};
+
+		eventDisplay(event_id);
+	});
+
+	// EVENTS FILTER
+
+	// DELETE REQUEST
+
+	// DELETE EVENT
+
 });

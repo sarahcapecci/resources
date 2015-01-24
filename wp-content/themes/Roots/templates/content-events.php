@@ -1,10 +1,13 @@
 <?php 
 
 global $current_user;
-get_currentuserinfo();
+get_currentuserinfo(); 
+$username = $current_user->display_name;
 
 /* draws a calendar */
 function draw_calendar($month,$year, $events = array()){
+	$event_img_path = '../wp-content/themes/roots/assets/img/events_img/';
+	// global $username;
 
 	/* draw table */
 	$calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
@@ -40,11 +43,22 @@ function draw_calendar($month,$year, $events = array()){
 			$right_date = date('Y-m-d',strtotime($event_day));
 			if(isset($events[$right_date])) {
 				foreach($events[$right_date] as $event) {
-					$calendar.= '<div class="event">'.$event['event_title']. $event['event_img'].'</div>';
+					$calendar.= "<div class='event' data-id='".$event['id'] ."'>".$event['event_title']."</div>";
+
+					if($event['event_img_name']){
+						$calendar .= "<img class='event-img' src='" .$event_img_path.$event['event_img_name']."'/>";
+
+					} else {
+						$calendar .= "<img class='event-img' src='" .$event_img_path."/default-calendar.jpg' alt='Default Event Image' />";
+					}
+					
+					// if($event['user_name'] = $username) {
+					// 	$calendar .= "<button>delete</button>";
+					// }
 				}
 			}
 			else {
-				$calendar.= str_repeat("<p></p>",2);
+				$calendar.= str_repeat("<p>" .$username. "</p>",2);
 
 			}
 			
@@ -89,7 +103,7 @@ $events = array();
 $db_link = mysql_connect("localhost", "root", "root");
 mysql_select_db("resources", $db_link);
 
-$query = "SELECT event_title, event_date FROM wp_events";
+$query = "SELECT event_title, id, event_img_name, event_date, user_name FROM wp_events";
 
 $result = mysql_query($query) or die(mysql_error());
 
@@ -129,14 +143,11 @@ $previous_month_link = '<a href="?month='.($month != 1 ? $month - 1 : 12).'&year
 $controls = '<form method="get">' .$previous_month_link.'  Month   '.$next_month_link.' </form>';
 
 
-    
-
-
 ?>
 
 <!-- LEFT side -->
 <div class="left-side events">
-	<h2>Collective Calendar </h2>
+	<h2>Collective Calendar <?php echo date('F',$month); ?></h2>
 	<ul class="select-filter">
 	    <li><a class="black-link-b" href="<?php echo esc_url(home_url('/')); ?>">All Events</a> /</li>
 	    <li class="middle-gray-txt">Show Only</li>
@@ -144,12 +155,7 @@ $controls = '<form method="get">' .$previous_month_link.'  Month   '.$next_month
 	    <li><a class="blue-link-b" href="<?php echo esc_url(home_url('/')); ?>requests/">Socials |</a></li>
 	    <li><a class="blue-link-b" href="<?php echo esc_url(home_url('/')); ?>resources/">Fundraisers</a></li>
 	</ul>
-	<!-- Assets showing according to filter -->
-	<div class="request-modal all-modal">
-		<h4>Post a request to the bulletin for all RYR members to see and reply to.</h4>
-		<?php echo do_shortcode('[contact-form-7 id="53" title="Create Request"]'); ?>
-		<button id="close-request">Close</button>
-	</div>
+	
 	
 	<!-- pagination -->
 	<div class="calendar-pagination">
@@ -187,24 +193,34 @@ $controls = '<form method="get">' .$previous_month_link.'  Month   '.$next_month
 <div class="right-side events">
 <button class="add-event"><i class="margin-right-5 fa fa-plus"></i>Add to calendar</button>
 	<!-- Organizations List -->
-<!-- 	<div>
+	<div class="right-sidebar organizations">
 		<h2>Explore events by <strong>Organization</strong></h2>
 		<ul>
-		    <li>Organization 1</li>
-		    <li>Organization 1</li>
-		    <li>Organization 1</li>
-		    <li>Organization 1</li>
+		<?php 
+		$connect = mysql_connect("localhost", "root", "root");
+		mysql_select_db("resources", $connect);
+		// Query the DB to a limit of 5 results
+		$query = "SELECT DISTINCT user_name FROM wp_events";
+		$result = mysql_query($query);
+
+		// Displays the results as list items
+		while($row = mysql_fetch_assoc($result)) {
+				echo "<li>" .$row['user_name']. "</li>";
+		    
+		}
+		mysql_close();
+		?>
 		</ul>
-	</div> -->
+	</div>
 	<!-- SELECTED Event -->
 	<div class="selected right-sidebar">
-		<h2>RYR Executive Meeting</h2>
-		<img class="event" src="<?php echo get_template_directory_uri(); ?>/assets/img/default-calendar.jpg" alt="" />
-		<?php echo get_avatar(get_the_author_meta( 'ID' ), 32); ?> <span class="margin-left-5">Hosted by Regional Youth Roundtable</span>
-		<h5 class="font-light">Type of Event</h5>
-		<p>Thursday, February 1, 2015</p>
-		<p>3:30 PM - 7 PM</p>
-		<p>Mississauga City Hall</p>
+		<h2 id="event-title">RYR Executive Meeting</h2>
+		<img id="event-img" class="event" src="" alt="" />
+		<span id="user-avatar"></span> <span class="margin-left-5">Hosted by <span id="user-name"></span></span>
+		<h5 id="event-type" class="font-light">Type of Event</h5>
+		<p id="event-date">Thursday, February 1, 2015</p>
+		<p><span id="event-start-time"></span><span id="event-end-time"></span></p>
+		<p id="event-location"></p>
 		<!-- social -->
 		<section>
 			<p><img class="margin-right-5 small" src="<?php echo get_template_directory_uri(); ?>/assets/img/eventbrite.png" alt="">Eventbrite Registration Page</p>
@@ -232,6 +248,7 @@ $controls = '<form method="get">' .$previous_month_link.'  Month   '.$next_month
 			<label for="">Eventbrite<input class="input-opac" placeholder="Registration URL" type="url" name="eventbrite_url"></label>
 			<label for="">Facebook<input class="input-opac" placeholder="Event Page" type="url" name="facebook_url"></label>
 			<input type="submit" name="submit" value="Add Event" />
+			<input type="hidden" name="user_name" value="<?php echo $username; ?>">
 			<section>
 				<h4 class="text-al-center">Notes</h4>
 				<textarea class="input-opac" placeholder="Add additional details here. They will be shown only for Members. Example: Special share instructions, discount codes, reminders to other organizations" name="event_notes"></textarea>

@@ -5,6 +5,9 @@
     $email = $current_user->user_email;
     $twitter_handle = $current_user->user_firstname;
     $user_name = $current_user->display_name;
+
+    $event_img_path = 'wp-content/themes/roots/assets/img/events_img/';
+
 ?>
 
 <!-- Wrapper -->
@@ -51,9 +54,31 @@
 		</li>[/cfdb-html]'); ?>
 		</ul>
 		<h3>Events</h3>
-		<h3>Requests</h3>
-		
+			<ul>
+				<?php 
+				$connect = mysql_connect("localhost", "root", "root");
+				mysql_select_db("resources", $connect);
+				// Query the DB to a limit of 5 results
+				$query = "SELECT * FROM wp_events ORDER BY id desc LIMIT 3";
+				$result = mysql_query($query);
 
+				// Displays the results as list items
+				while($row = mysql_fetch_assoc($result)) {
+						echo "<li>".$row['submitted_by']. "<p><strong>" .$row['user_name']. "</strong> is hosting <strong>" .$row['event_title']. "</strong></p>";
+						// handle the image
+						if ($row['event_img']) {
+							echo "<p><img src='" .$event_img_path.$row['event_img_name']. "'/></p></li>";
+						} else {
+							echo "<img src='".$event_img_path."/default-calendar.jpg' alt='Default Event Image' />";
+
+						    
+						}
+				}
+				mysql_close();
+				?>
+			</ul>
+
+		<h3>Requests</h3>
 		<ul>
 			<?php 
 			$connect = mysql_connect("localhost", "root", "root");
@@ -104,13 +129,13 @@
 				$connect = mysql_connect("localhost", "root", "root");
 				mysql_select_db("resources", $connect);
 				// Query the DB to a limit of 5 results
-				$query = "SELECT * FROM wp_events LIMIT 5";
+				$query = "SELECT * FROM wp_events ORDER BY id desc LIMIT 5";
 				$result = mysql_query($query);
 
 				// Displays the results as list items
 				while($row = mysql_fetch_assoc($result)) {
 						echo "<li><div class='inline-block'>" .$row['submitted_by']. "</div><div class='inline-block'><h3>" . $row['event_title'] . "</h3>".
-						     "<p>" .$row['event_date']. " | " .date('h:i A', $row['event_start_time']). " - " .date('h:i A', $row['event_end_time']). "</p>" .
+						     "<p>" .date('F j, Y', strtotime($row['event_date'])). " | " .date('h:i A', $row['event_start_time']). " - " .date('h:i A', $row['event_end_time']). "</p>" .
 						     "<p>" .$row['event_location'] . "</p></div></li>";   
 				}
 				mysql_close();
@@ -126,7 +151,7 @@
 			$rows = $mydb->get_results("SELECT post_title, guid, post_date FROM wp_posts WHERE post_type = 'post'");
 			echo "<ul>";
 			foreach ($rows as $obj) :
-				$new_date = date("M jS, Y", strtotime($obj->post_date));
+				$new_date = date("F j, Y", strtotime($obj->post_date));
 				echo "<li><a href=".$obj->guid." target='_blank'>".$obj->post_title."</a></li>";
 				echo "<p>".$new_date."</p>";
 			endforeach;

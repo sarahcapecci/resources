@@ -11,16 +11,16 @@
 ?>
 
 <!-- Wrapper -->
-<div>
+<div id="feed-wrapper">
 	<!-- Left side -->
 	<div class="left-side-top relative">
 		<h2>Browse the bulletin, <?php echo $current_user->display_name; ?>!</h2>
 		<ul class="select-filter">
-		    <li><a class="black-link-b" href="<?php echo esc_url(home_url('/')); ?>">All Bulletins</a> /</li>
+		    <li><a id="no-filter-feed" class="black-link-b" href="#">All Bulletins</a> /</li>
 		    <li class="middle-gray-txt">Show Only</li>
 		    <li><a class="blue-link-b" href="<?php echo esc_url(home_url('/')); ?>events">Events |</a></li>
-		    <li><a class="blue-link-b" href="<?php echo esc_url(home_url('/')); ?>requests/">Requests |</a></li>
-		    <li><a class="blue-link-b" href="<?php echo esc_url(home_url('/')); ?>resources/">Resources</a></li>
+		    <li><a id="request-filter" class="blue-link-b" href="#">Requests |</a></li>
+		    <li><a class="blue-link-b" href="<?php echo esc_url(home_url('/')); ?>resources/documents">Resources</a></li>
 		</ul>
 		<button id="new-request"><i class="fa fa-plus margin-right-5"></i>Post Request</button>
 		<!-- Assets showing according to filter -->
@@ -37,23 +37,25 @@
 			</form>
 			<button id="close-request">Close</button>
 		</div>
-		<section>
-		<h3>Resources</h3>
-		<ul>
-		<?php echo do_shortcode(
-		'[cfdb-html form="Upload Document" show="title,document-select,doc-description,doc-tags,file-upload,Submitted Login,Submitted" filelinks="url" stripbr="true" limit="3"]
-		<li class="entry">
-			<span>Avatar</span>
-			<p><strong>${Submitted Login}</strong> uploaded <strong>${title}</strong></p>
-			<div class="document-card doc-type ${document-select}">
-				<h4>${title}</h4>
-				<span class="type">${document-select}</span>
-			<img src="wp-content/themes/Roots/assets/img/document.png" alt="">
-			<span class="doc-date">${Submitted}</span>
-			</div>
-		</li>[/cfdb-html]'); ?>
-		</ul>
-		<h3>Events</h3>
+		<section id="resources-feed">
+			<h3>Resources</h3>
+			<ul>
+			<?php echo do_shortcode(
+			'[cfdb-html form="Upload Document" show="title,document-select,doc-description,doc-tags,file-upload,Submitted Login,Submitted" filelinks="url" stripbr="true" limit="3"]
+			<li class="entry">
+				<span>Avatar</span>
+				<p><strong>${Submitted Login}</strong> uploaded <strong>${title}</strong></p>
+				<div class="document-card doc-type ${document-select}">
+					<h4>${title}</h4>
+					<span class="type">${document-select}</span>
+				<img src="wp-content/themes/Roots/assets/img/document.png" alt="">
+				<span class="doc-date">${Submitted}</span>
+				</div>
+			</li>[/cfdb-html]'); ?>
+			</ul>
+		</section>
+		<section id="events-feed">
+			<h3>Events</h3>
 			<ul>
 				<?php 
 				$connect = mysql_connect("localhost", "root", "root");
@@ -77,52 +79,51 @@
 				mysql_close();
 				?>
 			</ul>
+		</section>
+		<section id="requests-feed">
+			<h3>Requests</h3>
+			<ul>
+				<?php 
+				$connect = mysql_connect("localhost", "root", "root");
+				mysql_select_db("resources", $connect);
+				// Query the DB to a limit of 5 results
+				$query = "SELECT * FROM wp_requests LIMIT 5";
+				$result = mysql_query($query);
 
-		<h3>Requests</h3>
-		<ul>
-			<?php 
-			$connect = mysql_connect("localhost", "root", "root");
-			mysql_select_db("resources", $connect);
-			// Query the DB to a limit of 5 results
-			$query = "SELECT * FROM wp_requests LIMIT 5";
-			$result = mysql_query($query);
+				// Displays the results as list items
+				while($row = mysql_fetch_assoc($result)) {
+						echo "<li><p><strong>" .$row['user_avatar'] .$row['user_name']. "</strong> requests <strong>" . $row['request_title'] . "</strong></p>" .
+						     "<p>" .$row['request_description']. "</p><a class='margin-right-5 respond-request' href='#' data-id='" .$row['id']. "'>Respond via e-mail</a><a href='https://twitter.com/intent/tweet?screen_name=".$row['user_twitter']."' class='margin-left-5 twitter-mention-button'>".$row['user_twitter']."</a></li>";
+						//delete request when complete     
+						if($row['user_name'] == $user_name){
+							echo "<button>Delete request</button>";
+						}
+				?>
+				<div class='response-modal all-modal' id='request-<?php echo $row['id']; ?>'>
+					<h4>Your e-mail response</h4>
+					<button class='close-response'><i class='fa fa-close'></i></button>
+					<img src='<?php echo get_template_directory_uri(); ?>/assets/img/email.png' alt=''>
+					<form name='reply_form' action='<?php echo get_template_directory_uri(); ?>/reply_to_request.php' method='POST' novalidate='novalidate'>
+						<label>Send to: <input type='email' name='email_to' size='40' aria-required='true' aria-invalid='false' value='<?php echo $row['user_email']; ?>'></label>
+						<label>Subject: <input type='text' name='subject' value='<?php echo $row['request_title']; ?>' size='40' aria-required='true' aria-invalid='false'></label>
+						<label>Message: <textarea name='message' cols='40' rows='10' aria-invalid='false'></textarea></label>
+						<label>From:<input type='email' name='email_from' value='<?php echo $email; ?>' size='40' aria-invalid='false'>
+						<input type='submit' value='Send Message' class=''></label>
+						<input type='hidden' name='request' value='<?php echo $row['request_title']; ?>'>
+						<input type='hidden' name='sender_name' value='<?php echo $user_name; ?>'>
+					</form>
+				</div>
 
-			// Displays the results as list items
-			while($row = mysql_fetch_assoc($result)) {
-					echo "<li><p><strong>" .$row['user_avatar'] .$row['user_name']. "</strong> requests <strong>" . $row['request_title'] . "</strong></p>" .
-					     "<p>" .$row['request_description']. "</p><a class='margin-right-5 respond-request' href='#' data-id='" .$row['id']. "'>Respond via e-mail</a><a href='https://twitter.com/intent/tweet?screen_name=".$row['user_twitter']."' class='margin-left-5 twitter-mention-button'>".$row['user_twitter']."</a></li>";
-					//delete request when complete     
-					if($row['user_name'] == $user_name){
-						echo "<button>Delete request</button>";
-					}
-			?>
-			<div class='response-modal all-modal' id='request-<?php echo $row['id']; ?>'>
-				<h4>Your e-mail response</h4>
-				<button class='close-response'><i class='fa fa-close'></i></button>
-				<img src='<?php echo get_template_directory_uri(); ?>/assets/img/email.png' alt=''>
-				<form name='reply_form' action='<?php echo get_template_directory_uri(); ?>/reply_to_request.php' method='POST' novalidate='novalidate'>
-					<label>Send to: <input type='email' name='email_to' size='40' aria-required='true' aria-invalid='false' value='<?php echo $row['user_email']; ?>'></label>
-					<label>Subject: <input type='text' name='subject' value='<?php echo $row['request_title']; ?>' size='40' aria-required='true' aria-invalid='false'></label>
-					<label>Message: <textarea name='message' cols='40' rows='10' aria-invalid='false'></textarea></label>
-					<label>From:<input type='email' name='email_from' value='<?php echo $email; ?>' size='40' aria-invalid='false'>
-					<input type='submit' value='Send Message' class=''></label>
-					<input type='hidden' name='request' value='<?php echo $row['request_title']; ?>'>
-					<input type='hidden' name='sender_name' value='<?php echo $user_name; ?>'>
-				</form>
-			</div>
-
-			<?php
-			}
-			mysql_close();
-			?>
-
-			
+				<?php
+				}
+				mysql_close();
+				?>
 		</section>
 	</div>
 	<!-- Right side -->
 	<div class="right-side">
 		<h2>Upcoming</h2>
-		<a href="#">View calendar</a>
+		<a href="<?php echo esc_url(home_url('/')); ?>events">View calendar</a>
 		<section>
 			<ul>
 				<?php 
@@ -144,7 +145,7 @@
 		</section>
 		
 		<h2>Updates</h2>
-		<a href="#">Visit the blog</a>
+		<a href="http://youthroundtable.ca/" target="_blank">Visit the blog</a>
 		<section>
 			<?php 
 			$mydb = new wpdb('root','root','youth','localhost');

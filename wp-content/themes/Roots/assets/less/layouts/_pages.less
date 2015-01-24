@@ -151,6 +151,9 @@ p.message, #login_error {
 	top: 20px;
 }
 
+#feed-wrapper {
+	min-height: 1000px;
+}
 
 // RESOURCES
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *//
@@ -815,7 +818,7 @@ p.message, #login_error {
 // CALENDAR
 
 .left-side.events {
-	width: 70%;
+	width: 75%;
 
 	h2 {
 		font-weight: 500;
@@ -834,10 +837,21 @@ p.message, #login_error {
 	font-size: 16px;
 }
 
+.calendar-pagination {
+	padding-right: 60px;
+}
 #calendar {
 	width: 100%;
 	padding: 5px;
 }
+tbody {
+	border: 1px solid @light-gray;
+
+	tr:last-child {
+		visibility: hidden;
+	}
+}
+
 table {
 	width: 100%;
 }
@@ -846,26 +860,40 @@ table {
 	cursor: pointer;
 	color: @main-blue;
 	font-weight: 500;
+	margin-bottom: 10px;
 
 }
+.calendar-row {
+	text-align: right;
+	border-bottom: 1px solid @light-gray;
+}
+.calendar-day-head {
+	padding: 2px 4px;
+	border-right: 1px solid @light-gray;
+}
+
 .calendar-row, .calendar-row-day {
 	width: 100%;
 
 	td {
 		display: inline-block;
-		width: 14%;
+		width: 14.28%;
 	}
 }
 
 .calendar-row-day {
-	height: 120px;
-	background-color: @light-gray;
+	height: 150px;
+	background-color: @white;
 }
 .calendar-day, .calendar-day-np {
-	height: 100%;
+	height: 103%;
+	border-bottom: 1px solid @light-gray;
+	border-right: 1px solid @light-gray;
+	padding: 2px 4px;
+	overflow-y: scroll;
 }
 .calendar-day-np {
-	background-color: @middle-gray;
+	background-color: @light-gray;
 }
 
 .day-number {
@@ -874,7 +902,7 @@ table {
 
 .event-img {
 	width: 100%;
-	max-height: 40px;
+	max-height: 45px;
 	overflow-y: hidden;
 }
 
@@ -894,12 +922,19 @@ table {
 	}
 
 	li:first-child {
-		width: 10%;
+		width: 8%;
+
 	}
 
-	li:nth-child(2), li:nth-child(3), li:nth-child(4) {
-		width: 28%
+	li:nth-child(2) {
+		width: 28%;
+		h4 {
+			padding: 0 10px;
+		}
+	}
 
+	li:nth-child(3), li:nth-child(4) {
+		width: 25%;
 	}
 
 	p {
@@ -936,9 +971,10 @@ table {
 		line-height: 20px;
 	}
 }
+
 .selected {
 	background-color: @main-blue;
-	display: inline-block;
+	display: none;
 
 	img.event {
 		max-width: 100%;
@@ -965,8 +1001,15 @@ table {
 		width: 85%;
 		margin: 30px auto 20px auto;
 
-		p {
+		a {
 			text-align: left;
+			color: @white;
+			display: block;
+			margin-bottom: 10px;
+
+			&:hover {
+				text-decoration: underline;
+			}
 		}
 	}
 }
@@ -975,12 +1018,17 @@ table {
 	background-color: @event-gray;
 	display: none;
 
-	input, textarea, select {
+	input.full {
+		width: 100%;
+	}
+
+	input, textarea {
 		background-color: transparent;
 		border-radius: 2px;
 		border: none;
-		padding: 5px;
+		padding: 4px;
 		max-width: 100%;
+		font-weight: 400;
 		-webkit-transition: all 1s ease;
 
 		&:focus {
@@ -997,7 +1045,12 @@ table {
 	.input-opac {
 		background-color: #929292;
 	}
-
+	
+	input.centered {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+	}
 	input[type=submit] {
 		background-color: @orange;
 		padding: 5px 8px;
@@ -1009,6 +1062,6 @@ table {
 .organizations {
 	background-color: @main-blue;
 	color: @white;
-	display: none;
+	display: inline-block;
 }
 

@@ -13,17 +13,16 @@ $result = mysql_query($query) or die(mysql_error());
 
 while($row = mysql_fetch_assoc($result)) {
 	$data['event_title'] = $row['event_title'];
-	$data['event_submitted_by'] = $row['event_submitted_by'];
+	$data['event_submitted_by'] = $row['submitted_by'];
 	$data['event_type'] = $row['event_type'];
-	$data['event_date'] = $row['event_date'];
-	$data['event_start_time'] = $row['event_start_time'];
-	$data['event_end_time'] = $row['event_end_time'];
+	$data['event_date'] = date('l, F j, Y', strtotime($row['event_date']));
+	$data['event_start_time'] = date('h:i A', strtotime($row['event_start_time']));
+	$data['event_end_time'] = date('h:i A', strtotime($row['event_end_time']));
 	$data['eventbrite_url'] = $row['eventbrite_url'];
 	$data['facebook_url'] = $row['facebook_url'];
 	$data['event_location'] = $row['event_location'];
 	$data['event_notes'] = $row['event_notes'];
-	$data['id'] = $request_id;
-	// $data['event_'] = $row['event_'];
+	$data['user_name'] = $row['user_name'];
 
 	if ($row['event_img_size'] > 0) {
 		$data['event_img'] = "../wp-content/themes/roots/assets/img/events_img/" .$row['event_img_name'];
@@ -33,7 +32,6 @@ while($row = mysql_fetch_assoc($result)) {
 
 }
 
-// echo $request_id;
 echo json_encode($data);
 
 ?>

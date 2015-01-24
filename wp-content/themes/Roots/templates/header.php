@@ -15,7 +15,7 @@
           <ul id="mobile-dropdown" class="mobile-dropdown dropdown-menu">
             <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>">updates</a></li>
             <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>">bulletin</a></li>
-            <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>resources">resources</a></li>
+            <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>resources/documents">resources</a></li>
             <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>about/">about</a></li>
             <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>events">events</a></li>
             <li class="menu-members"><a href="<?php echo esc_url(home_url('/')); ?>members/">members</a></li>

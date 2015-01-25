@@ -119,7 +119,6 @@ $(document).ready(function(){
 		$('#resources-feed').show();
 	});
 
-
 	// EVENTS FILTER
 
 	$('.event-filter').on('click', function(e){

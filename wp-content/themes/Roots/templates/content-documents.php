@@ -7,8 +7,8 @@ Template Name: Resources-documents Template
 	<?php get_template_part('templates/resources', 'header') ?>
 	<!-- Search and Upload -->
 	<div class="search-file">
-	<form class="inline-block" action=" " method="POST">
-		<label>Search <input class="text-input" type="text" name="docsearch">
+	<form class="inline-block" action="/resources/resources" method="POST">
+		<label>Search <input class="text-input" type="text" name="userinput">
 		<input type="submit" value=" "><i class="fa fa-search"></i></label>
 	</form>
 		<span><strong>or</strong></span>

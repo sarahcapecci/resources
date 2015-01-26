@@ -38,7 +38,6 @@ Template Name: Resources-documents Template
 </div>
 <div class="right-side documents">
 	<h2>Popular Tags</h2>
-	<a class="filter active" href="">Most Downloaded</a> / <a class="filter" href="">Sort A-Z</a>
 	<ul>
 	<?php 
 		$tags = do_shortcode('[cfdb-value form="Upload Document" show="doc-tags"]');

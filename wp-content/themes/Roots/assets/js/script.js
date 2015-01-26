@@ -63,44 +63,6 @@ $(document).ready(function(){
 		var clicked_tag = $(this).text();
 		$('#tag-filter').val(clicked_tag);
 		$('form.tag').submit();
-		console.log($('form.tag'));
-
-
-		// var documents = $('.document-card');
-
-		// for (var i = 0; i < 4; i++) {
-		// 	console.log(documents[i]);
-		// } 
-		// var element_tags = $('.tags').text();
-		// console.log(element_tags);
-
-		// $.ajax({
-		// 	url: "../../wp-content/themes/roots/tag_filter.php",
-		// 	type: "POST",
-		// 	data: {
-		// 		tagParam: selected_tag
-		// 	},
-		// 	contentType:"application/x-www-form-urlencoded",
-		// 	dataType: "json",
-		// 	success: function(data) {
-		// 		console.log(data);
-		// 		for (var i = 0; i < tag_count; i++) {
-		// 			console.log(data['doc_' + i]);
-
-					
-
-		// 		};
-		// 		console.log($(".document-card"));
-		// 		// if ($(".document-card").data('id') == 1422231748.4165) {
-		// 		// 	console.log('yes');
-		// 		// };
-		// 	},
-		// 	error: function() {
-		// 		console.log('error');
-		// 	}
-		// });
-
-		// if($('div').data('doc') = IDDD) {}
 
 	});
 

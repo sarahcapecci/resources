@@ -10,7 +10,7 @@ include 'calendar.php';
 
 <!-- LEFT side -->
 <div class="left-side events">
-	<h2>Collective Calendar <?php echo date('F',$month); ?></h2>
+	<h2>Collective Calendar <?php echo update_date($month, $year); ?></h2>
 	<ul class="select-filter">
 	    <li><a data-id="3" class="event-filter black-link-b" href="<?php echo esc_url(home_url('/')); ?>">All Events</a> /</li>
 	    <li class="middle-gray-txt">Show Only</li>
@@ -86,7 +86,7 @@ include 'calendar.php';
 			<a id="eventbrite-link" href="" target="_blank"><img class="margin-right-5 small" src="<?php echo get_template_directory_uri(); ?>/assets/img/eventbrite.png" alt="Eventbrite Icon">Eventbrite Registration Page</a>
 			<a id="facebook-link" href="" target="_blank"><img class="margin-right-5 small" src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook.png" alt="Facebook Icon">Facebook Event</a>
 		</section>
-		<button class="share block"><i class="fa fa-share"></i>Share</button>
+		<button class="share block">Share<i class="fa fa-share margin-left-5"></i></button>
 		<h4 class="text-al-center">Notes</h4>
 		<p id="event-notes">Cupcake fruitcake bonbon unerdwear.com apple pie candy canes danish lollipop. Pastry muffin liquorice dessert.</p>
 	</div>

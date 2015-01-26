@@ -2,7 +2,6 @@
 /* draws a calendar */
 function draw_calendar($month,$year, $events = array()){
 	$event_img_path = '../wp-content/themes/roots/assets/img/events_img/';
-	// global $username;
 
 	/* draw table */
 	$calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
@@ -88,7 +87,40 @@ function draw_calendar($month,$year, $events = array()){
 	
 	/* all done, return result */
 	return $calendar;
+	update_date($month);
 }
+
+function update_date($month, $year) {
+	// return $month;
+	// $monthArray = 
+
+	if ($month == 1) {
+		return "January, " .$year;
+	} elseif ($month == 2) {
+		return "February, " .$year;
+	} elseif ($month == 3){
+		return "March, " .$year;
+	} elseif ($month == 4){
+		return "April, " .$year;
+	} elseif ($month == 5){
+		return "May, " .$year;
+	} elseif ($month == 6){
+		return "June, " .$year;
+	} elseif ($month == 7){
+		return "July, " .$year;
+	} elseif ($month == 8){
+		return "August, " .$year;
+	} elseif ($month == 9){
+		return "September, " .$year;
+	} elseif ($month == 10){
+		return "October, " .$year;
+	} elseif ($month == 11){
+		return "November, " .$year;
+	} elseif ($month == 12){
+		return "December, " .$year;
+	}
+}
+
 
 //events query
 

@@ -43,26 +43,29 @@ Template Name: Resources-documents Template
 	<?php 
 		$tags = do_shortcode('[cfdb-value form="Upload Document" show="doc-tags"]');
 		$tagsArray = explode(", ", $tags);
+		asort($tagsArray);
 
-		foreach ($tagsArray as $key => $value) {	    
+		foreach ($tagsArray as $key => $value) {	
 		    $freqs = array_count_values($tagsArray);
 		    $freq_value = $freqs[$value];
 		    
 		    if(isset($new_array[$value])) {
 		    	$new_array[$value] += 1;
+		    	
 		    } else {
 		    	$new_array[$value] = 1;
+
 		    }
 		    
 		}
 
 		foreach ($new_array as $tag => $n) {
 		    if($n > 1) {
-		    	echo "<li><a href='#' class='filter-option'>". $tag. "</a><span> (" . $n . ")</span></li>"; 
+		    	echo "<li><a href='#' class='filter-option'>". $tag. "</a><span class='margin-left-5'>(" . $n . ")</span></li>"; 
 		    } else {
-		    	echo "<li><a href='#' class='filter-option'>".$tag."</a><span> (1)</span></li>";
+		    	echo "<li><a href='#' class='filter-option'>".$tag."</a><span class='margin-left-5'>(1)</span></li>";
 		    }
-		}		
+		}	
 	?>
 	</ul>
 	<form class="tag" id="tag-filter-form" method="post" action=" ">

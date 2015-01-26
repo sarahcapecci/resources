@@ -28,7 +28,7 @@
 					</div>
 				</div>
 				[/cfdb-html]'); ?>
-				<p>Sorry, there's no match!</p>
+				<!-- <p>Sorry, there's no match!</p> -->
 		</div>
 		<h3>Links</h3>
 		<div id="link-search-result">

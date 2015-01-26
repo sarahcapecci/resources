@@ -155,7 +155,86 @@ p.message, #login_error {
 	min-height: 1000px;
 }
 
+.event-preview {
+	div:first-child {
+		width: 50px;
+		margin-right: 10px;
+		img {
+			width: 50px;
+			height: 50px;
+		}
+	}
+	h3 {
+		margin-top: 0;
+		margin-bottom: 5px;
+		font-weight: 600;
+	}
+	p {
+		margin-bottom: 5px;
+	}
 
+}
+
+.blog-updates {
+	h4 {
+		font-size: 16px;
+		line-height: 20px;
+		font-weight: 600;
+	}
+}
+
+.small-section {
+	max-width: 50%;
+}
+// RESOURCES FEED ON BULLETIN 
+.entry {
+	padding: 5px 0;
+	margin: 5px 0 10px 0;
+
+	img.avatar {
+		margin-right: 10px;
+	}
+
+	.document-card {
+		margin-left: 40px;
+	}
+}
+
+// EVENTS FEED ON BULLETIN
+
+.single-event {
+	padding: 5px 0;
+	margin: 5px 0 10px 0;
+
+	img {
+		margin-right: 10px;
+	}
+
+	.event-img-feed {
+		width: 100%;
+		margin-left: 40px;
+	}
+}
+
+// REQUEST FEED ON BULLETIN
+
+.single-request {
+	padding: 5px 0;
+	margin: 5px 0 10px 0;
+
+	img {
+		margin-right: 10px;
+	}
+
+	.request-desc {
+		width: 100%;
+		margin-left: 40px;
+	}
+	.respond-request {
+		margin-left: 40px;
+	}
+
+}
 
 // RESOURCES
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *//
@@ -367,15 +446,15 @@ p.message, #login_error {
 		background-color: #9c4242;
 	}
 
-	&.slides {
+	&.Slides {
 		background-color: #f89e34;
 	}
 	
-	&.spreadsheet {
+	&.Spreadsheet {
 		background-color: #53b46e;
 	}
 
-	&.text {
+	&.Text {
 		background-color: #20b9e6;
 	}
 
@@ -496,7 +575,7 @@ p.message, #login_error {
 		margin-right: 3px;
 	}
 	div {
-		// display: inline-block;CHANGE THIS
+		display: inline-block;
 		vertical-align: top;
 	}
 
@@ -675,7 +754,7 @@ p.message, #login_error {
 	}
 	label {
 		font-weight: 500;
-		font-size: 14px;
+		font-size: 16px;
 		
 		textarea, input {
 			font-weight: 300;
@@ -683,6 +762,8 @@ p.message, #login_error {
 			border: none;
 			padding: 5px;
 			transition: all 1s ease;
+			font-size: 14px;
+			line-height: 18px;
 
 			&:focus {
 				border: 1px solid @white;
@@ -701,14 +782,17 @@ p.message, #login_error {
 		}
 		::-webkit-input-placeholder {
 		   font-weight: 300;
+		   font-size: 14px;
 		   color: @white
 		}
 		:-moz-placeholder { /* Firefox 18- */
 		   font-weight: 300; 
+		   font-size: 14px;
 		   color: @white;
 		}
 		::-moz-placeholder {  /* Firefox 19+ */
 		   font-weight: 300;
+		   font-size: 14px;
 		   color: @white;
 		}
 	}
@@ -811,6 +895,11 @@ p.message, #login_error {
 }
 // RESPOND TO REQUEST MODAL
 
+#request-reply {
+	.textarea {
+		height: 170px;
+	}
+}
 
 
 // Contacts

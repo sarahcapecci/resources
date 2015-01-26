@@ -49,7 +49,7 @@ Template Name: Resources-links Template
 	<?php echo do_shortcode('[cfdb-html form="Upload link" show="link-title,link-url,Submitted Login" filelinks="link"]
 		<li>
 			<div class="orange"></div>
-			<div>
+			<div class="links">
 				<h4>${link-title}</h4>
 				<p>${Submitted Login}</p>
 			</div>

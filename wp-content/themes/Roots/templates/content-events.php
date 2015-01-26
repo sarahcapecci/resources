@@ -40,7 +40,7 @@ include 'calendar.php';
 	// Displays the results as list items
 	while($row = mysql_fetch_assoc($result)) {
 			echo "<div class='upcoming'><ul><li>" .$row['submitted_by']. "</li><li><h4>" . $row['event_title'] . "</h4></li>".
-			     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i A', $row['event_start_time']). " - " .date('h:i A', $row['event_end_time']). "</p></li>" .
+			     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i', strtotime($row['event_start_time'])). " - " .date('h:i A', strtotime($row['event_end_time'])). "</p></li>" .
 			     "<li><p>" .$row['event_location'] . "<p></li></ul></div>";
 	    
 	}
@@ -76,43 +76,45 @@ include 'calendar.php';
 	<div class="selected right-sidebar">
 		<h2 id="event-title">RYR Executive Meeting</h2>
 		<img id="event-img" class="event" src="" alt="Event Image" />
-		<span id="user-avatar"></span> <span class="margin-left-5">Hosted by <span id="user-name"></span></span>
+		<span class="host"><span id="user-avatar"></span> Hosted by <span id="user-name"></span></span>
 		<h5 id="event-type" class="font-light"></h5>
 		<p id="event-date"></p>
-		<p><span id="event-start-time"></span><span id="event-end-time"></span></p>
+		<p><span id="event-start-time"></span> - <span id="event-end-time"></span></p>
 		<p id="event-location"></p>
 		<!-- social -->
 		<section>
 			<a id="eventbrite-link" href="" target="_blank"><img class="margin-right-5 small" src="<?php echo get_template_directory_uri(); ?>/assets/img/eventbrite.png" alt="Eventbrite Icon">Eventbrite Registration Page</a>
 			<a id="facebook-link" href="" target="_blank"><img class="margin-right-5 small" src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook.png" alt="Facebook Icon">Facebook Event</a>
 		</section>
+		<button class="share block"><i class="fa fa-share"></i>Share</button>
 		<h4 class="text-al-center">Notes</h4>
 		<p id="event-notes">Cupcake fruitcake bonbon unerdwear.com apple pie candy canes danish lollipop. Pastry muffin liquorice dessert.</p>
 	</div>
 	<!-- add an event form -->
 	<div class="new-event right-sidebar">
 		<form name="myform" method="post" action="<?php echo get_template_directory_uri(); ?>/event_save.php" enctype="multipart/form-data">
-			<input class="full" type="text" name="event_title" placeholder="Add Title"/>
-			<label class="margin-top-20 margin-bottom-20">Upload Image <input type="file" name="event_img"></label>
-			<label class="block margin-bottom-20"><?php $avatar = get_avatar($current_user->ID, 32); echo $avatar; ?> Hosted by <?php echo $current_user->display_name; ?><input type="hidden" name="submitted_by" value="<?php echo htmlspecialchars($avatar) ?>"></label>
-			<label class="block margin-top-10" for="">Event Type</label>
+			<input class="full title padding-left-none" type="text" name="event_title" placeholder="Add Title"/>
+			<label class="margin-top-20 margin-bottom-20">Upload Image <input class="padding-left-none" type="file" name="event_img"></label>
+			<label class="host block margin-bottom-20"><?php $avatar = get_avatar($current_user->ID, 32); echo $avatar; ?> Hosted by <?php echo $current_user->display_name; ?><input type="hidden" name="submitted_by" value="<?php echo htmlspecialchars($avatar) ?>"></label>
+			<label class="block margin-top-10 text-al-center" for="">Event Type</label>
 				<input type="radio" name="event_type" value="0">
 				Meeting
 				<input type="radio" name="event_type" value="1">
 				Socials
 				<input type="radio" name="event_type" value="2">
 				Fundraising
-			<label class="margin-top-20">Date <input class="centered input-opac" type="date" name="event_date"></label>
-			<label for="">Start Time<input class="centered input-opac" type="time" name="event_start_time"></label>
-			<label for="">End Time<input class="centered input-opac" type="time" name="event_end_time"></label>
-			<input class="margin-top-20 margin-bottom-10 centered input-opac" placeholder="Add Event Location" type="text" name="event_location">
-			<label class="block text-al-center" for="">Eventbrite<input class="centered margin-top-5 block input-opac" placeholder="Registration URL" type="url" name="eventbrite_url"></label>
-			<label class="block text-al-center" for="">Facebook<input class="centered margin-top-5 margin-bottom-20 block input-opac" placeholder="Event Page" type="url" name="facebook_url"></label>
+			<label class="centered block text-al-center margin-top-20">Date <input class="def-width centered input-opac" type="date" name="event_date"></label>
+			<label class="centered block text-al-center margin-top-10" for="">Start Time<input class="def-width centered input-opac" type="time" name="event_start_time"></label>
+			<label class="centered block text-al-center margin-top-10" for="">End Time<input class="def-width centered input-opac" type="time" name="event_end_time"></label>
+			<input class="def-width margin-top-20 margin-bottom-10 location centered input-opac" placeholder="Add Event Location" type="text" name="event_location">
+
+			<label class="social-share block text-al-center" for=""><img class="margin-right-5" src="<?php echo get_template_directory_uri(); ?>/assets/img/eventbrite.png" alt=""><input class="larger centered margin-top-5 input-opac" placeholder="Registration URL" type="url" name="eventbrite_url"></label>
+			<label class="social-share block text-al-center" for=""><img class="margin-right-5" src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook.png" alt=""><input class="larger centered margin-top-5 margin-bottom-20 input-opac" placeholder="Event Page URL" type="url" name="facebook_url"></label>
 			<input type="submit" name="submit" value="Add Event" />
 			<input type="hidden" name="user_name" value="<?php echo $username; ?>">
 			<section>
 				<h4 class="text-al-center">Notes</h4>
-				<textarea class="input-opac" placeholder="Add additional details here. They will be shown only for Members. Example: Special share instructions, discount codes, reminders to other organizations" name="event_notes"></textarea>
+				<textarea class="larger input-opac" placeholder="Add additional details here. They will be shown only for Members. Example: Special share instructions, discount codes, reminders to other organizations" name="event_notes"></textarea>
 			</section>
 		</form>
 	</div>

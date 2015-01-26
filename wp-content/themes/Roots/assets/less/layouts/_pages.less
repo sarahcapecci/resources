@@ -575,10 +575,12 @@ p.message, #login_error {
 		margin-right: 3px;
 	}
 	div {
-		display: inline-block;
 		vertical-align: top;
 	}
-
+	
+	div.links, div.orange {
+		display: inline-block;
+	}
 	ul li {
 		margin-bottom: 20px;
 		h4 {
@@ -1085,8 +1087,19 @@ table {
 	}
 	span {
 		display: inline-block;
-		width: 80%;
 		vertical-align: top;
+	}
+
+	.host {
+		width: 100%;
+
+		span:first-child {
+			margin-right: 10px;
+		}
+
+	}
+	#user-avatar img {
+		max-width: 100%;
 	}
 	p {
 		font-weight: 300;
@@ -1112,6 +1125,14 @@ table {
 			}
 		}
 	}
+
+	.share {
+		background-color: @orange;
+		padding: 5px;
+		color: @white;
+		border-radius: 2px;
+		margin: 2px auto 40px auto;
+	}
 }
 
 .new-event {
@@ -1122,11 +1143,45 @@ table {
 		width: 100%;
 	}
 
+	.title {
+		font-size: 18px;
+		&::-webkit-input-placeholder {
+		   font-size: 18px;
+		}
+		&:-moz-placeholder { /* Firefox 18- */
+		   font-size: 18px;  
+		}
+		&::-moz-placeholder {  /* Firefox 19+ */
+		   font-size: 18px;  
+		}
+	}
+
+	::-ms-browse {
+	    background-color: @orange;
+	    color: @white;
+	    padding: 5px;
+	}
+	::-webkit-file-upload-button {
+	    background-color: @orange;
+	    color: @white;
+	    padding: 5px 10px;
+	    border: none;
+	    font-size: 12px;
+	    border-radius: 2px;
+	}
+	
+	.host {
+		opacity: 0.5;
+	}
+
+	.def-width {
+		width: 60%;
+	}
 	input, textarea {
 		background-color: transparent;
-		border-radius: 2px;
+		border-radius: 16px;
 		border: none;
-		padding: 4px;
+		padding: 3px 6px;
 		max-width: 100%;
 		font-weight: 400;
 		-webkit-transition: all 1s ease;
@@ -1134,6 +1189,13 @@ table {
 		&:focus {
 			border-color: @white;
 			outline: none;
+		}
+
+		&.larger {
+			padding: 5px 6px;
+		}
+		&.padding-left-none {
+			padding-left: 0;
 		}
 	}
 
@@ -1155,7 +1217,21 @@ table {
 		background-color: @orange;
 		padding: 5px 8px;
 		display: block;
+		border-radius: 2px;
 		margin: 10px auto 20px auto;
+	}
+	.location {
+		padding: 10px 6px;
+		margin-bottom: 35px;
+	}
+	.social-share {
+		img {
+			max-width: 25px;
+		}
+		input {
+			display: inline-block;
+			width: 80%;
+		}
 	}
 }
 

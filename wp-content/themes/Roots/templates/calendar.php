@@ -106,8 +106,6 @@ while($row = mysql_fetch_assoc($result)) {
 	$events[$row['event_date']][] = $row;	
 }
 
-// include '../event_info_by_type.php';
-
 // CONTROLS
 
 /* date settings */

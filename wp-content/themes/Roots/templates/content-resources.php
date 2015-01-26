@@ -37,7 +37,7 @@
 				<span><strong>Tags |</strong> ${link-tags}</span>
 				<span><strong>Notes |</strong> ${link-notes}</span>
 		</div>[/cfdb-html]'); ?>
-		<p>Sorry, there's no match!</p>
+		<!-- <p>Sorry, there's no match!</p> -->
 			
 		</div>
 		<h3>Contacts</h3>
@@ -52,7 +52,7 @@
 					<h5 class="margin-top-20">SUPPORT</h5>
 					<span>${support-info}</span>
 			</div>[/cfdb-html]'); ?>
-			<p>Sorry, there's no match!</p>
+			<!-- <p>Sorry, there's no match!</p> -->
 		</div>
 	</div>
 </div>

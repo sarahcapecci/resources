@@ -37,7 +37,7 @@ function draw_calendar($month,$year, $events = array()){
 			$right_date = date('Y-m-d',strtotime($event_day));
 			if(isset($events[$right_date])) {
 				foreach($events[$right_date] as $event) {
-					$calendar.= "<div class='event' data-type='".$event['event_type']."' data-id='".$event['id']."'>".$event['event_title'];
+					$calendar.= "<div class='event' data-author='".$event['user_name']. "' data-type='".$event['event_type']."' data-id='".$event['id']."'>".$event['event_title'];
 
 					if($event['event_img_name']){
 						$calendar .= "<img class='event-img' src='" .$event_img_path.$event['event_img_name']."'/></div>";

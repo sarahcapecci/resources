@@ -29,7 +29,8 @@ include 'calendar.php';
 	<div id="calendar">
 		<?php echo draw_calendar($month,$year,$events); ?>
 	</div>
-	
+	<div class="upcoming">
+	<h2>Upcoming</h2>
 	<?php 
 	$connect = mysql_connect("localhost", "root", "root");
 	mysql_select_db("resources", $connect);
@@ -39,13 +40,14 @@ include 'calendar.php';
 
 	// Displays the results as list items
 	while($row = mysql_fetch_assoc($result)) {
-			echo "<div class='upcoming'><ul><li>" .$row['submitted_by']. "</li><li><h4>" . $row['event_title'] . "</h4></li>".
+			echo "<ul><li>" .$row['submitted_by']. "</li><li><h4>" . $row['event_title'] . "</h4></li>".
 			     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i', strtotime($row['event_start_time'])). " - " .date('h:i A', strtotime($row['event_end_time'])). "</p></li>" .
-			     "<li><p>" .$row['event_location'] . "<p></li></ul></div>";
+			     "<li><p>" .$row['event_location'] . "<p></li></ul>";
 	    
 	}
 	mysql_close();
 	?>
+	</div>
 	
 	<button class="add-event margin-bottom-20"><i class="margin-right-5 fa fa-plus"></i>Add to Calendar</button>	
 </div>
@@ -56,6 +58,7 @@ include 'calendar.php';
 	<div class="right-sidebar organizations">
 		<h2>Explore events by <strong>Organization</strong></h2>
 		<ul>
+		<li><a class='filter_option' id="no-org-filter" href="#">Show All</a></li>
 		<?php 
 		$connect = mysql_connect("localhost", "root", "root");
 		mysql_select_db("resources", $connect);
@@ -65,7 +68,7 @@ include 'calendar.php';
 
 		// Displays the results as list items
 		while($row = mysql_fetch_assoc($result)) {
-				echo "<li>" .$row['user_name']. "</li>";
+				echo "<li><a class='filter_option' href='#'>" .$row['user_name']. "</a></li>";
 		    
 		}
 		mysql_close();

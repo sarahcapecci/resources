@@ -59,7 +59,7 @@ $(document).ready(function(){
 
 	// TAG FILTER ON RESOURCES - DOCUMENTS
 	$('.filter-option').on('click', function(e){
-		e.preventDefault;
+		e.preventDefault();
 		var clicked_tag = $(this).text();
 		$('#tag-filter').val(clicked_tag);
 		$('form.tag').submit();
@@ -118,44 +118,45 @@ $(document).ready(function(){
 	// SHOW ONLY REQUESTS ON FEED
 
 	$('#request-filter').on('click', function(e){
-		e.preventDefault;
+		e.preventDefault();
 		$('#events-feed').hide();
 		$('#resources-feed').hide();
 	});
 
 	$('#no-filter-feed').on('click', function(e){
-		e.preventDefault;
+		e.preventDefault();
 		$('#events-feed').show();
 		$('#resources-feed').show();
 	});
 
 	// EVENTS FILTER
 
+		// BY TYPE
 	$('.event-filter').on('click', function(e){
-		e.preventDefault;
+		e.preventDefault();
+		$('.event-filter').css('font-weight', '400');
+		$(this).css('font-weight', '600');
 		var eventType = $(this).data('id');
-		var eventsArray = $('.event');
-		// console.log(eventsArray);
-
-
-		if (eventType == 0) {
-			console.log("Meetings");
-			
-			for (i = 0; i < eventsArray.length; i++) {
-				// if(eventsArray[i].data('type') != eventType) {
-				// 	console.log('different');
-				// }
-			}
-
-		} else if (eventType == 1) {
-			console.log("socials");
-		} else if (eventType == 2) {
-			console.log("fundraising");
-		} else {
-			return false;
-		}
+		
+		$('.event').fadeOut();
+		$("div[data-type='"+eventType+"']").fadeIn();
 
 	});
+		// BY ORGANIZATION
+
+		$('.filter_option').on('click', function(e){
+			e.preventDefault();
+			var chosen_org = $(this).text();
+			$('.filter_option').css('font-weight', '400');
+			$(this).css('font-weight', '600');
+			$('.event').fadeOut();
+			$("div[data-author='"+chosen_org+"']").fadeIn();
+			
+			if($(this).attr('id') == "no-org-filter") {
+				$('.event').fadeIn();
+			}
+		});
+
 
 	// DELETE REQUEST
 

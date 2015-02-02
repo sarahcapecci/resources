@@ -668,6 +668,12 @@ p.message, #login_error {
 	margin-top: 15px;
 	display: none;
 
+
+	@media all and (max-width: @mobile) {
+		width: 280px;
+		left: 8%;
+	}
+
 	span.wpcf7-form-control-wrap {
 		position: initial;
 	}
@@ -691,6 +697,10 @@ p.message, #login_error {
 		right: 5px;
 		.font-md();
 		font-weight: 400;
+		@media all and (max-width: @mobile) {
+			position: initial;
+			display: block;
+		}
 	}
 	::-webkit-input-placeholder {
 	   font-weight: 300;
@@ -711,6 +721,11 @@ p.message, #login_error {
 		display: block;
 		margin: 15px 0;
 		font-weight: 400;
+		@media all and (max-width: @mobile) {
+			position: initial;
+			display: block;
+			text-align: center;
+		}
 	}
 
 	input[type=submit] {
@@ -754,6 +769,9 @@ p.message, #login_error {
 
 	&.links form {
 		height: 310px;
+		@media all and (max-width: @mobile) {
+			height: 400px;
+		}
 	}
 
 	select {
@@ -772,6 +790,12 @@ p.message, #login_error {
 		width: 275px;
 		.font-md();
 		font-weight: 400;
+
+		@media all and (max-width: @mobile) {
+			width: 85%;
+			display: block;
+			position: inherit;
+		}
 	}
 
 	input[type=file] {
@@ -781,6 +805,17 @@ p.message, #login_error {
 	&.document {
 		form {
 			height: 310px;
+			@media all and (max-width: @mobile) {
+				height: 420px;
+			}
+		}
+	}
+
+	&.contact {
+		form {
+		@media all and (max-width: @mobile) {
+			height: 450px;
+		}
 		}
 	}
 }

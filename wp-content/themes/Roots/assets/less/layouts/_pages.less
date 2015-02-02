@@ -151,6 +151,15 @@ p.message, #login_error {
 	top: 20px;
 }
 
+.main {
+	@media all and (max-width: @tablet) {
+		padding: 20px 40px;
+	}
+
+	@media all and (max-width: @mobile) {
+		padding: 20px;
+	}
+}
 #feed-wrapper {
 	min-height: 1000px;
 }
@@ -185,6 +194,12 @@ p.message, #login_error {
 
 .small-section {
 	max-width: 50%;
+	@media all and (max-width: @tablet) {
+		max-width: 70%;
+	}
+	@media all and (max-width: @mobile) {
+		max-width: 100%;
+	}
 }
 // RESOURCES FEED ON BULLETIN 
 .entry {
@@ -197,6 +212,12 @@ p.message, #login_error {
 
 	.document-card {
 		margin-left: 40px;
+		@media all and (max-width: @tablet) {
+			width: 60%;
+		}
+		@media all and (max-width: @mobile) {
+			width: 80%;
+		}
 	}
 }
 
@@ -244,6 +265,9 @@ p.message, #login_error {
 .left-side-top {
 	width: 70%;
 	display: inline-block;
+	@media all and (max-width: @tablet) {
+		width: 100%;
+	}
 
 	h2 {
 		font-weight: 700;
@@ -358,6 +382,14 @@ p.message, #login_error {
 	height: 250px;
 	overflow: hidden;
 
+	@media all and (max-width: @tablet) {
+		width: 48%;
+	}
+
+	@media all and (max-width: @mobile) {
+		width: 100%;
+	}
+
 	a {
 		color: @white;
 	}
@@ -408,6 +440,10 @@ p.message, #login_error {
 .left-side-bottom.documents {
 	width: 70%;
 	display: inline-block;
+
+	@media all and (max-width: @tablet) {
+		width: 100%;
+	}
 }
 
 .document-card {
@@ -421,6 +457,11 @@ p.message, #login_error {
 	padding: 15px;
 	vertical-align: top;
 	position: relative;
+
+	@media all and (max-width: @mobile) {
+		width: 100%;
+		margin-right: 0;
+	}
 
 	.type {
 		position: absolute;
@@ -519,6 +560,11 @@ p.message, #login_error {
 .left-side-bottom.links {
 	width: 70%;
 	display: inline-block;
+
+	@media all and (max-width: @tablet) {
+		width: 100%;
+	}
+
 }
 
 .link-card {
@@ -532,6 +578,13 @@ p.message, #login_error {
 	vertical-align: top;
 	height: 200px;
 	overflow: scroll;
+	@media all and (max-width: @tablet) {
+		width: 48%;
+	}
+
+	@media all and (max-width: @mobile) {
+		width: 100%;
+	}
 
 	a {
 		color: @white;
@@ -553,6 +606,11 @@ p.message, #login_error {
 	}
 }
 .right-side {
+	@media all and (max-width: @tablet) {
+		width: 100%;
+		position: initial;
+		margin-top: 30px;
+	}
 	width: 27%;
 	display: inline-block;
 	top: 160px;

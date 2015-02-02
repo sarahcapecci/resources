@@ -12,9 +12,20 @@
 		bottom: 0px;
 		border-radius: 3px;
 		background-color: @orange;
+	}
+
+	.tablet-show {
 		@media all and (max-width: @tablet) {
-			right: 0px;
+			right: -42px;
+			background-color: transparent;
+			position: absolute;
+			top: 30px;
 		}
+	}
+
+	li.dropdown {
+		width: 30%;
+		right: -25%;
 	}
 
 	nav a, nav button {
@@ -29,18 +40,30 @@
 		left: 37%;
 		top: 2px;
 		position: relative;
+		@media all and (max-width: @tablet) {
+			width: 100%;
+			left: 0;
+			position: absolute;
+			z-index: 100;
+		}
+
+		&.mobile-dropdown {
+			margin-top: 40px;
+		}
+
+		i {
+			font-size: 30px;
+			color: @orange;
+		}
 		li {
 			display: inline-block;
 			width: 15%;
 			text-align: right;
 			margin-left: .5%;
+
 			@media all and (max-width: @tablet) {
-				&:first-child {
-					width: 50%;
-				}
-				&:nth-child(2) {
-					width: 35%;
-					text-align: center;
+				a {
+					color: black;
 				}
 			}
 			&.active {
@@ -54,6 +77,9 @@
 	position: absolute;
 	right: 40px;
 	top: 2px;
+	@media all and (max-width: @tablet) {
+		display: none;
+	}
 }
 .navbar-brand {
 	position: absolute;
@@ -62,12 +88,16 @@
 	width: 15%;
 	@media all and (max-width: @tablet) {
 		left: 0px;
+		width: 40%;
 	}
 
 	img {
 		width: 140px;
 		position: absolute;
 		bottom: 0;
+		@media all and (max-width: @tablet) {
+			max-width: 100%;
+		}
 	}
 }
 

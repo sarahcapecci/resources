@@ -11,14 +11,14 @@
     <nav class="tablet-show" role="navigation">
       <ul class="mobile-nav">
         <li id="current-page" class="active"></li>
-        <li class="dropdown"><a id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="fa fa-bars font-lg gray-txt pointer"></a></i>
+        <li class="dropdown"><a id="dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#"><i class="fa fa-bars pointer"></a></i>
           <ul id="mobile-dropdown" class="mobile-dropdown dropdown-menu">
-            <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>">updates</a></li>
+            <li class="menu-about"><a href="http://youthroundtable.ca/">updates</a></li>
             <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>">bulletin</a></li>
             <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>resources/documents">resources</a></li>
-            <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>about/">about</a></li>
+            <li class="menu-about"><a href="http://youthroundtable.ca/about/">about</a></li>
             <li class="menu-about"><a href="<?php echo esc_url(home_url('/')); ?>events">events</a></li>
-            <li class="menu-members"><a href="<?php echo esc_url(home_url('/')); ?>members/">members</a></li>
+            <li class="menu-members"><a href="http://youthroundtable.ca/members/">members</a></li>
           </ul>
         </li>
       </ul>

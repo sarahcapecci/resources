@@ -92,12 +92,12 @@
 
 				// Displays the results as list items
 				while($row = mysql_fetch_assoc($result)) {
-						echo "<li class='single-request'><p>".$row['user_avatar']."<strong>".$row['user_name']. "</strong> requests <strong>" . $row['request_title'] . "</strong></p>" .
+						echo "<li class='single-request' data-id='" .$row['id']. "'><p>".$row['user_avatar']."<strong>".$row['user_name']. "</strong> requests <strong>" . $row['request_title'] . "</strong></p>" .
 						     "<p class='request-desc'>" .$row['request_description']. "</p><a class='margin-right-5 respond-request' href='#' data-id='" .$row['id']. "'>Respond via e-mail</a><a href='https://twitter.com/intent/tweet?screen_name=".$row['user_twitter']."' class='margin-left-5 twitter-mention-button'>".$row['user_twitter']."</a></li>";
 						
 						//delete request when complete     
 						if($row['user_name'] == $user_name){
-							// echo "<button>Delete request</button>";
+							echo "<button class='transparent delete-request' data-id='" .$row['id']. "'>Delete request</button>";
 						}
 				?>
 				<div class='response-modal all-modal' id='request-<?php echo $row['id']; ?>'>

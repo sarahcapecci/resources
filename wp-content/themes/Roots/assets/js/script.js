@@ -1,42 +1,37 @@
 $(document).ready(function(){
+
+	// SIMPLE TOGGLE FUNCTIONS 
+
 	$('#open-document').on('click', function(){
 	  	$('.resource-modal.document').toggle();
-	  	// $('body.page').css('opacity', '0.3');
 	});
 
 	$('#open-contacts').on('click', function(){
 	  	$('.resource-modal.contact').toggle();
-	  	// $('body.page').css('opacity', '0.3');
 	});
 
 	$('#open-links').on('click', function(){
 	  	$('.resource-modal.links').toggle();
-	  	// $('body.page').css('opacity', '0.3');
 	});
 
 	$('#new-request').on('click', function(){
 	  	$('.request-modal').toggle();
-	  	// $('body.page').css('opacity', '0.3');
 	});
 
 	$('#close-doc').on('click', function(){
 	  	$('.resource-modal.document').toggle();
-	  	// $('body.page').css('opacity', '0.3');
 	});
 
 	$('#close-link').on('click', function(){
 	  	$('.resource-modal.links').toggle();
-	  	// $('body.page').css('opacity', '0.3');
 	});
 
 	$('#close-contact').on('click', function(){
 	  	$('.resource-modal.contact').toggle();
-	  	// $('body.page').css('opacity', '0.3');
 	});
 
 	$('#close-request').on('click', function(){
 	  	$('.request-modal').toggle();
-	  	// $('body.page').css('opacity', '0.3');
 	});
 
 	$('.respond-request').on('click', function(e){
@@ -69,15 +64,15 @@ $(document).ready(function(){
 	// TAG SORT FUNCTIONS (ALPHABETICALLY OR MOST DOWNLOADED)
 	$('#sort-down').on('click', function(e){
 		e.preventDefault();
-		$('#sort-alphabet').fadeOut();
-		$('#sort-download').fadeIn();
+		$('#sort-alphabet').hide();
+		$('#sort-download').show();
 		$('#sort-alpha').removeClass('active');
 		$(this).addClass('active');
 	});
 	$('#sort-alpha').on('click', function(e){
 		e.preventDefault();
-		$('#sort-download').fadeOut();
-		$('#sort-alphabet').fadeIn();
+		$('#sort-download').hide();
+		$('#sort-alphabet').show();
 		$('#sort-down').removeClass('active');
 		$(this).addClass('active');
 	});
@@ -100,7 +95,6 @@ $(document).ready(function(){
 				contentType: "application/x-www-form-urlencoded",
 				dataType: "json",
 				success: function(data){
-					console.log("hello");
 					$('#event-title').html(data.event_title);
 					$('#event-img').attr('src', data.event_img);
 					$('#user-avatar').html(data.event_submitted_by);
@@ -189,7 +183,6 @@ $(document).ready(function(){
 				url: "../../wp-content/themes/Roots/download_counter.php",
 				type: "POST",
 				data: {
-					increment: 1,
 					document_path: documentPath
 				},
 				contentType: "application/x-www-form-urlencoded",
@@ -206,6 +199,31 @@ $(document).ready(function(){
 	});
 
 	// DELETE REQUEST
+
+	$('.delete-request').on('click', function(){
+		var thisRequest = $(this);
+		var idRequest = thisRequest.data("id");
+
+
+		var deleteRequest = function(idRequest) {
+			$.ajax({
+				url: "../resources/wp-content/themes/Roots/delete_request.php",
+				type: "POST",
+				data: {
+					request_id: idRequest
+				},
+				contentType: "application/x-www-form-urlencoded",
+				dataType: "text",
+				success: function(data){
+					console.log(data);
+				},
+				error: function() {
+					console.log("Sorry, there was an error.");
+				}
+			});
+		};
+		deleteRequest(idRequest);
+	});
 
 	// DELETE EVENT
 

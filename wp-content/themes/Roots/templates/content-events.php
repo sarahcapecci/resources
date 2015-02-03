@@ -53,7 +53,7 @@ include 'calendar.php';
 </div>
 <!-- RIGHT side -->
 <div class="right-side events">
-<button class="add-event"><i class="margin-right-5 fa fa-plus"></i>Add to calendar</button>
+<button class="add-event second"><i class="margin-right-5 fa fa-plus"></i>Add to calendar</button>
 	<!-- Organizations List -->
 	<div class="right-sidebar organizations">
 		<h2>Explore events by <strong>Organization</strong></h2>
@@ -100,12 +100,12 @@ include 'calendar.php';
 			<label class="margin-top-20 margin-bottom-20">Upload Image <input class="padding-left-none" type="file" name="event_img"></label>
 			<label class="host block margin-bottom-20"><?php $avatar = get_avatar($current_user->ID, 32); echo $avatar; ?> Hosted by <?php echo $current_user->display_name; ?><input type="hidden" name="submitted_by" value="<?php echo htmlspecialchars($avatar) ?>"></label>
 			<label class="block margin-top-10 text-al-center" for="">Event Type</label>
-				<input type="radio" name="event_type" value="0">
-				Meeting
-				<input type="radio" name="event_type" value="1">
-				Socials
-				<input type="radio" name="event_type" value="2">
-				Fundraising
+				<span class="radio-block"><input type="radio" name="event_type" value="0">
+				Meeting</span>
+				<span class="radio-block"><input type="radio" name="event_type" value="1">
+				Socials</span>
+				<span class="radio-block"><input type="radio" name="event_type" value="2">
+				Fundraising</span>
 			<label class="centered block text-al-center margin-top-20">Date <input class="def-width centered input-opac" type="date" name="event_date"></label>
 			<label class="centered block text-al-center margin-top-10" for="">Start Time<input class="def-width centered input-opac" type="time" name="event_start_time"></label>
 			<label class="centered block text-al-center margin-top-10" for="">End Time<input class="def-width centered input-opac" type="time" name="event_end_time"></label>

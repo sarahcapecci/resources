@@ -11,7 +11,7 @@ $document_id = $document_query['s'];
 $db_link = mysql_connect("localhost", "root", "root");
 mysql_select_db("resources", $db_link);
 
-$query = "UPDATE wp_cf7dbplugin_submits SET file_downloads = file_downloads + 1 WHERE submit_time = $document_id AND field_name = 'doc-tags'";
+$query = "UPDATE wp_cf7dbplugin_submits SET file_downloads = file_downloads + 1 WHERE submit_time = $document_id AND field_name = 'title'";
 
 
 mysql_query($query) or die(mysql_error());

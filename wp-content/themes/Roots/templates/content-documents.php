@@ -31,7 +31,6 @@ Template Name: Resources-documents Template
 			<div class="overlay">
 				<p class="font-light">${doc-description}</p>
 				<a class="orange-link download" href="${file-upload}">Download File</a>
-				<p>${doc-tags}</p>
 			</div>
 		</div>
 		[/cfdb-html]'); ?>
@@ -71,9 +70,20 @@ Template Name: Resources-documents Template
 	</ul>
 	<ul id="sort-download">
 		<?php 
-		$download_tags = do_shortcode('[cfdb-value form="Upload Document" show="doc-tags"]');
-		echo $download_tags;
 
+		// *************
+		// echoing the # of downloads
+		$db_link = mysql_connect("localhost", "root", "root");
+		mysql_select_db("resources", $db_link);
+
+		$query = "SELECT field_value, file_downloads FROM wp_cf7dbplugin_submits WHERE field_name = 'title' ORDER BY file_downloads DESC";
+
+
+		$result = mysql_query($query) or die(mysql_error());
+
+		while($row = mysql_fetch_assoc($result)) {
+			echo '<li>'.$row['field_value'].' <span>('.$row['file_downloads'].')</span></li>';
+		}
 		?>
 	</ul>
 	<form class="tag" id="tag-filter-form" method="post" action=" ">

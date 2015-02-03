@@ -26,6 +26,9 @@
 	li.dropdown {
 		width: 30%;
 		right: -35%;
+		@media all and (max-width: @mobile) {
+			right: -15%;
+		}
 	}
 
 	nav a, nav button {
@@ -45,6 +48,10 @@
 			left: 0;
 			position: absolute;
 			z-index: 100;
+		}
+		@media all and (max-width: @mobile) {
+			width: 125%;
+			left: -5%;
 		}
 
 		&.mobile-dropdown {

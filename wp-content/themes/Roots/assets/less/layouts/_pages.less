@@ -149,6 +149,11 @@ p.message, #login_error {
 	position: absolute;
 	right: 0;
 	top: 20px;
+
+	@media all and (max-width: @mobile) {
+		position: initial;
+		padding: 15px 5px;
+	}
 }
 
 .main {
@@ -216,7 +221,8 @@ p.message, #login_error {
 			width: 60%;
 		}
 		@media all and (max-width: @mobile) {
-			width: 80%;
+			width: 100%;
+			margin-left: 0;
 		}
 	}
 }
@@ -226,6 +232,9 @@ p.message, #login_error {
 .single-event {
 	padding: 5px 0;
 	margin: 5px 0 10px 0;
+	@media all and (max-width: @mobile) {
+		max-width: 100%;
+	}
 
 	img {
 		margin-right: 10px;
@@ -234,6 +243,11 @@ p.message, #login_error {
 	.event-img-feed {
 		width: 100%;
 		margin-left: 40px;
+		max-width: 100%;
+
+		@media all and (max-width: @mobile) {
+			margin-left: 0px;
+		}
 	}
 }
 
@@ -243,6 +257,10 @@ p.message, #login_error {
 	padding: 5px 0;
 	margin: 5px 0 10px 0;
 
+	@media all and (max-width: @mobile) {
+		max-width: 100%;
+	}
+
 	img {
 		margin-right: 10px;
 	}
@@ -250,9 +268,15 @@ p.message, #login_error {
 	.request-desc {
 		width: 100%;
 		margin-left: 40px;
+		@media all and (max-width: @mobile) {
+			margin-left: 0px;
+		}
 	}
 	.respond-request {
 		margin-left: 40px;
+		@media all and (max-width: @mobile) {
+			margin-left: 0px;
+		}
 	}
 
 }

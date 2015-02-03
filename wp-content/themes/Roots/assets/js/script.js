@@ -66,6 +66,23 @@ $(document).ready(function(){
 
 	});
 
+	// TAG SORT FUNCTIONS (ALPHABETICALLY OR MOST DOWNLOADED)
+	$('#sort-down').on('click', function(e){
+		e.preventDefault();
+		$('#sort-alphabet').fadeOut();
+		$('#sort-download').fadeIn();
+		$('#sort-alpha').removeClass('active');
+		$(this).addClass('active');
+	});
+	$('#sort-alpha').on('click', function(e){
+		e.preventDefault();
+		$('#sort-download').fadeOut();
+		$('#sort-alphabet').fadeIn();
+		$('#sort-down').removeClass('active');
+		$(this).addClass('active');
+	});
+
+
 	// DISPLAY EVENT DETAIL ON SIDEBAR
 	$('.event').on('click', function(){
 		var event_id = $(this).data("id");
@@ -156,7 +173,37 @@ $(document).ready(function(){
 				$('.event').fadeIn();
 			}
 		});
+	// RESOURCES OVERLAY 
+	$('.document-card').on('click', function(){
+		var thisCard = $(this);
+		thisCard.find(".overlay").toggle();
+	});
 
+	// DOWNLOAD COUNTER
+	$('.download').on('click', function(){
+		var thisDocument = $(this);
+
+		var downloadIncrement = function() {
+			var documentPath = thisDocument.attr('href');
+			$.ajax({
+				url: "../../wp-content/themes/Roots/download_counter.php",
+				type: "POST",
+				data: {
+					increment: 1,
+					document_path: documentPath
+				},
+				contentType: "application/x-www-form-urlencoded",
+				dataType: "text",
+				success: function(data){
+					console.log(data);
+				},
+				error: function() {
+					console.log("Sorry, there was an error.");
+				}
+			});
+		};
+		downloadIncrement();
+	});
 
 	// DELETE REQUEST
 

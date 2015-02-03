@@ -30,7 +30,8 @@ Template Name: Resources-documents Template
 			<span class="doc-date">${Submitted}</span>
 			<div class="overlay">
 				<p class="font-light">${doc-description}</p>
-				<a class="orange-link" href="${file-upload}">Download File</a>
+				<a class="orange-link download" href="${file-upload}">Download File</a>
+				<p>${doc-tags}</p>
 			</div>
 		</div>
 		[/cfdb-html]'); ?>
@@ -38,7 +39,8 @@ Template Name: Resources-documents Template
 </div>
 <div class="right-side documents">
 	<h2>Popular Tags</h2>
-	<ul>
+	<a class="tag-filter active black-link" id="sort-down" href="#">Most Downloaded</a> / <a class="tag-filter black-link" id="sort-alpha" href="#">Sort A-Z</a>
+	<ul id="sort-alphabet">
 	<?php 
 		$tags = do_shortcode('[cfdb-value form="Upload Document" show="doc-tags"]');
 		$tagsArray = explode(", ", $tags);
@@ -66,6 +68,13 @@ Template Name: Resources-documents Template
 		    }
 		}	
 	?>
+	</ul>
+	<ul id="sort-download">
+		<?php 
+		$download_tags = do_shortcode('[cfdb-value form="Upload Document" show="doc-tags"]');
+		echo $download_tags;
+
+		?>
 	</ul>
 	<form class="tag" id="tag-filter-form" method="post" action=" ">
 		<input type='text' id='tag-filter' name='tag_filter' value="">	

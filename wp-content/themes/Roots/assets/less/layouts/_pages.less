@@ -540,11 +540,15 @@ p.message, #login_error {
 			bottom: 15px;
 		}
 	}
-
-	&:hover {
-		.overlay {
-			display: block;
-		}	
+	@media all and (max-width: @tablet) {
+		cursor: pointer;
+	}
+	@media all and (min-width: @tablet) {
+		&:hover {
+			.overlay {
+				display: block;
+			}	
+		}
 	}
 }
 
@@ -573,7 +577,13 @@ p.message, #login_error {
 				color: @middle-gray;
 			}
 		}
+		a.active {
+			font-weight: 700;
+		}
 	}
+}
+#sort-alphabet {
+	display: none;
 }
 #tag-filter-form {
 	visibility: hidden;
@@ -1302,6 +1312,9 @@ table {
 .new-event {
 	background-color: @event-gray;
 	display: none;
+	@media all and (max-width: @tablet) {
+		margin: 0 auto;
+	}
 
 	input.full {
 		width: 100%;

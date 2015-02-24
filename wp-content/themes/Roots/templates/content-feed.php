@@ -5,8 +5,10 @@
     $email = $current_user->user_email;
     $twitter_handle = $current_user->user_firstname;
     $user_name = $current_user->display_name;
+    $user_login = $current_user->user_login;
 
     $event_img_path = 'wp-content/themes/roots/assets/img/events_img/';
+    $img_path = 'wp-content/themes/roots/assets/img/';
 
 ?>
 
@@ -18,16 +20,16 @@
 		<ul class="select-filter">
 		    <li><a id="no-filter-feed" class="black-link-b" href="#">All Bulletins</a> /</li>
 		    <li class="middle-gray-txt">Show Only</li>
-		    <li><a class="blue-link-b" href="<?php echo esc_url(home_url('/')); ?>events">Events |</a></li>
-		    <li><a id="request-filter" class="blue-link-b" href="#">Requests |</a></li>
-		    <li><a class="blue-link-b" href="<?php echo esc_url(home_url('/')); ?>resources/documents">Resources</a></li>
+		    <li><a id="event-filter-feed" class="blue-link-b" href="#">Events |</a></li>
+		    <li><a id="request-filter-feed" class="blue-link-b" href="#">Requests |</a></li>
+		    <li><a id="resources-filter-feed" class="blue-link-b" href="#">Resources</a></li>
 		</ul>
 		<button id="new-request"><i class="fa fa-plus margin-right-5"></i>Post Request</button>
 		<!-- REQUEST MODAL -->
 		<div class="request-modal all-modal">
 			<h4>Post a request to the bulletin for all RYR members to see and reply to.</h4>
 			<form method="post" action="<?php echo get_template_directory_uri(); ?>/send_request.php">
-				<label>Tile <textarea name="request_title" cols="40" rows="10" aria-invalid="false" placeholder="Example: Seeking for partners for Arts Event"></textarea></label>
+				<label>Title <textarea name="request_title" cols="40" rows="10" aria-invalid="false" placeholder="Example: Seeking for partners for Arts Event"></textarea></label>
 				<label>Description <textarea name="request_description" cols="40" rows="10" aria-invalid="false" placeholder="Type a few sentences about the details of your request. No need to include your contact info."></textarea></label>
 				<label>Twiter Handle <input type="text" name="user_twitter" value="<?php echo $twitter_handle; ?>" size="40" aria-invalid="false"></label>
 				<input type="submit" value="Post Request" class="wpcf7-form-control wpcf7-submit">
@@ -42,9 +44,9 @@
 			<!-- <h3>Resources</h3> -->
 			<ul>
 			<?php echo do_shortcode(
-			'[cfdb-html form="Upload Document" show="title,document-select,doc-description,doc-tags,file-upload,Submitted Login,Submitted" filelinks="url" stripbr="true" limit="3"]
+			'[cfdb-html form="Upload Document" show="title,document-select,user_avatar,doc-description,doc-tags,file-upload,Submitted Login,Submitted" filelinks="url" stripbr="true" limit="3"]
 			<li class="entry">
-				<p><img src="http://localhost:8888/resources/wp-content/uploads/2015/01/RYR-Logo-Symbol-150x150.png" width="32" height="32" alt="SarahNickName" class="avatar avatar-32 wp-user-avatar wp-user-avatar-32 alignnone photo"><strong>${Submitted Login}</strong> uploaded <strong>${title}</strong></p>
+				<p><img class="avatar" src="${user_avatar}" alt="User avatar"/><strong>${Submitted Login}</strong> uploaded <strong>${title}</strong></p>
 				<div class="document-card doc-type ${document-select}">
 					<h4>${title}</h4>
 					<span class="type">${document-select}</span>
@@ -81,7 +83,26 @@
 			</ul>
 		</section>
 		<section class="small-section" id="requests-feed">
-			<!-- <h3>Requests</h3> -->
+			<h3>Pinned Requests</h3>
+			<ul id="#pinned-requests">
+				<?php 
+				$connect = mysql_connect("localhost", "root", "root");
+				mysql_select_db("resources", $connect);
+				// Query the DB to a limit of 5 results
+				$query = "SELECT * FROM wp_requests WHERE pinned_request = 1 LIMIT 2";
+				$result = mysql_query($query);
+
+				// Displays the results as list items
+				while($row = mysql_fetch_assoc($result)) {
+						echo "<li class='single-request' data-id='" .$row['id']. "'><p><img src='".$img_path."pin_icon.png' alt='Pinned Request Icon'/>".$row['user_avatar']."<strong>".$row['user_name']. "</strong> requests <strong>" . $row['request_title'] . "</strong></p>" .
+						     "<p class='request-desc'>" .$row['request_description']. "</p><a class='margin-right-5 respond-request' href='#' data-id='" .$row['id']. "'>Respond via e-mail</a><a href='https://twitter.com/intent/tweet?screen_name=".$row['user_twitter']."' class='margin-left-5 twitter-mention-button'>".$row['user_twitter']."</a></li>";
+						if ($user_login == 'admin') {
+						echo "<button class='pin-request' data-id='" .$row['id']. "' data-pinned='".$row['pinned_request']."'>Unpin this request</button>";
+						}
+				}
+				?>
+			</ul>
+			<h3>All Requests</h3>
 			<ul>
 				<?php 
 				$connect = mysql_connect("localhost", "root", "root");
@@ -94,25 +115,26 @@
 				while($row = mysql_fetch_assoc($result)) {
 						echo "<li class='single-request' data-id='" .$row['id']. "'><p>".$row['user_avatar']."<strong>".$row['user_name']. "</strong> requests <strong>" . $row['request_title'] . "</strong></p>" .
 						     "<p class='request-desc'>" .$row['request_description']. "</p><a class='margin-right-5 respond-request' href='#' data-id='" .$row['id']. "'>Respond via e-mail</a><a href='https://twitter.com/intent/tweet?screen_name=".$row['user_twitter']."' class='margin-left-5 twitter-mention-button'>".$row['user_twitter']."</a></li>";
-						
+						echo "<input id='request_sender_".$row['id']."' type='hidden' value=".$row['user_email']."><input id='request_name_".$row['id']."' type='hidden' value=".escapeshellarg($row['request_title']).">";
+
+						// Pin the request
+						if($user_login == 'admin' and $row['pinned_request'] == 0){
+							echo "<button class='pin-request' data-id='" .$row['id']. "' data-pinned='".$row['pinned_request']."'>Pin this request</button>";
+						} elseif ($user_login == 'admin' and $row['pinned_request'] == 1) {
+							echo "<button class='pin-request' data-id='" .$row['id']. "' data-pinned='".$row['pinned_request']."'>Unpin this request</button>";
+						}
+
 						//delete request when complete     
 						if($row['user_name'] == $user_name){
-							echo "<button class='transparent delete-request' data-id='" .$row['id']. "'>Delete request</button>";
+							echo "<button class='delete-request' data-id='" .$row['id']. "'>Delete request</button>";
 						}
+
 				?>
 				<div class='response-modal all-modal' id='request-<?php echo $row['id']; ?>'>
 					<h4>Your e-mail response</h4>
 					<button class='close-response'><i class='fa fa-close'></i></button>
 					<img src='<?php echo get_template_directory_uri(); ?>/assets/img/email.png' alt=''>
-					<form id="request-reply" name='reply_form' action='<?php echo get_template_directory_uri(); ?>/reply_to_request.php' method='POST' novalidate='novalidate'>
-						<label>Send to: <input type='email' name='email_to' size='40' aria-required='true' aria-invalid='false' value='<?php echo $row['user_email']; ?>'></label>
-						<label>Subject: <input type='text' name='subject' value='<?php echo $row['request_title']; ?>' size='40' aria-required='true' aria-invalid='false'></label>
-						<label class="textarea">Message: <textarea name='message' cols='40' rows='10' aria-invalid='false'></textarea></label>
-						<label>From:<input type='email' name='email_from' value='<?php echo $email; ?>' size='40' aria-invalid='false'>
-						<input type='submit' value='Send Message' class=''></label>
-						<input type='hidden' name='request' value='<?php echo $row['request_title']; ?>'>
-						<input type='hidden' name='sender_name' value='<?php echo $user_name; ?>'>
-					</form>
+					<?php echo do_shortcode('[contact-form-7 id="103" title="Reply to Request"]'); ?>
 				</div>
 
 				<?php
@@ -123,7 +145,7 @@
 	</div>
 	<!-- Right side -->
 	<div class="right-side">
-		<h2>Upcoming</h2>
+		<h2>Upcoming Events</h2>
 		<a class="block margin-bottom-20 black-link" href="<?php echo esc_url(home_url('/')); ?>events">View calendar</a>
 		<section class="event-preview">
 			<ul>
@@ -145,7 +167,7 @@
 			</ul>
 		</section>
 		
-		<h2>Updates</h2>
+		<h2>Blog Updates</h2>
 		<a class="block margin-bottom-20 black-link" href="http://youthroundtable.ca/" target="_blank">Visit the blog</a>
 		<section class="blog-updates">
 			<?php 

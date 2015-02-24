@@ -12,7 +12,7 @@ include 'calendar.php';
 <div class="left-side events">
 	<h2>Collective Calendar <?php echo update_date($month, $year); ?></h2>
 	<ul class="select-filter">
-	    <li><a data-id="3" class="event-filter black-link-b" href="<?php echo esc_url(home_url('/')); ?>">All Events</a> /</li>
+	    <li><a data-id="3" class="selected-opt event-filter black-link-b" href="<?php echo esc_url(home_url('/')); ?>">All Events</a> /</li>
 	    <li class="middle-gray-txt">Show Only</li>
 	    <li><a data-id="0" class="event-filter blue-link-b" href="#">Meetings |</a></li>
 	    <li><a data-id="1" class="event-filter blue-link-b" href="#">Socials |</a></li>
@@ -31,24 +31,78 @@ include 'calendar.php';
 	</div>
 	<div class="upcoming">
 	<h2>Upcoming</h2>
+	<label class="mobile-only" for="">Filter by month</label>
+	<form action="#" method="POST" name="upcoming_filter" class="margin-bottom-20 mobile-only">
+	<select name="month">
+		<option value="1">January</option>
+		<option value="2">February</option>
+		<option value="3">March</option>
+		<option value="4">April</option>
+		<option value="5">May</option>
+	</select>
+	<input type="submit" name="submit" value="filter">
+	</form>
 	<?php 
-	$connect = mysql_connect("localhost", "root", "root");
-	mysql_select_db("resources", $connect);
-	// Query the DB to a limit of 5 results
-	$query = "SELECT * FROM wp_events LIMIT 7";
-	$result = mysql_query($query);
+	if(isset($_POST['submit'])){
+		// IF MONTH FILTER IS SELECTED
+		$selected_month = $_POST['month'];
 
-	// Displays the results as list items
-	while($row = mysql_fetch_assoc($result)) {
-			echo "<ul><li>" .$row['submitted_by']. "</li><li><h4>" . $row['event_title'] . "</h4></li>".
-			     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i', strtotime($row['event_start_time'])). " - " .date('h:i A', strtotime($row['event_end_time'])). "</p></li>" .
-			     "<li><p>" .$row['event_location'] . "<p></li></ul>";
-	    
+		$connect = mysql_connect("localhost", "root", "root");
+		mysql_select_db("resources", $connect);
+		// Query the DB to a limit of 5 results
+		$query = "SELECT * FROM wp_events WHERE MONTH(event_date) = $selected_month ";
+		$result = mysql_query($query);
+
+		// Displays the results as list items
+		while($row = mysql_fetch_assoc($result)) {
+				echo "<ul data-author='".$row['user_name']."'><li>" .$row['submitted_by']. "</li><li><h4><a class='event' href='#' data-id='". $row['id']."'>" . $row['event_title'] . "</a></h4></li>".
+				     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i', strtotime($row['event_start_time'])). " - " .date('h:i A', strtotime($row['event_end_time'])). "</p></li>" .
+				     "<li><p>" .$row['event_location'] . "<p></li></ul>";
+		    
+		}
+		mysql_close();
+	
+	} else {
+		// IF THERE'S NO FILTER
+		$connect = mysql_connect("localhost", "root", "root");
+		mysql_select_db("resources", $connect);
+		// Query the DB to a limit of 5 results
+		$query = "SELECT * FROM wp_events WHERE MONTH(event_date) = $month LIMIT 10";
+		$result = mysql_query($query);
+
+		// Displays the results as list items
+		while($row = mysql_fetch_assoc($result)) {
+				echo "<ul data-author='".$row['user_name']."'><li>" .$row['submitted_by']. "</li><li><h4>" . $row['event_title'] . "</h4></li>".
+				     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i', strtotime($row['event_start_time'])). " - " .date('h:i A', strtotime($row['event_end_time'])). "</p></li>" .
+				     "<li><p>" .$row['event_location'] . "<p></li></ul>";
+		    
+		}
+		mysql_close();
 	}
-	mysql_close();
+
+	
+	?>
+	<button id="show-all-upcoming">Show All</button>
+	<div id="all-upcoming">
+	<?php 
+		$connect = mysql_connect("localhost", "root", "root");
+		mysql_select_db("resources", $connect);
+		// Query the DB to a limit of 5 results
+		$query = "SELECT * FROM wp_events WHERE MONTH(event_date) = $month LIMIT 10, 20";
+		$result = mysql_query($query);
+
+		// Displays the results as list items
+		while($row = mysql_fetch_assoc($result)) {
+				echo "<ul data-author='".$row['user_name']."'><li>" .$row['submitted_by']. "</li><li><h4>" . $row['event_title'] . "</h4></li>".
+				     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i', strtotime($row['event_start_time'])). " - " .date('h:i A', strtotime($row['event_end_time'])). "</p></li>" .
+				     "<li><p>" .$row['event_location'] . "<p></li></ul>";
+		    
+		}
+		mysql_close();
+		
 	?>
 	</div>
-	
+	</div>
 	<button class="add-event margin-bottom-20"><i class="margin-right-5 fa fa-plus"></i>Add to Calendar</button>	
 </div>
 <!-- RIGHT side -->
@@ -63,7 +117,7 @@ include 'calendar.php';
 		$connect = mysql_connect("localhost", "root", "root");
 		mysql_select_db("resources", $connect);
 		// Query the DB to a limit of 5 results
-		$query = "SELECT DISTINCT user_name FROM wp_events";
+		$query = "SELECT DISTINCT user_name FROM wp_events LIMIT 10";
 		$result = mysql_query($query);
 
 		// Displays the results as list items
@@ -76,7 +130,7 @@ include 'calendar.php';
 		</ul>
 	</div>
 	<!-- SELECTED Event -->
-	<div class="selected right-sidebar">
+	<div class="selected right-sidebar" id="selected-event">
 		<h2 id="event-title">RYR Executive Meeting</h2>
 		<img id="event-img" class="event" src="" alt="Event Image" />
 		<span class="host"><span id="user-avatar"></span> Hosted by <span id="user-name"></span></span>
@@ -89,23 +143,26 @@ include 'calendar.php';
 			<a id="eventbrite-link" href="" target="_blank"><img class="margin-right-5 small" src="<?php echo get_template_directory_uri(); ?>/assets/img/eventbrite.png" alt="Eventbrite Icon">Eventbrite Registration Page</a>
 			<a id="facebook-link" href="" target="_blank"><img class="margin-right-5 small" src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook.png" alt="Facebook Icon">Facebook Event</a>
 		</section>
-		<button class="share block">Share<i class="fa fa-share margin-left-5"></i></button>
+		<button id="share-btn" class="share block">Share<i class="fa fa-share margin-left-5"></i></button>
+		<div class="share-btn">
+			<div class="inline-block fb-share-button" data-href="http://youthroundtable.ca/events" data-layout="button_count"></div>
+			<a href="https://twitter.com/share" id="share-event-twitter" class="inline-block twitter-share-button" data-url="http://hello.com" data-text="Check out this event!">Tweet</a>
+		</div>
 		<h4 class="text-al-center">Notes</h4>
 		<p id="event-notes">Cupcake fruitcake bonbon unerdwear.com apple pie candy canes danish lollipop. Pastry muffin liquorice dessert.</p>
 	</div>
 	<!-- add an event form -->
-	<div class="new-event right-sidebar">
-		<form name="myform" method="post" action="<?php echo get_template_directory_uri(); ?>/event_save.php" enctype="multipart/form-data">
+	<div class="new-event right-sidebar" id="new-event">
+		<form name="myform" method="POST" action="<?php echo get_template_directory_uri(); ?>/event_save.php" enctype="multipart/form-data">
 			<input class="full title padding-left-none" type="text" name="event_title" placeholder="Add Title"/>
 			<label class="margin-top-20 margin-bottom-20">Upload Image <input class="padding-left-none" type="file" name="event_img"></label>
 			<label class="host block margin-bottom-20"><?php $avatar = get_avatar($current_user->ID, 32); echo $avatar; ?> Hosted by <?php echo $current_user->display_name; ?><input type="hidden" name="submitted_by" value="<?php echo htmlspecialchars($avatar) ?>"></label>
-			<label class="block margin-top-10 text-al-center" for="">Event Type</label>
-				<span class="radio-block"><input type="radio" name="event_type" value="0">
-				Meeting</span>
-				<span class="radio-block"><input type="radio" name="event_type" value="1">
-				Socials</span>
-				<span class="radio-block"><input type="radio" name="event_type" value="2">
-				Fundraising</span>
+			<label class="block margin-top-10 text-al-center" for="event_type">Event Type</label>
+			<select class="block def-width" name="event_type">
+				<option value="0">Meeting</option>
+				<option value="1">Socials</option>
+				<option value="2">Fundraising</option>
+			</select>
 			<label class="centered block text-al-center margin-top-20">Date <input class="def-width centered input-opac" type="date" name="event_date"></label>
 			<label class="centered block text-al-center margin-top-10" for="">Start Time<input class="def-width centered input-opac" type="time" name="event_start_time"></label>
 			<label class="centered block text-al-center margin-top-10" for="">End Time<input class="def-width centered input-opac" type="time" name="event_end_time"></label>
@@ -122,3 +179,14 @@ include 'calendar.php';
 		</form>
 	</div>
 </div>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<script>
+window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+</script>

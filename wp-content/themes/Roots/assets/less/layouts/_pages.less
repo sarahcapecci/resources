@@ -7,7 +7,8 @@ body.login {
 	background-size: cover;
 	min-height: 700px;
 	@media all and (max-width: @mobile) {
-		min-height: 300px;
+		min-height: 700px;
+		padding: 20px;
 	}
 }
 
@@ -26,6 +27,10 @@ span.diamond {
 	top: 120px;
 	left: 125px;
 	display:block;
+
+	@media all and (max-width: @mobile) {
+		display: none;
+	}
 }
 
 .login {
@@ -38,6 +43,10 @@ span.diamond {
 	.left {
 		width: 35%;
 		color: @white;
+		@media all and (max-width: @mobile) {
+			text-align: center;
+			margin: 50px auto 30px auto;
+		}
 	}
 
 	form {
@@ -77,6 +86,11 @@ span.diamond {
 	.left, form {
 		display: inline-block;
 		vertical-align: top;
+		@media all and (max-width: @mobile) {
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+		}
 	}
 }
 
@@ -132,12 +146,20 @@ span.diamond {
 	bottom: 10px;
 }
 
-p.message, #login_error {
+.message.register {
 	position: absolute;
-	font-size: 12px;
-	color: white;
 	right: 5%;
 	top: 20px;
+	width: 320px;
+}
+
+#login_error {
+	display: none;
+}
+
+.message {
+	font-size: 12px;
+	color: white;
 }
 
 // BULLETIN
@@ -157,10 +179,7 @@ p.message, #login_error {
 }
 
 .main {
-	@media all and (max-width: @tablet) {
-		// padding: 20px 40px;
-	}
-
+	
 	@media all and (max-width: @mobile) {
 		padding: 20px;
 	}
@@ -206,6 +225,16 @@ p.message, #login_error {
 		max-width: 100%;
 	}
 }
+
+.delete-request, .pin-request, .unpin-request {
+	background-color: @orange;
+	color: @white;
+	margin-left: 40px;
+	border-radius: 2px;
+	@media all and (max-width: @mobile) {
+		margin-left: 20px;
+	}
+}
 // RESOURCES FEED ON BULLETIN 
 .entry {
 	padding: 5px 0;
@@ -213,6 +242,7 @@ p.message, #login_error {
 
 	img.avatar {
 		margin-right: 10px;
+		max-width: 32px;
 	}
 
 	.document-card {
@@ -226,7 +256,9 @@ p.message, #login_error {
 		}
 	}
 }
-
+.avatar {
+	border-radius: 50%;
+}
 // EVENTS FEED ON BULLETIN
 
 .single-event {
@@ -263,6 +295,7 @@ p.message, #login_error {
 
 	img {
 		margin-right: 10px;
+		max-width: 32px;
 	}
 
 	.request-desc {
@@ -302,6 +335,9 @@ p.message, #login_error {
 		color: @text-light-gray;
 		margin: 10px 0;
 		width: 80%;
+		@media all and (max-width: @tablet) {
+			width: 100%;
+		}
 	}
 }
 
@@ -318,6 +354,9 @@ p.message, #login_error {
 		a {
 			color: @white;
 		}
+	}
+	@media all and (max-width: @mobile) {
+		display: none;
 	}
 }
 
@@ -552,7 +591,27 @@ p.message, #login_error {
 	}
 }
 
+.show-all-files {
+	display: none;
+}
+
+.show-all {
+	background-color: @orange;
+	color: @white;
+	padding: 5px;
+	margin: 30px auto;
+}
+
 .right-side {
+	width: 30%;
+	@media all and (max-width: @tablet) {
+		width: 100%;
+	}
+
+	iframe {
+		// width: 100%!important;
+	}
+
 	span {
 		display: block;
 	}
@@ -643,11 +702,6 @@ p.message, #login_error {
 	}
 }
 .right-side {
-	@media all and (max-width: @tablet) {
-		width: 100%;
-		position: initial;
-		margin-top: 30px;
-	}
 	width: 27%;
 	display: inline-block;
 	top: 160px;
@@ -683,8 +737,33 @@ p.message, #login_error {
 			margin-bottom: 5px;
 		}
 	}
+
+	@media all and (max-width: @tablet) {
+		width: 100%!important;
+		position: initial;
+		margin-top: 30px;
+	}
 }
 
+#popular-sorted {
+	display: none;
+}
+.category-filter {
+	display: none;
+	@media all and (max-width: @mobile) {
+		display: block;
+	}
+	h3 {
+		font-weight: 700;
+	}
+	button {
+		background-color: @orange;
+		color: white;
+		padding: 5px;
+		margin-right: 10px;
+		border-radius: 2px; 
+	}
+}
 //*********************** END OF LINKS
 
 // MODALS 
@@ -1061,7 +1140,14 @@ p.message, #login_error {
 	h2 {
 		font-weight: 500;
 		color: @orange;
+		@media all and (max-width: @mobile) {
+			display: none;
+		}
 	}
+}
+
+.selected-opt {
+	font-weight: 700;
 }
 
 .right-side.events {
@@ -1082,10 +1168,18 @@ p.message, #login_error {
 
 .calendar-pagination {
 	padding-right: 60px;
+	@media all and (max-width: @mobile) {
+		display: none;
+	}
 }
 #calendar {
 	width: 100%;
 	padding: 5px;
+	min-width: 855px;
+	max-width: 855px;
+	@media all and (max-width: @mobile) {
+		display: none;
+	}
 }
 tbody {
 	border: 1px solid @light-gray;
@@ -1122,6 +1216,7 @@ table {
 	td {
 		display: inline-block;
 		width: 14.28%;
+		min-width: 110px;
 	}
 }
 
@@ -1203,6 +1298,13 @@ table {
 		}
 	}
 
+	.event {
+		color: @black;
+		&:hover {
+			color: @middle-gray;
+		}
+	}
+
 	p {
 		font-weight: 300;
 		color: @middle-gray;
@@ -1214,8 +1316,39 @@ table {
 		width: 50px;
 		background-color: blue;
 	}
+
+	//filter form
+	select {
+		width: 100px;
+		padding: 5px;
+	}
+	input[type=submit] {
+		background-color: @orange;
+		color: @white;
+		padding: 4px 6px;
+		border: none;
+	}
 }
 
+.mobile-only {
+	display: none;
+	@media all and (max-width: @mobile) {
+		display: block;
+	}
+}
+#show-all-upcoming {
+	color:@white;
+	background-color: @orange;
+	padding: 5px 8px;
+	border-radius: 2px;
+	border: none;
+	@media all and (max-width: @mobile) {
+		display: none;
+	}
+}
+#all-upcoming {
+	display: none;
+}
 // RIGHT SIDE - SELECTED EVENT
 .right-sidebar {
 	color: @white;
@@ -1305,7 +1438,14 @@ table {
 		padding: 5px;
 		color: @white;
 		border-radius: 2px;
-		margin: 2px auto 40px auto;
+		margin: 2px auto 10px auto;
+	}
+
+	.share-btn {
+		border-radius: 2px;
+		margin-bottom: 20px;
+		margin-left: 20px;
+		display: none;
 	}
 }
 
@@ -1352,7 +1492,7 @@ table {
 	}
 
 	.def-width {
-		width: 60%;
+		width: 75%;
 	}
 	input, textarea {
 		background-color: transparent;
@@ -1410,6 +1550,12 @@ table {
 			width: 80%;
 		}
 	}
+
+	select {
+		background-color: @event-gray;
+		color: @white;
+		margin: 10px auto;
+	}
 }
 
 .organizations {
@@ -1426,3 +1572,175 @@ table {
 	}
 }
 
+// ABOUT
+//* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *//
+.about-header {
+	width: 100%;
+	min-height: 300px;
+	margin-bottom: 40px;
+	@media all and (max-width: @tablet) {
+		margin-bottom: 10px;
+	}
+}
+.about-text {
+	width: 50%;
+	padding: 20px;
+	@media all and (max-width: @tablet) {
+		width: 100%;
+	}
+	p {
+		color: @member-dark-gray;
+	}
+}
+p.about-text, .values p {
+	width: 80%;
+	font-size: 24px;
+	line-height: 30px;
+	color: @about-gray;
+	@media all and (max-width: @tablet) {
+		width: 100%;
+	}
+}
+p.about-text {
+	margin: 10px auto 40px auto;
+	@media all and (max-width: @tablet) {
+		margin-bottom: 10px;
+	}
+}
+.about-thumbnail {
+	width: 35%;
+	margin: 2%;
+	padding: 2%;
+	height: 165px;
+	@media all and (max-width: @tablet) {
+		width: 100%;
+	}
+}
+.values {
+	margin-top: 40px;
+	p {
+		text-align: center;
+		margin: 0 auto;
+	}
+}
+
+.program-card {
+	width: 31%;	
+	margin: 1%;
+	max-height: 300px;
+	h3 {
+		margin-bottom: 0;
+	}
+	h4 {
+		margin-top: 0px;
+		margin-bottom: 15px;
+	}
+	p, h3 {
+		color: @member-dark-gray;
+	}
+	@media all and (max-width: @tablet) {
+		min-width: 200px;
+		width: 100%;
+	}
+
+}
+.sponsors {
+	margin: 40px auto 0px auto;
+	width: 48%;
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+	padding: 15px 30px;
+	@media all and (max-width: @tablet) {
+		width: 100%;
+	}
+
+	h3 {
+		text-align: center;
+		margin-bottom: 20px;
+	}
+
+	.thumbnail {
+		width: 100px;
+		height: 100px;
+		border-radius: 50%;
+		display: inline-block;
+	}
+}
+
+// MEMBERS
+//* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *//
+
+.pic-thumbnail {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	display: block;
+	margin: 10px auto;
+}
+
+.member-card {
+	width: 48%;
+	min-width: 370px;
+	margin-right: 1.5%;
+	position: relative;
+
+	
+	h3 {
+		margin-bottom: 0;
+	}
+	h4 {
+		margin-top: 0px;
+		margin-bottom: 15px;
+		padding: 0 10px;
+	}
+	p, h3 {
+		color: @member-dark-gray;
+		padding: 0 10px;
+	}
+	@media all and (max-width: @tablet) {
+		min-width: 250px;
+	}
+	@media all and (max-width: @mobile) {
+		min-width: 200px;
+		width: 100%;
+	}
+}
+
+.left-side {
+	width: 65%;
+	margin-right: 2%;
+
+	@media all and (max-width: @tablet) {
+		width: 100%;
+		margin-right: 0;
+	}
+	h3.title {
+		@media all and (max-width: @mobile) {
+			width: 50%;
+		}
+	}
+	a.absolute {
+		right: 0;
+		top: 15px;
+		padding: 6px;
+
+		img {
+			max-width: 25px;
+		}
+	}
+}
+
+div.social {
+	position: absolute;
+	bottom: 30px;
+	left: 35%;
+	@media all and (max-width: @tablet) {
+		left: 30%;
+	}
+}
+
+.social img {
+	max-width: 35px;
+	margin: 5px 2px 0 0;
+}

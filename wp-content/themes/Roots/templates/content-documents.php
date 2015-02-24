@@ -2,6 +2,10 @@
 /*
 Template Name: Resources-documents Template
 */
+	global $current_user;
+    get_currentuserinfo();
+    $avatar = get_avatar($current_user->ID, 32);
+    echo '<span class="invisible" id="avatar-value">'.$avatar.'</span>';
 ?>
 <!-- Left side -->
 	<?php get_template_part('templates/resources', 'header') ?>
@@ -22,7 +26,7 @@ Template Name: Resources-documents Template
 		<h3 id="document-search">Recently Uploaded</h3>	
 		<!-- Color varies with type of document -->
 		<?php echo do_shortcode(
-		'[cfdb-html form="Upload Document" show="title,document-select,doc-description,doc-tags,file-upload,Submitted Login,Submitted" filelinks="url" stripbr="true" filter="doc-tags~~/.*$_POST(tag_filter).*/i"]
+		'[cfdb-html form="Upload Document" show="title,document-select,doc-description,doc-tags,file-upload,Submitted Login,Submitted" limit="10" filelinks="url" stripbr="true" filter="doc-tags~~/.*$_POST(tag_filter).*/i"]
 		<div class="document-card doc-type ${document-select}">
 			<h4>${title}</h4>
 			<span class="type">${document-select}</span>
@@ -34,6 +38,22 @@ Template Name: Resources-documents Template
 			</div>
 		</div>
 		[/cfdb-html]'); ?>
+		<button class="block show-all">Show All</button>
+		<div class="show-all-files">
+		<?php echo do_shortcode(
+		'[cfdb-html form="Upload Document" show="title,document-select,doc-description,doc-tags,file-upload,Submitted Login,Submitted" limit="10,1000" filelinks="url" stripbr="true" filter="doc-tags~~/.*$_POST(tag_filter).*/i"]
+		<div class="document-card doc-type ${document-select}">
+			<h4>${title}</h4>
+			<span class="type">${document-select}</span>
+			<img src="../../wp-content/themes/Roots/assets/img/document.png" alt="">
+			<span class="doc-date">${Submitted}</span>
+			<div class="overlay">
+				<p class="font-light">${doc-description}</p>
+				<a class="orange-link download" href="${file-upload}">Download File</a>
+			</div>
+		</div>
+		[/cfdb-html]'); ?>
+		</div>
 	</div>
 </div>
 <div class="right-side documents">
@@ -76,15 +96,16 @@ Template Name: Resources-documents Template
 		$db_link = mysql_connect("localhost", "root", "root");
 		mysql_select_db("resources", $db_link);
 
-		$query = "SELECT field_value, file_downloads FROM wp_cf7dbplugin_submits WHERE field_name = 'title' ORDER BY file_downloads DESC";
+		$query = "SELECT field_value, file_downloads, submit_time FROM wp_cf7dbplugin_submits WHERE field_name = 'title' ORDER BY file_downloads DESC";
 
 
 		$result = mysql_query($query) or die(mysql_error());
 
 		while($row = mysql_fetch_assoc($result)) {
-			echo '<li>'.$row['field_value'].' <span>('.$row['file_downloads'].')</span></li>';
+			echo '<li><a href="http://localhost:8888/resources/wp-admin/admin-ajax.php?action=cfdb-file&amp;s='.$row['submit_time'].'&amp;form=Upload+Document&amp;field=file-upload">'.$row['field_value'].' </a><span>('.$row['file_downloads'].')</span></li>';
 		}
 		?>
+
 	</ul>
 	<form class="tag" id="tag-filter-form" method="post" action=" ">
 		<input type='text' id='tag-filter' name='tag_filter' value="">	

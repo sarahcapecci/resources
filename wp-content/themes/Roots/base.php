@@ -13,7 +13,7 @@
   ?>
 
   <div class="wrap container" role="document">
-    <div class="content row">
+    <div class="content">
       <main class="main" role="main">
         <?php include roots_template_path(); ?>
       </main><!-- /.main -->
@@ -29,7 +29,7 @@
   <h4>Add a Document</h4>
   <button id="close-doc"><i class="fa fa-close"></i></button>
   <p>Ensure your title is very clear for others to understand and find.</p>
-  <?php echo do_shortcode('[contact-form-7 id="40" title="Upload Document"]'); ?>
+  <?php echo do_shortcode("[contact-form-7 id='40' title='Upload Document']"); ?>
 </div>
 
 <!-- Modal for upload LINK -->

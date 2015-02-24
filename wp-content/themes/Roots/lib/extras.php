@@ -20,3 +20,15 @@ function roots_wp_title($title) {
   return $title;
 }
 add_filter('wp_title', 'roots_wp_title', 10);
+
+// function shortcodes_in_cf7( $form ) {
+//   $form = do_shortcode( $form );
+//   return $form;
+// }
+// add_filter( 'wpcf7_form_elements', 'shortcodes_in_cf7' );
+
+// add_action( 'wpcf7_before_send_mail', 'CF7_pre_send' );
+ 
+// function CF7_pre_send($cf7) {
+//   $_POST['avatar'] = $avatar; 
+// }

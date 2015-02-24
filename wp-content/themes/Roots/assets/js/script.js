@@ -1,5 +1,114 @@
 $(document).ready(function(){
 
+	// BULETTIN ORGANIZATION
+	$('#request-filter-feed').on('click', function(e){
+		e.preventDefault();
+		$('#events-feed').hide();
+		$('#resources-feed').hide();
+		$('#requests-feed').show();
+	});
+
+	$('#resources-filter-feed').on('click', function(e){
+		e.preventDefault();
+		$('#events-feed').hide();
+		$('#requests-feed').hide();
+		$('#resources-feed').show();
+	});
+
+	$('#event-filter-feed').on('click', function(e){
+		e.preventDefault();
+		$('#events-feed').show();
+		$('#resources-feed').hide();
+		$('#requests-feed').hide();
+	});
+
+	$('#no-filter-feed').on('click', function(e){
+		e.preventDefault();
+		$('#events-feed').show();
+		$('#resources-feed').show();
+		$('#requests-feed').show();
+	});
+
+	// PIN A REQUEST
+	$('.pin-request').on('click', function(){
+		var requestId = $(this).data("id");
+		var pinned = $(this).data("pinned");
+
+		var pinRequest = function(requestId) {
+			$.ajax({
+				url: "wp-content/themes/Roots/pin_request.php",
+				type: "POST",
+				data: {
+					requestParam : requestId,
+					operation: 1
+				},
+				contentType: "application/x-www-form-urlencoded",
+				dataType: "text",
+				success: function(data){
+					console.log(data);
+				},
+				error: function() {
+					console.log("Sorry, there was an error.");
+				}
+			});
+		};
+
+		var unpinRequest = function(requestId) {
+			$.ajax({
+				url: "wp-content/themes/Roots/pin_request.php",
+				type: "POST",
+				data: {
+					requestParam : requestId,
+					operation: 2
+				},
+				contentType: "application/x-www-form-urlencoded",
+				dataType: "text",
+				success: function(data){
+					console.log(data);
+				},
+				error: function() {
+					console.log("Sorry, there was an error.");
+				}
+			});
+		};
+
+		// 1 - pinned, 0 - unpinned
+		if(pinned == 1) {
+			unpinRequest(requestId);
+		} else if (pinned == 0) {
+			pinRequest(requestId);
+		}
+	});
+
+	// DOCUMENTS
+	$('.show-all').on('click', function(){
+		var thisButton = $(this);
+	  	$('.show-all-files').toggle();
+	  	if(thisButton.html() == "Show All"){
+	  		thisButton.html("Show Less");
+	  	} else {
+	  		thisButton.html("Show All");
+	  	}
+	});
+
+	// LINKS
+	$('.link-filter').on('click', function(){
+		var filterType = $(this).data("filter");
+		$('.link-section').hide();
+		$('#'+ filterType + '-sec').show();
+	});
+
+	$('#sort-popular').on('click', function(e){
+		e.preventDefault();
+		$('#popular-sorted').show();
+		$('#recent-sorted').hide();
+	});
+	$('#sort-recent').on('click', function(e){
+		e.preventDefault();
+		$('#popular-sorted').hide();
+		$('#recent-sorted').show();
+	});
+
 	// SIMPLE TOGGLE FUNCTIONS 
 
 	$('#open-document').on('click', function(){
@@ -39,6 +148,14 @@ $(document).ready(function(){
 		var clicked = $(this);
 		var request_id = clicked.data("id");
 	  	$('#request-' + request_id).toggle();
+	  	// this request information
+	  	var senderEmail = $("#request_sender_"+request_id).val();
+	  	var requestSubject = $("#request_name_"+request_id).val();
+
+	  	// insert information into input
+	  	$('#request-' + request_id).find('.send_to').val(senderEmail);
+	  	$('#request-' + request_id).find('.request_title').val(requestSubject);
+
 	});
 
 	$('.close-response').on('click', function(e){
@@ -50,6 +167,19 @@ $(document).ready(function(){
 		$('.selected').hide();
 		$('.organizations').hide();
 		$('.new-event').show();
+		if($(window).width() < 400) {
+			//scroll down if mobile
+			$('body').animate({
+			    scrollTop: $('#new-event').offset().top
+			}, 2000);
+
+		} else {
+			//scroll up if not mobile
+			$('body').animate({
+			    scrollTop: 100
+			}, 2000);
+		}
+
 	});
 
 	// TAG FILTER ON RESOURCES - DOCUMENTS
@@ -107,6 +237,14 @@ $(document).ready(function(){
 					$('#facebook-link').attr('href', data.facebook_url);
 					$('#event-notes').html(data.event_notes);
 
+					// Share Buttons
+					// $('#share-event-twitter').attr('data-via', data.user_name);
+					// $('#share-event-twitter').attr('data-url',data.eventbrite_url);
+					// $('.share-twitter').attr('data-text',"Checkout this event!");
+					// $('.fb-share-button').data('href', data.facebook_url);
+
+					
+
 					// Event Type - Meeting, Socials, Fundraising
 					if(data.event_type == 0) {
 						$('#event-type').html("Meeting");	
@@ -124,33 +262,38 @@ $(document).ready(function(){
 			});
 		};
 		eventDisplay(event_id);
+
+		if($(window).width() < 400) {
+			//scroll down if mobile
+			$('body').animate({
+			    scrollTop: $('#selected-event').offset().top
+			}, 2000);
+
+		} else {
+			//scroll up if not mobile
+			$('body').animate({
+			    scrollTop: 100
+			}, 2000);
+		}
+
 	});
 	
-	// SHOW ONLY REQUESTS ON FEED
-
-	$('#request-filter').on('click', function(e){
-		e.preventDefault();
-		$('#events-feed').hide();
-		$('#resources-feed').hide();
-	});
-
-	$('#no-filter-feed').on('click', function(e){
-		e.preventDefault();
-		$('#events-feed').show();
-		$('#resources-feed').show();
-	});
 
 	// EVENTS FILTER
 
 		// BY TYPE
 	$('.event-filter').on('click', function(e){
 		e.preventDefault();
-		$('.event-filter').css('font-weight', '400');
-		$(this).css('font-weight', '600');
+		$('.event-filter').removeClass('selected-opt');
+		$(this).addClass('selected-opt');
 		var eventType = $(this).data('id');
 		
+		if(eventType == 3) {
+			$('.event').fadeIn();
+		} else {
 		$('.event').fadeOut();
 		$("div[data-type='"+eventType+"']").fadeIn();
+		}
 
 	});
 		// BY ORGANIZATION
@@ -160,19 +303,37 @@ $(document).ready(function(){
 			var chosen_org = $(this).text();
 			$('.filter_option').css('font-weight', '400');
 			$(this).css('font-weight', '600');
-			$('.event').fadeOut();
+			$('div.event').fadeOut(); //inside calendar
 			$("div[data-author='"+chosen_org+"']").fadeIn();
+
+			$('.upcoming ul').fadeOut(); // upcoming lines
+			$("ul[data-author='"+chosen_org+"']").fadeIn();
 			
+			
+
 			if($(this).attr('id') == "no-org-filter") {
 				$('.event').fadeIn();
+				$('.upcoming ul').fadeIn();
 			}
 		});
+
+		// UPCOMING EVENTS SHOW ALL
+		$('#show-all-upcoming').on('click', function(){
+			$('#all-upcoming').show();
+		});
+
+
 	// RESOURCES OVERLAY 
 	$('.document-card').on('click', function(){
 		var thisCard = $(this);
 		thisCard.find(".overlay").toggle();
 	});
 
+	// ADD USER AVATAR ON WPCF DB
+	$('.wpcf7-form').submit(function(){
+		var avatar = $('#avatar-value').find('img').attr('src');
+		$('.hidden-avatar').val(avatar);
+	});
 	// DOWNLOAD COUNTER
 	$('.download').on('click', function(){
 		var thisDocument = $(this);
@@ -225,6 +386,35 @@ $(document).ready(function(){
 		deleteRequest(idRequest);
 	});
 
-	// DELETE EVENT
+	// Link Popularity Increment
+
+	$('.resource-link').on('click', function(){
+		var linkId = $(this).data("id");
+
+		var clickIncrement = function(linkId) {
+			$.ajax({
+				url: "../../wp-content/themes/Roots/link_increment.php",
+				type: "POST",
+				data: {
+					linkId: linkId
+				},
+				contentType: "application/x-www-form-urlencoded",
+				dataType: "text",
+				success: function(data){
+					console.log(data);
+				},
+				error: function() {
+					console.log("Sorry, there was an error.");
+				}
+			});
+		};
+		clickIncrement(linkId);
+	});
+
+	// SHARE EVENT ON FB OR TWITTER
+
+	$('#share-btn').on('click', function(){
+		$('.share-btn').toggle();
+	});
 
 });

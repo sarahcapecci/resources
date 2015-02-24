@@ -7,8 +7,7 @@ Template Name: Resources Template
 <?php
 // Check if user is logged in 
 if ( !is_user_logged_in() ){
-    get_template_part('templates/content', 'not-logged');
-    wp_login_form( array( 'echo' => true ) );
+    header("Location: http://sarahcapecci.com/torch/wp-login.php");
 } else {
     // Show content
     get_template_part('templates/content', 'resources');

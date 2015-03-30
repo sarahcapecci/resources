@@ -1184,10 +1184,6 @@ span.diamond {
 tbody {
 	border: 1px solid @light-gray;
 	width: 100%;
-
-	tr:last-child {
-		visibility: hidden;
-	}
 }
 
 table {
@@ -1223,6 +1219,10 @@ table {
 .calendar-row-day {
 	height: 150px;
 	background-color: @white;
+
+	&:last-child td {
+		border-bottom: none;
+	}
 }
 .calendar-day, .calendar-day-np {
 	height: 103%;
@@ -1231,6 +1231,7 @@ table {
 	padding: 2px 4px;
 	overflow-y: scroll;
 }
+
 .calendar-day-np {
 	background-color: @light-gray;
 }

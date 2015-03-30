@@ -58,6 +58,10 @@ include 'calendar.php';
 				echo "<ul data-author='".$row['user_name']."'><li>" .$row['submitted_by']. "</li><li><h4><a class='event' href='#' data-id='". $row['id']."'>" . $row['event_title'] . "</a></h4></li>".
 				     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i', strtotime($row['event_start_time'])). " - " .date('h:i A', strtotime($row['event_end_time'])). "</p></li>" .
 				     "<li><p>" .$row['event_location'] . "<p></li></ul>";
+
+				if($row['user_name'] == $username){
+					echo "<button class='delete-event' data-id='" .$row['id']. "'>Delete</button>";
+				}
 		    
 		}
 		mysql_close();
@@ -75,6 +79,9 @@ include 'calendar.php';
 				echo "<ul data-author='".$row['user_name']."'><li>" .$row['submitted_by']. "</li><li><h4>" . $row['event_title'] . "</h4></li>".
 				     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i', strtotime($row['event_start_time'])). " - " .date('h:i A', strtotime($row['event_end_time'])). "</p></li>" .
 				     "<li><p>" .$row['event_location'] . "<p></li></ul>";
+				     if($row['user_name'] == $username){
+				     	echo "<button class='delete-event' data-id='" .$row['id']. "'>Delete</button>";
+				     }
 		    
 		}
 		mysql_close();
@@ -96,6 +103,9 @@ include 'calendar.php';
 				echo "<ul data-author='".$row['user_name']."'><li>" .$row['submitted_by']. "</li><li><h4>" . $row['event_title'] . "</h4></li>".
 				     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i', strtotime($row['event_start_time'])). " - " .date('h:i A', strtotime($row['event_end_time'])). "</p></li>" .
 				     "<li><p>" .$row['event_location'] . "<p></li></ul>";
+				     if($row['user_name'] == $user_name){
+				     	echo "<button class='delete-event' data-id='" .$row['id']. "'>Delete request</button>";
+				     }
 		    
 		}
 		mysql_close();
@@ -146,7 +156,7 @@ include 'calendar.php';
 		<button id="share-btn" class="share block">Share<i class="fa fa-share margin-left-5"></i></button>
 		<div class="share-btn">
 			<div class="inline-block fb-share-button" data-href="http://youthroundtable.ca/events" data-layout="button_count"></div>
-			<a href="https://twitter.com/share" id="share-event-twitter" class="inline-block twitter-share-button" data-url="http://hello.com" data-text="Check out this event!">Tweet</a>
+			<a href="https://twitter.com/share" id="share-event-twitter" class="inline-block twitter-share-button" data-url="http://youthroundtable.ca/events" data-text="Check out this event!">Tweet</a>
 		</div>
 		<h4 class="text-al-center">Notes</h4>
 		<p id="event-notes">Cupcake fruitcake bonbon unerdwear.com apple pie candy canes danish lollipop. Pastry muffin liquorice dessert.</p>

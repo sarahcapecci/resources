@@ -55,12 +55,12 @@ include 'calendar.php';
 
 		// Displays the results as list items
 		while($row = mysql_fetch_assoc($result)) {
-				echo "<ul data-author='".$row['user_name']."'><li>" .$row['submitted_by']. "</li><li><h4><a class='event' href='#' data-id='". $row['id']."'>" . $row['event_title'] . "</a></h4></li>".
+				echo "<ul data-event-id='".$row['id']."' data-author='".$row['user_name']."'><li>" .$row['submitted_by']. "</li><li><h4><a class='event' href='#' data-id='". $row['id']."'>" . $row['event_title'] . "</a></h4></li>".
 				     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i', strtotime($row['event_start_time'])). " - " .date('h:i A', strtotime($row['event_end_time'])). "</p></li>" .
 				     "<li><p>" .$row['event_location'] . "<p></li></ul>";
 
 				if($row['user_name'] == $username){
-					echo "<button class='delete-event' data-id='" .$row['id']. "'>Delete</button>";
+					echo "<button class='delete-event' data-id='" .$row['id']. "'>Delete Event</button>";
 				}
 		    
 		}
@@ -76,11 +76,11 @@ include 'calendar.php';
 
 		// Displays the results as list items
 		while($row = mysql_fetch_assoc($result)) {
-				echo "<ul data-author='".$row['user_name']."'><li>" .$row['submitted_by']. "</li><li><h4>" . $row['event_title'] . "</h4></li>".
+				echo "<ul data-event-id='".$row['id']."' data-author='".$row['user_name']."'><li>" .$row['submitted_by']. "</li><li><h4>" . $row['event_title'] . "</h4></li>".
 				     "<li><p>" .date('F j, Y', strtotime($row['event_date'])). "</p><p>" .date('h:i', strtotime($row['event_start_time'])). " - " .date('h:i A', strtotime($row['event_end_time'])). "</p></li>" .
 				     "<li><p>" .$row['event_location'] . "<p></li></ul>";
 				     if($row['user_name'] == $username){
-				     	echo "<button class='delete-event' data-id='" .$row['id']. "'>Delete</button>";
+				     	echo "<button class='delete-event' data-id='" .$row['id']. "'>Delete Event</button>";
 				     }
 		    
 		}

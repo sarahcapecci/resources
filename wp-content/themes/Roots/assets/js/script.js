@@ -417,4 +417,32 @@ $(document).ready(function(){
 		$('.share-btn').toggle();
 	});
 
+	// delete event
+
+	$('.delete-event').on('click', function(){
+		var thisEvent = $(this);
+		var idEvent = thisEvent.data("id");
+
+
+		var deleteEvent = function(idEvent) {
+			$.ajax({
+				url: "../wp-content/themes/Roots/delete_event.php",
+				type: "POST",
+				data: {
+					event_id: idEvent
+				},
+				contentType: "application/x-www-form-urlencoded",
+				dataType: "text",
+				success: function(data){
+					$('[data-event-id=' + idEvent + ']').hide();
+					thisEvent.hide();
+				},
+				error: function() {
+					console.log("Sorry, there was an error.");
+				}
+			});
+		};
+		deleteEvent(idEvent);
+	});
+
 });

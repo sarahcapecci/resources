@@ -50,8 +50,12 @@
 				<div class="document-card doc-type ${document-select}">
 					<h4>${title}</h4>
 					<span class="type">${document-select}</span>
-				<img src="wp-content/themes/Roots/assets/img/document.png" alt="">
-				<span class="doc-date">${Submitted}</span>
+					<img src="wp-content/themes/Roots/assets/img/document.png" alt="">
+					<span class="doc-date">${Submitted}</span>
+					<div class="overlay">
+						<p class="font-light">${doc-description}</p>
+						<a class="orange-link download" href="${file-upload}">Download File</a>
+					</div>
 				</div>
 			</li>[/cfdb-html]'); ?>
 			</ul>
@@ -68,7 +72,7 @@
 
 				// Displays the results as list items
 				while($row = mysql_fetch_assoc($result)) {
-						echo "<li class='single-event'><p>".$row['submitted_by']."<strong>" .$row['user_name']. "</strong> is hosting <strong>" .$row['event_title']. "</strong></p>";
+						echo "<li class='single-event'><p><a class='inherit-clr' href=events/?eventid=".$row['id'].">".$row['submitted_by']."<strong>" .$row['user_name']. "</strong> is hosting <strong>" .$row['event_title']. "</strong></a></p>";
 						// handle the image
 						if ($row['event_img']) {
 							echo "<img class='event-img-feed' src='" .$event_img_path.$row['event_img_name']. "'/></li>";
@@ -158,7 +162,7 @@
 
 				// Displays the results as list items
 				while($row = mysql_fetch_assoc($result)) {
-						echo "<li><div class='inline-block'>" .$row['submitted_by']. "</div><div class='inline-block'><h3>" . $row['event_title'] . "</h3>".
+						echo "<li><div class='inline-block'>" .$row['submitted_by']. "</div><div class='inline-block'><h3><a class='inherit-clr' href=events/?eventid=".$row['id'].">" . $row['event_title'] . "</a></h3>".
 						     "<p>" .date('F j, Y', strtotime($row['event_date'])). " | " .date('h:i', strtotime($row['event_start_time'])). " - " .date('h:i A', strtotime($row['event_end_time'])). "</p>" .
 						     "<p>" .$row['event_location'] . "</p></div></li>";   
 				}

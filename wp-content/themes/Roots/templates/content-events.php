@@ -142,7 +142,7 @@ include 'calendar.php';
 	<!-- SELECTED Event -->
 	<div class="selected right-sidebar" id="selected-event">
 		<h2 id="event-title">RYR Executive Meeting</h2>
-		<img id="event-img" class="event" src="" alt="Event Image" />
+		<div id="event-img" class="event img-bg"></div>
 		<span class="host"><span id="user-avatar"></span> Hosted by <span id="user-name"></span></span>
 		<h5 id="event-type" class="font-light"></h5>
 		<p id="event-date"></p>
@@ -153,10 +153,11 @@ include 'calendar.php';
 			<a id="eventbrite-link" href="" target="_blank"><img class="margin-right-5 small" src="<?php echo get_template_directory_uri(); ?>/assets/img/eventbrite.png" alt="Eventbrite Icon">Eventbrite Registration Page</a>
 			<a id="facebook-link" href="" target="_blank"><img class="margin-right-5 small" src="<?php echo get_template_directory_uri(); ?>/assets/img/facebook.png" alt="Facebook Icon">Facebook Event</a>
 		</section>
+		<span class="not-visible" id="event-id-locator"></span>
 		<button id="share-btn" class="share block">Share<i class="fa fa-share margin-left-5"></i></button>
 		<div class="share-btn">
-			<div class="inline-block fb-share-button" data-href="http://youthroundtable.ca/events" data-layout="button_count"></div>
-			<a href="https://twitter.com/share" id="share-event-twitter" class="inline-block twitter-share-button" data-url="http://youthroundtable.ca/events" data-text="Check out this event!">Tweet</a>
+			<a href="" class="facebook" target="_blank" alt="Share on Facebook">Share</a>
+			<a href="" data-count="none" class="inline-block twitter-share-button"  data-text="Check out this event!">Tweet</a>
 		</div>
 		<h4 class="text-al-center">Notes</h4>
 		<p id="event-notes">Cupcake fruitcake bonbon unerdwear.com apple pie candy canes danish lollipop. Pastry muffin liquorice dessert.</p>
@@ -164,7 +165,7 @@ include 'calendar.php';
 	<!-- add an event form -->
 	<div class="new-event right-sidebar" id="new-event">
 		<form name="myform" method="POST" action="<?php echo get_template_directory_uri(); ?>/event_save.php" enctype="multipart/form-data">
-			<input class="full title padding-left-none" type="text" name="event_title" placeholder="Add Title"/>
+			<input class="full title padding-left-none" type="text" name="event_title" placeholder="Add Title" required/>
 			<label class="margin-top-20 margin-bottom-20">Upload Image <input class="padding-left-none" type="file" name="event_img"></label>
 			<label class="host block margin-bottom-20"><?php $avatar = get_avatar($current_user->ID, 32); echo $avatar; ?> Hosted by <?php echo $current_user->display_name; ?><input type="hidden" name="submitted_by" value="<?php echo htmlspecialchars($avatar) ?>"></label>
 			<label class="block margin-top-10 text-al-center" for="event_type">Event Type</label>
@@ -190,13 +191,8 @@ include 'calendar.php';
 	</div>
 </div>
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 <script>
-window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));
+	
+
 </script>
+
